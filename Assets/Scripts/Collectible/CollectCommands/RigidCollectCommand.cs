@@ -3,45 +3,45 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
 
-[CreateAssetMenu(fileName = "FrontEndCollectCommand", menuName = "ScriptableObjects/FrontEndCollectCommand", order = 1)]
-public class FrontEndCollectCommand : BaseCollectCommand
+[CreateAssetMenu(fileName = "RigidCollectCommand", menuName = "ScriptableObjects/RigidCollectCommand",
+    order = 1)]
+public class RigidCollectCommand : BaseCollectCommand
 {
     [SerializeField] private float _lerpTime = 0.25f;
-    private Bounds _bounds;
-
+    [SerializeField] private Vector3 _distance;
 
     private ParentConstraint _parentConstraint;
+    private bool _isParentConstraintSet;
 
-    private bool _isParentConstraintSet = false;
+    private int _row;
+    private int _column;
 
-    protected override void ExecuteCustomActions(
-        Collectible collectible, Action onCollectCommandExecuted)
+
+    protected override void ExecuteCustomActions(Collectible collectible, Action onCollectCommandExecuted)
     {
-        _bounds = collectible.Collider.bounds;
         collectible.Collider.enabled = false;
+
+        if (CollectedCollectibles.Count == 0)
+        {
+            _parentConstraint = ParentTransform.gameObject.AddComponent<ParentConstraint>();
+            ConstraintSource constraintSource = new ConstraintSource();
+            constraintSource.sourceTransform = CharacterTransform;
+            constraintSource.weight = 1;
+            _parentConstraint.AddSource(constraintSource);
+        }
+
+
+        _row = CollectedCollectibles.Count / TargetTransforms.Length;
+        _column = CollectedCollectibles.Count % TargetTransforms.Length;
+
+        TargetTransforms[_column].Add(collectible.transform);
+        CollectedCollectibles.Add(collectible);
 
         collectible.MoveRoutine = MoveRoutine(collectible);
         CoroutineRunner.Instance.StartCoroutine(collectible.MoveRoutine);
 
         onCollectCommandExecuted?.Invoke();
     }
-
-    protected override void CalculateNextCollectiblePosition(Collectible collectible)
-    {
-        TargetTransform = CollectedCollectibles.Count == 0
-            ? TargetTransform
-            : CollectedCollectibles[CollectedCollectibles.Count - 1].transform;
-
-        if (CollectedCollectibles.Count == 0)
-        {
-            _parentConstraint = ParentTransform.gameObject.AddComponent<ParentConstraint>();
-            ConstraintSource constraintSource = new ConstraintSource();
-            constraintSource.sourceTransform = TargetTransform;
-            constraintSource.weight = 1;
-            _parentConstraint.AddSource(constraintSource);
-        }
-    }
-
 
     private IEnumerator MoveRoutine(Collectible collectible)
     {
@@ -65,14 +65,15 @@ public class FrontEndCollectCommand : BaseCollectCommand
 
             float step = currentTime / _lerpTime;
 
-            Vector3 targetPosition =
-                new Vector3(TargetTransform.position.x, TargetTransform.position.y,
-                    TargetTransform.position.z + _bounds.size.z);
+
+            Vector3 targetPosition = TargetTransforms[_column][_row].position - _distance;
+            Quaternion targetRotation = TargetTransforms[_column][_row].rotation;
+
             collectibleTransform.position = Vector3.Lerp(position,
                 targetPosition, step);
 
             collectibleTransform.rotation = Quaternion.Lerp(rotation,
-                TargetTransform.rotation, step);
+                targetRotation, step);
 
             currentTime += Time.deltaTime;
             yield return null;

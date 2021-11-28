@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 210e8cd9f30f4504db4cbb11dc4387ec, type: 3}
-  m_Name: FloatToStringAdapterOptions
+  m_Script: {fileID: 11500000, guid: 242c006defb94cdcbd9961f9f4e314c2, type: 3}
+  m_Name: RigidCollectCommand
   m_EditorClassIdentifier: 
-  Format: 0.0
+  _lerpTime: 0.25
+  _distance: {x: 0, y: -1, z: 0}

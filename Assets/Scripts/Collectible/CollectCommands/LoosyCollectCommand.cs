@@ -10,10 +10,18 @@ public class LoosyCollectCommand : BaseCollectCommand
     [SerializeField] public float _smoothTime = 0.1f;
 
     private float _velocity = 0;
+    private int _row;
+    private int _column;
 
     protected override void ExecuteCustomActions(Collectible collectible, Action onCollectCommandExecuted)
     {
         collectible.Collider.enabled = false;
+
+        _row = CollectedCollectibles.Count / TargetTransforms.Length;
+        _column = CollectedCollectibles.Count % TargetTransforms.Length;
+
+        TargetTransforms[_column].Add(collectible.transform);
+        CollectedCollectibles.Add(collectible);
 
         collectible.MoveRoutine = MoveRoutine(collectible);
         CoroutineRunner.Instance.StartCoroutine(collectible.MoveRoutine);
@@ -21,27 +29,21 @@ public class LoosyCollectCommand : BaseCollectCommand
         onCollectCommandExecuted?.Invoke();
     }
 
-    protected override void CalculateNextCollectiblePosition(Collectible collectible)
-    {
-    }
-
-
     private IEnumerator MoveRoutine(Collectible collectible)
     {
-        int row = CollectedCollectibles.Count / TargetTransforms.Length;
-        int column = CollectedCollectibles.Count % TargetTransforms.Length;
-
-        TargetTransforms[column].Add(collectible.transform);
         var collectibleTransform = collectible.transform;
         collectibleTransform.parent = ParentTransform;
 
-
         while (PhaseTracker.Instance.CurrentPhase is GamePhase)
         {
-            if (collectible == null) break;
+            if (collectible == null)
+            {
+                break;
+            }
 
             var collectiblePosition = collectibleTransform.position;
-            Vector3 targetPosition = (TargetTransforms[column][row].position - _distance);
+
+            Vector3 targetPosition = TargetTransforms[_column][_row].position - _distance;
             collectibleTransform.position =
                 new Vector3(Mathf.SmoothDamp(collectiblePosition.x,
                     targetPosition.x,

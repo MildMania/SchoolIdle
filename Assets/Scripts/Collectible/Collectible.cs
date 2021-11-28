@@ -9,7 +9,7 @@ public class Collectible : MonoBehaviour
     [SerializeField] private MMTaskExecutor _onUncollectedTasks;
 
     public Collider Collider;
-    public bool IsCollected { get; private set; }
+    public bool IsCollected { get; set; }
     public bool IsUncollected { get; private set; }
 
     public Action<Collectible> OnCollected;

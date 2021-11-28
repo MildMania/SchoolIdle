@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1565748b6fd8448cb39d0f14182edf6b, type: 3}
   m_Name: LoosyCollectCommand
   m_EditorClassIdentifier: 
-  _distance: {x: 0, y: 0, z: -0.5}
+  _distance: {x: 0, y: 0, z: -1}
   _smoothTime: 0.1

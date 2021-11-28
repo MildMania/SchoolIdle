@@ -7,7 +7,7 @@ public abstract class BaseCollectCommand : ScriptableObject
     public Action OnCollectCommandStarted { get; }
     public Action OnCollectCommandFinished { get; set; }
 
-    public Transform TargetTransform { protected get; set; }
+    public Transform CharacterTransform { protected get; set; }
     public List<Transform>[] TargetTransforms { protected get; set; }
     public Transform ParentTransform { protected get; set; }
     private Collectible Collectible { get; set; }
@@ -19,7 +19,6 @@ public abstract class BaseCollectCommand : ScriptableObject
     public void Execute(Collectible collectible)
     {
         Collectible = collectible;
-        CalculateNextCollectiblePosition(collectible);
         Collectible.transform.parent = ParentTransform;
         OnCollectCommandStarted?.Invoke();
         ExecuteCustomActions(collectible, onCollectCommandExecuted);
@@ -42,7 +41,4 @@ public abstract class BaseCollectCommand : ScriptableObject
 
     protected abstract void ExecuteCustomActions(
         Collectible collectible, Action onCollectCommandExecuted);
-
-    protected abstract void
-        CalculateNextCollectiblePosition(Collectible collectible);
 }

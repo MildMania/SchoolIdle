@@ -7,12 +7,10 @@ public class CollectibleCollector : MonoBehaviour
     [SerializeField] private BaseCollectCommand _collectCommand;
     [SerializeField] private Transform _collectibleContainer;
     [SerializeField] private CollectibleController _collectibleController;
-    [SerializeField] private Transform[] _leadingTransforms;
-
-    private List<Transform>[] _targetTransforms;
+    [SerializeField] private Transform _characterTransform;
+    [SerializeField] private FormationController _formationController;
 
     private BaseCollectibleDetector[] _collectibleDetectors;
-    private BaseCollectCommand _collectCommandClone;
 
     public Action<Collectible> OnCollectibleCollected { get; set; }
 
@@ -29,19 +27,17 @@ public class CollectibleCollector : MonoBehaviour
         }
     }
 
+    public BaseCollectCommand CollectCommand
+    {
+        get => _collectCommand;
+        set => _collectCommand = value;
+    }
+
+
+    private bool _isTransformed = false;
 
     private void Awake()
     {
-        if (_leadingTransforms != null)
-        {
-            _targetTransforms = new List<Transform>[_leadingTransforms.Length];
-            for (int i = 0; i < _targetTransforms.Length; i++)
-            {
-                _targetTransforms[i] = new List<Transform> { _leadingTransforms[i] };
-            }
-        }
-
-
         foreach (var collectibleDetector in CollectibleDetectors)
         {
             collectibleDetector.OnDetected += OnDetected;
@@ -61,30 +57,32 @@ public class CollectibleCollector : MonoBehaviour
         }
     }
 
-    private void OnDetected(Collectible collectible)
+    public void OnDetected(Collectible collectible)
     {
+        BaseCollectCommand collectCommandClone = null;
         if (_collectCommand != null)
         {
-            CreateCommand();
+            collectCommandClone = CreateCommand();
         }
 
         collectible.OnCollected += OnCollected;
-        collectible.TryCollect(_collectCommandClone);
+        collectible.TryCollect(collectCommandClone);
     }
 
     private void OnCollected(Collectible collectible)
     {
         collectible.OnCollected -= OnCollected;
-        _collectibleController.CollectedCollectibles.Add(collectible);
         OnCollectibleCollected?.Invoke(collectible);
     }
 
-    private void CreateCommand()
+    public BaseCollectCommand CreateCommand()
     {
-        _collectCommandClone = Instantiate(_collectCommand);
-        _collectCommandClone.TargetTransform = transform;
-        _collectCommandClone.ParentTransform = _collectibleContainer;
-        _collectCommandClone.CollectedCollectibles = _collectibleController.CollectedCollectibles;
-        _collectCommandClone.TargetTransforms = _targetTransforms;
+        BaseCollectCommand collectCommandClone = Instantiate(CollectCommand);
+        collectCommandClone.CharacterTransform = _characterTransform;
+        collectCommandClone.ParentTransform = _collectibleContainer;
+        collectCommandClone.CollectedCollectibles = _collectibleController.CollectedCollectibles;
+        collectCommandClone.TargetTransforms = _formationController.TargetTransforms;
+
+        return collectCommandClone;
     }
 }
