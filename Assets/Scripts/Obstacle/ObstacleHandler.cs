@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObstacleHandler : MonoBehaviour
 {
     [SerializeField] private BaseUncollectCommand _uncollectCommand;
-
+    [SerializeField] private CollectibleController _collectibleController;
     private BaseObstacleDetector[] _obstacleDetectors;
     private List<Collectible> _collectedCollectibles;
     private BaseUncollectCommand _uncollectCommandClone;
@@ -27,7 +27,7 @@ public class ObstacleHandler : MonoBehaviour
 
     private void Awake()
     {
-        _collectedCollectibles = Character.Instance.CollectedCollectibles;
+        _collectedCollectibles = _collectibleController.CollectedCollectibles;
 
         foreach (var obstacleDetector in ObstacleDetectors)
         {

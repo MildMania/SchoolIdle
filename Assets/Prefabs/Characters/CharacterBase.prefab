@@ -1546,6 +1546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uncollectCommand: {fileID: 11400000, guid: 22d988bf50fedc642b62fdfe76a2f00e, type: 2}
+  _collectibleController: {fileID: 5976369755812353134}
 --- !u!1 &8240318732215683775
 GameObject:
   m_ObjectHideFlags: 0
