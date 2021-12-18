@@ -1,6 +1,7 @@
 using System;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
+using UnityEngine.Serialization;
 using EState = CharacterFSMController.EState;
 using ETransition = CharacterFSMController.ETransition;
 using MMUtils = MMFramework.Utilities.Utilities;
@@ -9,13 +10,9 @@ public class CharacterRunState : State<EState, ETransition>
 {
     [SerializeField] private CharacterAnimationController _characterAnimationController = null;
     [SerializeField] private CharacterInputController _characterInputController = null;
-    [SerializeField] private CharacterMovementBehaviour _characterMovementBehaviour = null;
-    [SerializeField] private Transform _characterTransform = null;
-    [SerializeField] private float _zSpeed = 2.0f;
-    [SerializeField] private float _xSpeed = 5f;
-    [SerializeField] private float _ySpeed = -1f;
+    [SerializeField] private BaseCharacterMovementBehaviour _characterMovementBehaviour;
 
-    private float _xSwipeAmount = 0;
+    public float XSwipeAmount { get; private set; } = 0;
     private float _platformWidth;
 
     #region Events
@@ -94,9 +91,9 @@ public class CharacterRunState : State<EState, ETransition>
             FSM.SetTransition(ETransition.Run);
         }
 
-        _xSwipeAmount += delta.x * _platformWidth;
+        XSwipeAmount += delta.x * _platformWidth;
 
-        _xSwipeAmount = Mathf.Clamp(_xSwipeAmount,
+        XSwipeAmount = Mathf.Clamp(XSwipeAmount,
             LevelBoundaryProvider.Instance.GetLeftBoundary().x,
             LevelBoundaryProvider.Instance.GetRightBoundary().x);
     }
@@ -114,12 +111,7 @@ public class CharacterRunState : State<EState, ETransition>
             return false;
         }
 
-        var characterPosition = _characterTransform.position;
-        Vector3 sideWayDir = _characterTransform.right * (_xSwipeAmount - characterPosition.x);
-
-        _characterMovementBehaviour.Move(_characterTransform.forward * _zSpeed +
-                                         sideWayDir * _xSpeed +
-                                         new Vector3(0, _ySpeed, 0) * Time.deltaTime);
+        _characterMovementBehaviour.Move(XSwipeAmount);
 
         return true;
     }

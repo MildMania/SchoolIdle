@@ -19,7 +19,7 @@ public abstract class BaseCollectCommand : ScriptableObject
     public void Execute(Collectible collectible)
     {
         Collectible = collectible;
-        Collectible.transform.parent = ParentTransform;
+        // Collectible.transform.parent = ParentTransform;
         OnCollectCommandStarted?.Invoke();
         ExecuteCustomActions(collectible, onCollectCommandExecuted);
 
