@@ -44,7 +44,7 @@ public class CollectibleCollector : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
         foreach (var collectibleDetector in CollectibleDetectors)
         {

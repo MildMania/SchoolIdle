@@ -35,7 +35,7 @@ public class ObstacleHandler : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
         foreach (var obstacleDetector in ObstacleDetectors)
         {
