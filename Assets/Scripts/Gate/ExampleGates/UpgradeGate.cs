@@ -3,8 +3,8 @@
 
 public class UpgradeGate : GateBase
 {
-	public override void OnEnterCustomActions()
-	{
-		Debug.Log("Upgrade Gate");
-	}
+    protected override void OnEnterCustomActions()
+    {
+        Debug.Log("Upgrade Gate");
+    }
 }

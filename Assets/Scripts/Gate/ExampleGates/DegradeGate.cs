@@ -3,8 +3,8 @@
 
 public class DegradeGate : GateBase
 {
-	public override void OnEnterCustomActions()
-	{
-		Debug.Log("Degrade Gate");
-	}
+    protected override void OnEnterCustomActions()
+    {
+        Debug.Log("Degrade Gate");
+    }
 }
