@@ -19,7 +19,9 @@ public class GateHandler : MonoBehaviour
 
 	private void OnDetected(GateBase gate)
 	{
-		gate.TryCollide();
-		OnGateCollided?.Invoke(gate);
+		if (gate.TryCollide())
+		{
+			OnGateCollided?.Invoke(gate);
+		}
 	}
 }
