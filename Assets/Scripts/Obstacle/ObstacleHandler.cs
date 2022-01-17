@@ -6,10 +6,9 @@ public class ObstacleHandler : MonoBehaviour
 {
     [SerializeField] private BaseUncollectCommand _uncollectCommand;
     [SerializeField] private CollectibleController _collectibleController;
+
     private BaseObstacleDetector[] _obstacleDetectors;
     private List<Collectible> _collectedCollectibles;
-    private BaseUncollectCommand _uncollectCommandClone;
-
     public Action<Obstacle> OnObstacleCollided { get; set; }
 
     public BaseObstacleDetector[] ObstacleDetectors
@@ -41,25 +40,21 @@ public class ObstacleHandler : MonoBehaviour
         {
             obstacleDetector.OnDetected -= OnDetected;
         }
-
-        if (_uncollectCommandClone != null)
-        {
-            _uncollectCommandClone.StopExecution();
-        }
     }
 
     private void OnDetected(Obstacle obstacle)
     {
+        BaseUncollectCommand uncollectCommandClone = null;
         if (_uncollectCommand != null)
         {
-            CreateCommand();
+            uncollectCommandClone = CreateCommand();
         }
 
         Collectible collectible = GetLastCollectible();
         if (collectible != null)
         {
             collectible.OnUncollected += OnUncollected;
-            collectible.TryUncollect(_uncollectCommand);
+            collectible.TryUncollect(uncollectCommandClone);
         }
 
         obstacle.OnCollided += OnCollided;
@@ -78,10 +73,11 @@ public class ObstacleHandler : MonoBehaviour
         OnObstacleCollided?.Invoke(obstacle);
     }
 
-    private void CreateCommand()
+    private BaseUncollectCommand CreateCommand()
     {
-        _uncollectCommandClone = Instantiate(_uncollectCommand);
-        _uncollectCommandClone.CollectedCollectibles = _collectedCollectibles;
+        BaseUncollectCommand uncollectCommandClone = Instantiate(_uncollectCommand);
+        uncollectCommandClone.CollectedCollectibles = _collectedCollectibles;
+        return uncollectCommandClone;
     }
 
     private Collectible GetLastCollectible()
