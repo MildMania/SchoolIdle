@@ -8,7 +8,7 @@ public class SimpleCharacterMovementBehaviour : BaseCharacterMovementBehaviour
     [SerializeField] private float _xSpeed = 5f;
     [SerializeField] private float _ySpeed = -1f;
 
-    public override void Move(float xSwipeAmount)
+    public override void MoveCustomActions(float xSwipeAmount)
     {
         var characterPosition = _characterTransform.position;
         Vector3 sideWayDir = _characterTransform.right * (xSwipeAmount - characterPosition.x);

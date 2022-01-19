@@ -15,7 +15,7 @@ public class SplineCharacterMovementBehaviour : BaseCharacterMovementBehaviour
         get => _pathCreator;
     }
 
-    public override void Move(float xSwipeAmount)
+    public override void MoveCustomActions(float xSwipeAmount)
     {
         var localPosition = _characterTransform.localPosition;
         var characterPosition = localPosition;
