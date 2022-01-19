@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81da716cd44b4fefb9823feeb427d833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseGateDetector: {fileID: 8836733481340512994}
+  _gateDetector: {fileID: 0}
 --- !u!1 &3241321043531461569
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
   _characterTransform: {fileID: 3731696368115612831}
   _zSpeed: 6
   _xSpeed: 5
-  _ySpeed: -1
+  _ySpeed: -10
 --- !u!1 &3731696367431964993
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +899,7 @@ MonoBehaviour:
   _characterAnimationController: {fileID: 3731696367134608671}
   _characterInputController: {fileID: 3731696368019637642}
   _characterMovementBehaviour: {fileID: 5189989298149269260}
+  _characterTransform: {fileID: 3731696368115612831}
 --- !u!1 &3731696367688613395
 GameObject:
   m_ObjectHideFlags: 0

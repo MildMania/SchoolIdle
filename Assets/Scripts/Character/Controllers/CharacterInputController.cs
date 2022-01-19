@@ -69,6 +69,9 @@ public class CharacterInputController : MonoBehaviour,
 
     private void OnFingerDown(Input_WI_OnFingerDown e)
     {
+        if (e.FingerIndex != 0)
+            return;
+
         _lastFingerPosition = e.FingerPos;
 
         OnCharacterInputStarted?.Invoke(Vector2.zero);
@@ -76,6 +79,9 @@ public class CharacterInputController : MonoBehaviour,
 
     private void OnFingerUp(Input_WI_OnFingerUp e)
     {
+        if (e.FingerIndex != 0)
+            return;
+
         _lastFingerPosition = Vector2.zero;
 
         OnCharacterInputCancelled?.Invoke(_lastFingerPosition);
@@ -83,6 +89,9 @@ public class CharacterInputController : MonoBehaviour,
 
     private void OnPress(Input_WI_OnPress e)
     {
+        if (e.FingerIndex != 0)
+            return;
+
         if (_lastFingerPosition == Vector2.negativeInfinity)
         {
             _lastFingerPosition = e.FingerPos;

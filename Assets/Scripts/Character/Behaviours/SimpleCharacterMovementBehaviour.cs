@@ -15,10 +15,8 @@ public class SimpleCharacterMovementBehaviour : BaseCharacterMovementBehaviour
 
         Vector3 direction = _characterTransform.forward * _zSpeed +
                             sideWayDir * _xSpeed +
-                            new Vector3(0, _ySpeed, 0) * Time.deltaTime;
+                            new Vector3(0, _ySpeed, 0);
 
-        _characterController.SimpleMove(direction);
-
-        _characterController.Move(new Vector3(0, direction.y, 0));
+        _characterController.Move(direction * Time.deltaTime);
     }
 }

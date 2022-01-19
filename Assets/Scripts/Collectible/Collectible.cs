@@ -85,7 +85,14 @@ public class Collectible : MonoBehaviour
 
     public void StopCommandExecution()
     {
-        _collectCommand.StopExecution();
-        _uncollectCommand.StopExecution();
+        if (_collectCommand != null)
+        {
+            _collectCommand.StopExecution();
+        }
+
+        if (_uncollectCommand != null)
+        {
+            _uncollectCommand.StopExecution();
+        }
     }
 }

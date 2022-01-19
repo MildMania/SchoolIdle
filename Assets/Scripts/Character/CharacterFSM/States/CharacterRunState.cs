@@ -11,6 +11,7 @@ public class CharacterRunState : State<EState, ETransition>
     [SerializeField] private CharacterAnimationController _characterAnimationController = null;
     [SerializeField] private CharacterInputController _characterInputController = null;
     [SerializeField] private BaseCharacterMovementBehaviour _characterMovementBehaviour;
+    [SerializeField] private Transform _characterTransform = null;
 
     public float XSwipeAmount { get; private set; } = 0;
     private float _platformWidth;
@@ -43,6 +44,27 @@ public class CharacterRunState : State<EState, ETransition>
     private void Update()
     {
         TryMove();
+    }
+    
+    private void LateUpdate()
+    {
+        KeepOnPlatform();
+    }
+
+    private void KeepOnPlatform()
+    {
+        var characterPosition = _characterTransform.position;
+        
+        if (characterPosition.x < LevelBoundaryProvider.Instance.GetLeftBoundary().x)
+        {
+            _characterTransform.position = new Vector3(LevelBoundaryProvider.Instance.GetLeftBoundary().x,
+                _characterTransform.position.y, characterPosition.z);
+        }
+        else if (characterPosition.x > LevelBoundaryProvider.Instance.GetRightBoundary().x)
+        {
+            _characterTransform.position = new Vector3(LevelBoundaryProvider.Instance.GetRightBoundary().x,
+                _characterTransform.position.y, characterPosition.z);
+        }
     }
 
     private void OnDestroy()
