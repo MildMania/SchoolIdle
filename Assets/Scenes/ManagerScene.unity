@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadSave: 0
-  _startingLevelID: 1
+  _startingLevelID: 2
 --- !u!1 &988611975
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,4 +19,25 @@ public class SimpleCharacterMovementBehaviour : BaseCharacterMovementBehaviour
 
         _characterController.Move(direction * Time.deltaTime);
     }
+
+    private void LateUpdate()
+    {
+        KeepOnPlatform();
+    }
+
+    private void KeepOnPlatform()
+    {
+        var characterPosition = _characterTransform.position;
+
+        if (characterPosition.x < LevelBoundaryProvider.Instance.GetLeftBoundary().x)
+        {
+            _characterTransform.position = new Vector3(LevelBoundaryProvider.Instance.GetLeftBoundary().x,
+                _characterTransform.position.y, characterPosition.z);
+        }
+        else if (characterPosition.x > LevelBoundaryProvider.Instance.GetRightBoundary().x)
+        {
+            _characterTransform.position = new Vector3(LevelBoundaryProvider.Instance.GetRightBoundary().x,
+                _characterTransform.position.y, characterPosition.z);
+        }
+    }
 }
