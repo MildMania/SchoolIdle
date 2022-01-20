@@ -12,11 +12,11 @@ public class SimpleCharacterRotationBehaviour : BaseCharacterRotationBehaviour
 
     private void Update()
     {
-        float previousRotation = _characterModelTransform.rotation.y;
+        float previousRotation = _characterModelTransform.localRotation.y;
         float angle = Mathf.Clamp(_normalizedAngle * _maxRotation,
             -_maxRotation, _maxRotation);
 
-        _characterModelTransform.rotation =
+        _characterModelTransform.localRotation =
             Quaternion.Euler(new Vector3(0, previousRotation + angle, 0));
 
         if (_enableDirectionRay)
@@ -34,6 +34,6 @@ public class SimpleCharacterRotationBehaviour : BaseCharacterRotationBehaviour
 
     public override void Rotate(float xSwipeAmount)
     {
-        _normalizedAngle = Mathf.Clamp((xSwipeAmount - _characterTransform.position.x) / _width, -1, 1);
+        _normalizedAngle = Mathf.Clamp((xSwipeAmount - _characterTransform.localPosition.x) / _width, -1, 1);
     }
 }
