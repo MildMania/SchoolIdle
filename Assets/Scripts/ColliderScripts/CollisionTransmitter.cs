@@ -35,19 +35,19 @@ public class CollisionTransmitter : MonoBehaviour
             cr.OnCollisionEnter(collision);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        List<ICollisionReceiver> receivers = new List<ICollisionReceiver>(_receivers);
-
-        foreach (ICollisionReceiver cr in receivers)
-            cr.OnTriggerExit(other);
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        List<ICollisionReceiver> receivers = new List<ICollisionReceiver>(_receivers);
-
-        foreach (ICollisionReceiver cr in receivers)
-            cr.OnCollisionExit(collision);
-    }
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     List<ICollisionReceiver> receivers = new List<ICollisionReceiver>(_receivers);
+    //
+    //     foreach (ICollisionReceiver cr in receivers)
+    //         cr.OnTriggerExit(other);
+    // }
+    //
+    // private void OnCollisionExit(Collision collision)
+    // {
+    //     List<ICollisionReceiver> receivers = new List<ICollisionReceiver>(_receivers);
+    //
+    //     foreach (ICollisionReceiver cr in receivers)
+    //         cr.OnCollisionExit(collision);
+    // }
 }
