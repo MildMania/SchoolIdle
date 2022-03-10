@@ -20,9 +20,9 @@ public class CharacterMovementFSM : MMFSM<EState, EState>
 
 			{new ST(EState.Walk, EState.MovementIdle), EState.MovementIdle},
 			
-			{new ST(EState.Walk, EState.Fail), EState.MovementIdle},
+			{new ST(EState.Walk, EState.Fail), EState.Fail},
 			
-			{new ST(EState.Walk, EState.Fail), EState.MovementIdle}
+			{new ST(EState.Walk, EState.Win), EState.Win}
 		};
 	}
 }

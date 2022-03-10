@@ -37,7 +37,11 @@ public class MovementIdleState : State<EState, EState>
 		while (true)
 		{
 			if (_seeker.IsOnGraph(distTreshold: 0.1f, out Vector3 position))
+			{
 				_rigidbody.transform.position = position;
+				
+			}
+
 
 			yield return null;
 		}
