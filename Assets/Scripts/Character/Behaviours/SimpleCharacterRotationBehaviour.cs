@@ -28,8 +28,8 @@ public class SimpleCharacterRotationBehaviour : BaseCharacterRotationBehaviour
 
     private void Awake()
     {
-        _width = Mathf.Abs(LevelBoundaryProvider.Instance.GetLeftBoundary().x -
-                           LevelBoundaryProvider.Instance.GetRightBoundary().x);
+        // _width = Mathf.Abs(LevelBoundaryProvider.Instance.GetLeftBoundary().x -
+        //                    LevelBoundaryProvider.Instance.GetRightBoundary().x);
     }
 
     public override void Rotate(float xSwipeAmount)

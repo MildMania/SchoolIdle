@@ -1,11 +1,12 @@
 using System.Linq;
+using MildMania.IdleArcade.Player;
 using ProgressionSystem;
 using UnityEngine;
 using EState = CharacterFSMController.EState;
 
 public class LevelFailure_CharacterState : LevelFailureBase
 {
-    [SerializeField] private CharacterFSM _characterFSM = null;
+    [SerializeField] private CharacterMovementFSM _characterFSM = null;
 
     [SerializeField] private EState[] _failureStates = default;
 

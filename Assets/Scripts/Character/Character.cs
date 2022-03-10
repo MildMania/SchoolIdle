@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : Singleton<Character>
+public class Character : MonoBehaviour
 {
-    [SerializeField] private CharacterFSM _characterFSM = null;
-    public CharacterFSM CharacterFSM => _characterFSM;
+
 }

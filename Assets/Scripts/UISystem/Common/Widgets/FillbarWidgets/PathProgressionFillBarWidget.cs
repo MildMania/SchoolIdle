@@ -25,7 +25,7 @@ public class PathProgressionFillBarWidget : FillBarWidget
 
     protected override void ActivatingCustomActions()
     {
-        _initialCharacterPos = Character.Instance.transform.position;
+        // _initialCharacterPos = Character.Instance.transform.position;
 
         TryUpdateBar(0);
 
@@ -34,25 +34,25 @@ public class PathProgressionFillBarWidget : FillBarWidget
 
     private void RegisterToCharacterFSM()
     {
-        CharacterFSM charFSM = Character.Instance.CharacterFSM;
-
-        CharacterRunState runState = charFSM.GetState<CharacterRunState>();
-
-        runState.OnCharacterMoved += OnCharacterMoved;
+        // CharacterFSM charFSM = Character.Instance.CharacterFSM;
+        //
+        // CharacterRunState runState = charFSM.GetState<CharacterRunState>();
+        //
+        // runState.OnCharacterMoved += OnCharacterMoved;
     }
 
     private void UnregisterFromCharacterFSM()
     {
-        if (Character.Instance == null)
-        {
-            return;
-        }
+        // if (Character.Instance == null)
+        // {
+        //     return;
+        // }
 
-        CharacterFSM charFSM = Character.Instance.GetComponentInChildren<CharacterFSM>();
-
-        CharacterRunState runState = charFSM.GetState<CharacterRunState>();
-
-        runState.OnCharacterMoved -= OnCharacterMoved;
+        // CharacterFSM charFSM = Character.Instance.GetComponentInChildren<CharacterFSM>();
+        //
+        // CharacterRunState runState = charFSM.GetState<CharacterRunState>();
+        //
+        // runState.OnCharacterMoved -= OnCharacterMoved;
     }
 
     private void OnCharacterMoved(Vector3 position)

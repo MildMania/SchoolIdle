@@ -1,50 +1,51 @@
 using System.Linq;
+using MildMania.IdleArcade.Player;
 using ProgressionSystem;
 using UnityEngine;
 using EState = CharacterFSMController.EState;
 
 public class LevelSuccess_CharacterState : LevelSuccessBase
 {
-    [SerializeField] private CharacterFSM _characterFSM = null;
+	[SerializeField] private CharacterMovementFSM _characterFSM = null;
 
-    [SerializeField] private EState[] _successStates = default;
+	[SerializeField] private EState[] _successStates = default;
 
-    private bool _isInSuccessState = false;
-    
-    public override bool CheckProgression()
-    {
-        return _isInSuccessState;
-    }
+	private bool _isInSuccessState = false;
 
-    private void Awake()
-    {
-        RegisterToCharacterFSM();
-    }
+	public override bool CheckProgression()
+	{
+		return _isInSuccessState;
+	}
 
-    private void OnDestroy()
-    {
-        UnregisterFromCharacterFSM();
-    }
+	private void Awake()
+	{
+		RegisterToCharacterFSM();
+	}
 
-    private void RegisterToCharacterFSM()
-    {
-        _characterFSM.AddOnStateEntered(OnStateEntered);
-    }
+	private void OnDestroy()
+	{
+		UnregisterFromCharacterFSM();
+	}
 
-    private void UnregisterFromCharacterFSM()
-    {
-        _characterFSM.RemoveOnStateEntered(OnStateEntered);
-    }
+	private void RegisterToCharacterFSM()
+	{
+		_characterFSM.AddOnStateEntered(OnStateEntered);
+	}
 
-    private void OnStateEntered(EState state)
-    {
-        if (_successStates.Contains(state))
-        {
-            _isInSuccessState = true;
+	private void UnregisterFromCharacterFSM()
+	{
+		_characterFSM.RemoveOnStateEntered(OnStateEntered);
+	}
 
-            return;
-        }
+	private void OnStateEntered(EState state)
+	{
+		if (_successStates.Contains(state))
+		{
+			_isInSuccessState = true;
 
-        _isInSuccessState = false;
-    }
+			return;
+		}
+
+		_isInSuccessState = false;
+	}
 }
