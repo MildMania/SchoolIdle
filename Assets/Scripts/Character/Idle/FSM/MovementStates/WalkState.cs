@@ -43,7 +43,6 @@ public class WalkState : State<EState, EState>
 
 	private void OnMoveCommand(Vector3 direction)
 	{
-		Debug.Log("OnMoveCommand CALLED!");
 		MovementExecutor.Move(direction, GameConfigManager.Instance.GameConfig.WalkSpeed);
 	}
 

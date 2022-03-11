@@ -5,9 +5,12 @@ using UnityEngine;
 public abstract class BaseUncollectCommand : ScriptableObject
 {
     public List<Collectible> CollectedCollectibles { get; set; }
+    public Character Character { get; set; }
     public Action OnUncollectCommandStarted { get; }
     public Action OnUncollectCommandFinished { get; set; }
     private Collectible Collectible { get; set; }
+    
+
 
     public void Execute(Collectible collectible)
     {

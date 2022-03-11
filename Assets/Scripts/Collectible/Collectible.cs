@@ -25,7 +25,7 @@ public class Collectible : MonoBehaviour
     {
         if (IsCollected)
         {
-            return false;
+            //return false;
         }
 
         IsCollected = true;
