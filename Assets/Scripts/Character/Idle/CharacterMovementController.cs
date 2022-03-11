@@ -45,18 +45,16 @@ public class CharacterMovementController : MonoBehaviour,
 	{
 		if (_inputController.IsDown)
 		{
-			Debug.Log("TRY TO MOVE UpdateMovementVectors");
 			UpdateMovementVectors();
 			_isPrevMoving = true;
 		}
 		else if (_isPrevMoving)
 		{
-			Debug.Log("TRY TO MOVE ResetMovementVectors()");
 			OnMoveCancelledCommand?.Invoke();
 			_isPrevMoving = false;
 			ResetMovementVectors();
 		}
-		Debug.Log("After TRY MOVE");
+
 		_temporaryY = _moveDirection.y;
 	}
 

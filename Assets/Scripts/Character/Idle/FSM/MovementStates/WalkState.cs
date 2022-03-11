@@ -13,8 +13,7 @@ public class WalkState : State<EState, EState>
 	private Component _movementExecutor = null;
 
 	public IMovementExecutor MovementExecutor => _movementExecutor as IMovementExecutor;
-
-	[SerializeField] private float _walkSpeed = 5.0f;
+	
 
 	public override void OnEnterCustomActions()
 	{
@@ -45,7 +44,7 @@ public class WalkState : State<EState, EState>
 	private void OnMoveCommand(Vector3 direction)
 	{
 		Debug.Log("OnMoveCommand CALLED!");
-		MovementExecutor.Move(direction, _walkSpeed);
+		MovementExecutor.Move(direction, GameConfigManager.Instance.GameConfig.WalkSpeed);
 	}
 
 	private void OnMoveCancelledCommand()
