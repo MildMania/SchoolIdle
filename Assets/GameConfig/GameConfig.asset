@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 5
   _doingAssignmentSpeed: 0
+  _printerLimit: 50
+  _printerDelay: 1
