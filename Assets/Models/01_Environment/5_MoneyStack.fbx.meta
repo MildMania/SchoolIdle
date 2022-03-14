@@ -1,22 +1,14 @@
 fileFormatVersion: 2
-guid: f28ea536d1838fc42ae7f0225c0936ba
+guid: 890591a0d9b55ae43bff1b28b558983a
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -203655887218126122
-    second: mixamo.com
+  internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 0_Base
     second: {fileID: 2100000, guid: 9b454327a407f0841afb087ef705a5e4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: glass
-    second: {fileID: 2100000, guid: 7dc92815d50c85d418a3d4a4112a2b42, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
