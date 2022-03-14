@@ -7,5 +7,6 @@ public enum ETriggerObject
     FinishLine = 4,
     FallTrigger = 5,
     Collectible = 6,
-    Gate = 7
+    Gate = 7,
+    Producer = 8,
 }

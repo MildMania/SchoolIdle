@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using System.Collections;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class MovementIdleState : State<EState, EState>
 	[SerializeField] private Rigidbody _rigidbody = null;
 
 	private IEnumerator _checkGroundRoutine;
+	
+	public Action OnIdleStateEnter { get; set; }
+	public Action OnIdleStateExit { get; set; }
 
 	protected override EState GetStateID()
 	{
@@ -18,14 +22,21 @@ public class MovementIdleState : State<EState, EState>
 
 	public override void OnEnterCustomActions()
 	{
+		
+		OnIdleStateEnter?.Invoke();
+		
 		_checkGroundRoutine = CheckGroundProgress();
 		StartCoroutine(_checkGroundRoutine);
+		
+		
 
 		base.OnEnterCustomActions();
 	}
 
 	protected override void OnExitCustomActions()
 	{
+		OnIdleStateExit?.Invoke();
+
 		if (_checkGroundRoutine != null)
 			StopCoroutine(_checkGroundRoutine);
 
