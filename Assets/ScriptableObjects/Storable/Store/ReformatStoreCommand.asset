@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e3b32cb81b8c634e99a8cb20c6bf12e, type: 3}
-  m_Name: DestroyDropCommand
+  m_Script: {fileID: 11500000, guid: d4538cbc23d963a469626759aa783b1a, type: 3}
+  m_Name: ReformatStoreCommand
   m_EditorClassIdentifier: 
-  _destroyDelayTime: 0.3
+  _lerpTime: 0
+  _distance: {x: 0, y: -0.1, z: 0}

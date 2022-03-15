@@ -32,9 +32,9 @@ public abstract class ConsumerBase : MonoBehaviour
                 continue;
             }
             
-            var lastStorable = _storableController.StorableList[storableCount - 1];
+            var firstStorable = _storableController.StorableList[0];
 
-            OnConsumed?.Invoke(lastStorable);
+            OnConsumed?.Invoke(firstStorable);
 
             yield return new WaitForSeconds(_consumeDelayTime);
         }

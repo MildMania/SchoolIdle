@@ -28,8 +28,10 @@ public class StorableCarrierStoreHandler : StorableStoreHandler
 
 	private void OnStorableDropped(StorableBase storableBase)
 	{
+		_storableFormationController.Reformat();
 		StoreStorable(storableBase);
 	}
+	
 
 	private void OnProducerEnded(ProducerBase producerBase)
 	{

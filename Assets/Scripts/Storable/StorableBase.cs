@@ -12,7 +12,12 @@ public abstract class StorableBase : MonoBehaviour
     private DropCommandBase _dropCommand;
 
     public IEnumerator MoveRoutine;
-    
+
+
+    public void DestroyItself()
+    {
+        Destroy(gameObject);
+    }
     
     
     public void Store(StoreCommandBase storeCommand)
@@ -23,8 +28,11 @@ public abstract class StorableBase : MonoBehaviour
         }
 
         _storeCommand = storeCommand;
+       //storeCommand.OnStoreCommandFinished += OnStoreCommandFinished;
         storeCommand.Execute(this);
-        storeCommand.OnStoreCommandFinished += OnStoreCommandFinished;
+        
+        OnStored?.Invoke(this);
+        
     }
     
     private void OnStoreCommandFinished()
@@ -42,14 +50,16 @@ public abstract class StorableBase : MonoBehaviour
 
     public void Drop(DropCommandBase dropCommand)
     {
-        if (_dropCommand == null)
+        if (dropCommand == null)
         {
             return;
         }
 
         _dropCommand = dropCommand;
         dropCommand.Execute(this);
-        dropCommand.OnDropCommandFinished += OnDropCommandFinished;
+                
+        OnDropped?.Invoke(this);
+        //dropCommand.OnDropCommandFinished += OnDropCommandFinished;
     }
     
     private void OnDropCommandFinished()

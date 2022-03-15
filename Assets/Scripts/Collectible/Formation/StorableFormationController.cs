@@ -4,7 +4,7 @@ using UnityEngine;
 public class StorableFormationController : MonoBehaviour
 {
     [SerializeField] private StorableController _storableController;
-    [SerializeField] private StorableStoreHandler _storableStoreHandler;
+    [SerializeField] private StoreCommandBase _reformatStoreCommand;
 
     private readonly Dictionary<EFormationGroupType, Transform[]> _formationGroupTypeToLeadingTransforms =
         new Dictionary<EFormationGroupType, Transform[]>();
@@ -68,13 +68,37 @@ public class StorableFormationController : MonoBehaviour
 
         _storableController.StorableList = new List<StorableBase>();
 
-                
+        
+        foreach (var storable in storableList)
+        {
+            StoreCommandBase storeCommandBase = CreateReformatStoreCommand();
 
+            storable.Store(storeCommandBase);
+        }
+        
+
+    }
+
+    private StoreCommandBase CreateReformatStoreCommand()
+    {
+        StoreCommandBase storeCommand = Instantiate(_reformatStoreCommand);
+        storeCommand.StorableList = _storableController.StorableList;
+        storeCommand.ParentTransform = _storableController.StorableContainer;
+        storeCommand.TargetTransforms = TargetTransforms;
+
+        return storeCommand;
+    }
+    
+    /*
+         private IEnumerator Xd(List<StorableBase> storableList)
+    {
         foreach (var storable in storableList)
         {
             StoreCommandBase storeCommandBase = _storableStoreHandler.CreateStoreCommand();
             storable.Store(storeCommandBase);
-        }
 
+            yield return null;
+        }
     }
+     */
 }

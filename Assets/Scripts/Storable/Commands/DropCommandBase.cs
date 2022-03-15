@@ -13,7 +13,7 @@ public abstract class DropCommandBase : ScriptableObject
 	public void Execute(StorableBase storable)
 	{
 		Storable = storable;
-
+		
 		ExecuteCustomActions(storable, onDropCommandExecuted);
 
 		void onDropCommandExecuted()

@@ -29,8 +29,6 @@ public abstract class ProducerBase : MonoBehaviour
 	private void OnDropped(StorableBase storable)
 	{
 		_numberOfProduced--;
-		
-		_storableFormationController.Reformat();
 	}
 
 	private void OnDestroy()

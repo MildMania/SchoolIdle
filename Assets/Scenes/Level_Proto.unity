@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _storableController: {fileID: 3201599501743468356}
   _storableStoreHandler: {fileID: 3201599501743468358}
+  _reformatStoreCommand: {fileID: 11400000, guid: e28c15c1d8958f34d9f56608e67b41bd, type: 2}
   _currentFormationGroupType: 4
 --- !u!1 &122580657
 GameObject:
@@ -587,6 +588,7 @@ MonoBehaviour:
   _storableController: {fileID: 2074135350}
   _dropCommand: {fileID: 11400000, guid: 388a793830c2f8d41b03889365c2d717, type: 2}
   _storableFormationController: {fileID: 942055388}
+  _consumerBase: {fileID: 645493520}
 --- !u!1 &265227096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1069,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42406
+  m_Name: pb_Mesh39990
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1939,7 +1941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683ca198c9ea53c4a951315fe799f96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consumeDelayTime: 2
+  _consumeDelayTime: 0.5
   _storableController: {fileID: 2074135350}
 --- !u!1 &670950172
 GameObject:
@@ -2017,6 +2019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _storableController: {fileID: 189834221}
   _storableStoreHandler: {fileID: 189834223}
+  _reformatStoreCommand: {fileID: 11400000, guid: e28c15c1d8958f34d9f56608e67b41bd, type: 2}
   _currentFormationGroupType: 3
 --- !u!1 &762949804
 GameObject:
@@ -2088,7 +2091,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42336
+  m_Name: pb_Mesh39920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2993,6 +2996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _storableController: {fileID: 2074135350}
   _storableStoreHandler: {fileID: 7274300932255351124}
+  _reformatStoreCommand: {fileID: 11400000, guid: e28c15c1d8958f34d9f56608e67b41bd, type: 2}
   _currentFormationGroupType: 5
 --- !u!1 &962639961
 GameObject:
@@ -4352,7 +4356,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42558
+  m_Name: pb_Mesh40142
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6258,8 +6262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f25673cce64044aadc3ed0c53dea2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consumerBase: {fileID: 645493520}
-  _storableConsumerDropHandler: {fileID: 236305719}
 --- !u!1001 &1864435150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6719,7 +6721,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42482
+  m_Name: pb_Mesh40066
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7126,21 +7128,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1172211241498062488, guid: d02892223ba417046b2c16319184912b, type: 3}
+      propertyPath: _isDebugEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.17767
+      value: 26.150635
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.322331
+      value: 6.5000005
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.8660254
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805011976133251564, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: data.dataString

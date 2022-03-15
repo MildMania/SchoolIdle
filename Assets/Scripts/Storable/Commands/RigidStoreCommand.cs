@@ -17,10 +17,10 @@ public class RigidStoreCommand : StoreCommandBase
     private int _row;
     private int _column;
     
+    public bool IsForReformat { get; set; }
+    
     protected override void ExecuteCustomActions(StorableBase storable, Action onStoreCommandExecuted)
     {
-        storable.transform.SetParent(ParentTransform);
-        
         _row = StorableList.Count / TargetTransforms.Length;
         _column = StorableList.Count % TargetTransforms.Length;
 
@@ -65,10 +65,8 @@ public class RigidStoreCommand : StoreCommandBase
         storableTransform.position = TargetTransforms[_column][_row].position - _distance;
         storableTransform.rotation = TargetTransforms[_column][_row].rotation;
         
-        
-            
-            
-    
+        storable.transform.SetParent(ParentTransform);
+
     }
 
 }

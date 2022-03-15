@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class StorableDropHandler : MonoBehaviour
 {
     
-    [SerializeField] private StorableController _storableController;
+    [SerializeField] protected StorableController _storableController;
     
     [SerializeField] private DropCommandBase _dropCommand;
 
@@ -35,7 +35,7 @@ public abstract class StorableDropHandler : MonoBehaviour
         
     }
 
-    private void DropStorable(StorableBase storable)
+    public void DropStorable(StorableBase storable)
     {
         storable.OnDropped += OnDropped;
 
@@ -45,8 +45,8 @@ public abstract class StorableDropHandler : MonoBehaviour
 
     private void OnDropped(StorableBase storable)
     {
-        Debug.Log(storable.gameObject.name + " OBJECT DROPPED!");
         _storableFormationController.Reformat();
+        
         storable.OnDropped -= OnDropped;
     }
     

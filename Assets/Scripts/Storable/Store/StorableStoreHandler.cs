@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class StorableStoreHandler : MonoBehaviour
 {
 	[SerializeField] private StorableController _storableController;
-	[SerializeField] private StorableFormationController _storableFormationController;
+	[SerializeField] protected StorableFormationController _storableFormationController;
 
 	[SerializeField] private StoreCommandBase _storeCommand;
 
@@ -11,23 +11,21 @@ public abstract class StorableStoreHandler : MonoBehaviour
 
 	protected void StoreStorable(StorableBase storable)
 	{
+		_storable = storable;
+
 		storable.OnStored += OnStored;
 
 		StoreCommandBase storeCommandClone = CreateStoreCommand();
 		storable.Store(storeCommandClone);
+		
 	}
-
+	
+	
 	private void OnStored(StorableBase storable)
 	{
-		Debug.Log(storable.gameObject.name + " OBJECT STORED!");
-		_storableFormationController.Reformat();
-	}
-
-	private void OnDestroy()
-	{
+		//Debug.Log(storable.gameObject.name + " OBJECT STORED!");
 		_storable.OnStored -= OnStored;
 	}
-
 
 	public StoreCommandBase CreateStoreCommand()
 	{
