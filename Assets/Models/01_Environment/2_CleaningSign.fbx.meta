@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a5b83b3cc3b83d478e7e7a33a617aa0
+guid: 40d544b062f79e34b8266617819dd21a
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -12,18 +12,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 0_FloorRoom
-    second: {fileID: 2100000, guid: b3d8acc920248ad4ab4cc5eeec48a3cc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: 0_Glass
     second: {fileID: 2100000, guid: 7dc92815d50c85d418a3d4a4112a2b42, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room3
-    second: {fileID: 2100000, guid: f1366417d9b939c4bbc93f0826a69d7e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
