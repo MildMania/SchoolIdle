@@ -1,32 +1,57 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StorableDropHandler : MonoBehaviour
+public abstract class StorableDropHandler : MonoBehaviour
 {
     
     [SerializeField] private StorableController _storableController;
     
     [SerializeField] private DropCommandBase _dropCommand;
+
+    [SerializeField] private StorableFormationController _storableFormationController;
+    
     private DropCommandBase _dropCommandClone;
     
     private Coroutine _dropRoutine;
     
-    public Action<StorableBase> OnDropped { get; set; }
+    public Action<StorableBase> OnStorableDropped { get; set; }
 
-    private bool _canDrop;
     
     private void Awake()
     {
-       
+        OnAwakeCustomActions();
     }
 
+    protected virtual void OnAwakeCustomActions()
+    {
+        
+    }
     private void OnDestroy()
     {
-       
+        OnOnDestroyCustomActions();
     }
 
+    protected virtual void OnOnDestroyCustomActions()
+    {
+        
+    }
+
+    public void Drop(StorableBase storable)
+    {
+        storable.OnDropped += OnDropped;
+
+        DropCommandBase dropCommandBase = CreateDropCommand();
+        storable.Drop(dropCommandBase);
+    }
+
+    private void OnDropped(StorableBase storable)
+    {
+        Debug.Log(storable.gameObject.name + " OBJECT DROPPED!");
+        _storableFormationController.Reformat();
+        storable.OnDropped -= OnDropped;
+    }
+    
     public void StartDrop()
     {
         _dropRoutine = StartCoroutine(DropRoutine());
@@ -46,8 +71,8 @@ public class StorableDropHandler : MonoBehaviour
             
             StorableBase droppedStorable = _storableController.StorableList[storableListCount - 1];
             _storableController.StorableList.Remove(droppedStorable);
-            
-            OnDropped?.Invoke(droppedStorable);
+            Drop(droppedStorable);
+            OnStorableDropped?.Invoke(droppedStorable);
             
             yield return new WaitForSeconds(0.2f);
         }
@@ -61,5 +86,13 @@ public class StorableDropHandler : MonoBehaviour
         }
          
         StopCoroutine(_dropRoutine);
+    }
+    
+    private DropCommandBase CreateDropCommand()
+    {
+        DropCommandBase dropCommand = Instantiate(_dropCommand);
+        dropCommand.StorableList = _storableController.StorableList;
+
+        return dropCommand;
     }
 }

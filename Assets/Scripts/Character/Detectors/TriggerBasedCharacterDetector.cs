@@ -8,11 +8,13 @@ public class TriggerBasedCharacterDetector : BaseCharacterDetector
     private void Awake()
     {
         _characterHitController.OnHitTriggerObject += OnHitTriggerObject;
+        _characterHitController.OnHitEndedTriggerObject += OnHitEndedTriggerObject;
     }
-
+    
     private void OnDestroy()
     {
         _characterHitController.OnHitTriggerObject -= OnHitTriggerObject;
+        _characterHitController.OnHitEndedTriggerObject -= OnHitEndedTriggerObject;
     }
 
     private void OnHitTriggerObject(TriggerObject triggerObject)
@@ -21,5 +23,13 @@ public class TriggerBasedCharacterDetector : BaseCharacterDetector
 
         LastDetected = character;
         OnDetected?.Invoke(character);
+    }
+    
+    private void OnHitEndedTriggerObject(TriggerObject triggerObject)
+    {
+        Character character = triggerObject.GetComponentInParent<Character>();
+
+        LastDetected = character;
+        OnEnded?.Invoke(character);
     }
 }

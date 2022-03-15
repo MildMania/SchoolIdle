@@ -23,7 +23,7 @@ public abstract class ProducerBase : MonoBehaviour
 
 	private void Awake()
 	{
-		_storableDropHandler.OnDropped += OnDropped;
+		_storableDropHandler.OnStorableDropped += OnDropped;
 	}
 
 	private void OnDropped(StorableBase storable)
@@ -35,7 +35,7 @@ public abstract class ProducerBase : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		_storableDropHandler.OnDropped -= OnDropped;
+		_storableDropHandler.OnStorableDropped -= OnDropped;
 	}
 
 	private void Start()

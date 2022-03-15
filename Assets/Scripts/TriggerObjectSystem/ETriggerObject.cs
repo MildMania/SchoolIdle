@@ -9,4 +9,5 @@ public enum ETriggerObject
     Collectible = 6,
     Gate = 7,
     Producer = 8,
+    Consumer = 9,
 }

@@ -1,3 +1,3 @@
-﻿public abstract class BaseCharacterDetector : BaseDetector<Character>
+﻿public class BaseCharacterDetector : BaseDetector<Character>
 {
 }
