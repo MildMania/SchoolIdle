@@ -26,6 +26,7 @@ public abstract class StorableBase : MonoBehaviour
         storeCommand.Execute(this);
         storeCommand.OnStoreCommandFinished += OnStoreCommandFinished;
     }
+    
     private void OnStoreCommandFinished()
     {
         if (_storeCommand == null)

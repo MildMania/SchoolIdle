@@ -28,7 +28,7 @@ public class StorableCarrierStoreHandler : StorableStoreHandler
 
 	private void OnStorableDropped(StorableBase storableBase)
 	{
-		Store(storableBase);
+		StoreStorable(storableBase);
 	}
 
 	private void OnProducerEnded(ProducerBase producerBase)

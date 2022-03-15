@@ -28,7 +28,7 @@ public class StorableConsumerStoreHandler : StorableStoreHandler
 
 	private void OnStorableDropped(StorableBase storable)
 	{
-		Store(storable);
+		StoreStorable(storable);
 	}
 
 	private void OnCharacterEnded(Character character)

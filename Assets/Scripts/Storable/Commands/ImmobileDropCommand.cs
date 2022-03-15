@@ -7,6 +7,7 @@ public class ImmobileDropCommand : DropCommandBase
 {
     protected override void ExecuteCustomActions(StorableBase storable, Action onStoreCommandExecuted)
     {
+
         onStoreCommandExecuted?.Invoke();
     }
 }

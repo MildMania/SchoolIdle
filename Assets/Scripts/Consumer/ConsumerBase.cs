@@ -1,18 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumerBase : MonoBehaviour
+public abstract class ConsumerBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected float _consumeDelayTime;
+    [SerializeField] private StorableController _storableController;
+
+    public Action<StorableBase> OnConsumed { get; set; }
+
+    private void Start()
     {
-        
+        Consume();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Consume()
     {
-        
+        StartCoroutine(ConsumeRoutine());
+    }
+
+    private IEnumerator ConsumeRoutine()
+    {
+        while (true)
+        {
+            int storableCount = _storableController.StorableList.Count;
+            
+            if (storableCount == 0)
+            {
+                yield return null;
+                continue;
+            }
+            
+            var lastStorable = _storableController.StorableList[storableCount - 1];
+
+            OnConsumed?.Invoke(lastStorable);
+
+            yield return new WaitForSeconds(_consumeDelayTime);
+        }
     }
 }

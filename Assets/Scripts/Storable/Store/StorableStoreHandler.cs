@@ -9,7 +9,7 @@ public abstract class StorableStoreHandler : MonoBehaviour
 
 	private StorableBase _storable;
 
-	protected void Store(StorableBase storable)
+	protected void StoreStorable(StorableBase storable)
 	{
 		storable.OnStored += OnStored;
 

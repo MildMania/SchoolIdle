@@ -1,3 +1,6 @@
-﻿public class StorableConsumerDropHandler : StorableDropHandler
+﻿using UnityEngine;
+
+public class StorableConsumerDropHandler : StorableDropHandler
 {
+    
 }

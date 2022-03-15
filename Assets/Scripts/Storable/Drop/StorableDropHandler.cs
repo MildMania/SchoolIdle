@@ -10,9 +10,7 @@ public abstract class StorableDropHandler : MonoBehaviour
     [SerializeField] private DropCommandBase _dropCommand;
 
     [SerializeField] private StorableFormationController _storableFormationController;
-    
-    private DropCommandBase _dropCommandClone;
-    
+
     private Coroutine _dropRoutine;
     
     public Action<StorableBase> OnStorableDropped { get; set; }
@@ -37,7 +35,7 @@ public abstract class StorableDropHandler : MonoBehaviour
         
     }
 
-    public void Drop(StorableBase storable)
+    private void DropStorable(StorableBase storable)
     {
         storable.OnDropped += OnDropped;
 
@@ -71,7 +69,8 @@ public abstract class StorableDropHandler : MonoBehaviour
             
             StorableBase droppedStorable = _storableController.StorableList[storableListCount - 1];
             _storableController.StorableList.Remove(droppedStorable);
-            Drop(droppedStorable);
+            DropStorable(droppedStorable);
+            
             OnStorableDropped?.Invoke(droppedStorable);
             
             yield return new WaitForSeconds(0.2f);

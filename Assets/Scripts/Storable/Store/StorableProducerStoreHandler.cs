@@ -16,6 +16,6 @@ public class StorableProducerStoreHandler : StorableStoreHandler
     
     private void OnProduced(StorableBase storable)
     {
-        Store(storable);
+        StoreStorable(storable);
     }
 }
