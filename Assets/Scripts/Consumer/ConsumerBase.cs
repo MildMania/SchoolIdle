@@ -5,38 +5,40 @@ using UnityEngine;
 
 public abstract class ConsumerBase : MonoBehaviour
 {
-    [SerializeField] protected float _consumeDelayTime;
-    [SerializeField] private StorableController _storableController;
+	[SerializeField] protected float _consumeDelayTime;
+	[SerializeField] private StorableController _storableController;
 
-    public Action<StorableBase> OnConsumed { get; set; }
+	public Action<StorableBase> OnConsumed { get; set; }
+	public Action OnConsumerStopped { get; set; }
 
-    private void Start()
-    {
-        Consume();
-    }
+	private void Start()
+	{
+		Consume();
+	}
 
-    private void Consume()
-    {
-        StartCoroutine(ConsumeRoutine());
-    }
+	private void Consume()
+	{
+		StartCoroutine(ConsumeRoutine());
+	}
 
-    private IEnumerator ConsumeRoutine()
-    {
-        while (true)
-        {
-            int storableCount = _storableController.StorableList.Count;
-            
-            if (storableCount == 0)
-            {
-                yield return null;
-                continue;
-            }
-            
-            var firstStorable = _storableController.StorableList[0];
+	private IEnumerator ConsumeRoutine()
+	{
+		while (true)
+		{
+			int storableCount = _storableController.StorableList.Count;
 
-            OnConsumed?.Invoke(firstStorable);
+			if (storableCount == 0)
+			{
+				OnConsumerStopped?.Invoke();
+				yield return null;
+				continue;
+			}
 
-            yield return new WaitForSeconds(_consumeDelayTime);
-        }
-    }
+			var firstStorable = _storableController.StorableList[0];
+
+			OnConsumed?.Invoke(firstStorable);
+
+			yield return new WaitForSeconds(_consumeDelayTime);
+		}
+	}
 }

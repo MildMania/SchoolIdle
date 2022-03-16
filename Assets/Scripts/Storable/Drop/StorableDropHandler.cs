@@ -41,6 +41,7 @@ public abstract class StorableDropHandler : MonoBehaviour
 
         DropCommandBase dropCommandBase = CreateDropCommand();
         storable.Drop(dropCommandBase);
+        OnStorableDropped?.Invoke(storable);
     }
 
     private void OnDropped(StorableBase storable)
@@ -70,9 +71,7 @@ public abstract class StorableDropHandler : MonoBehaviour
             StorableBase droppedStorable = _storableController.StorableList[storableListCount - 1];
             _storableController.StorableList.Remove(droppedStorable);
             DropStorable(droppedStorable);
-            
-            OnStorableDropped?.Invoke(droppedStorable);
-            
+
             yield return new WaitForSeconds(0.2f);
         }
     }
