@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1969339248670083096
+--- !u!1001 &4720009118440946528
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481227, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_Name
-      value: PrinterProducer
+      value: MoneyProducer
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481269, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_RootOrder
@@ -29,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481269, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481269, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481269, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4994348979392481269, guid: 7c77210ebd8affb47841236517554152, type: 3}
       propertyPath: m_LocalRotation.w
