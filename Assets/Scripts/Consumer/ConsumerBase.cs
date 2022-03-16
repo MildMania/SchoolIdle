@@ -5,6 +5,10 @@ using UnityEngine;
 
 public abstract class ConsumerBase : MonoBehaviour
 {
+	[SerializeField] private EStorableType _consumeType;
+
+	public EStorableType ConsumeType => _consumeType;
+
 	[SerializeField] protected float _consumeDelayTime;
 	[SerializeField] private StorableController _storableController;
 

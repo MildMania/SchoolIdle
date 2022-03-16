@@ -1206,7 +1206,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61644
+  m_Name: pb_Mesh81004
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2018,6 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683ca198c9ea53c4a951315fe799f96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _consumeType: 1
   _consumeDelayTime: 0.5
   _storableController: {fileID: 2074135350}
 --- !u!1 &762949804
@@ -2090,7 +2091,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61578
+  m_Name: pb_Mesh80938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3738,7 +3739,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61710
+  m_Name: pb_Mesh81070
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4120,7 +4121,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh61784
+  m_Name: pb_Mesh81144
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6933,6 +6934,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 23bad03d1155a144fada9c5489fff786, type: 2}
     - target: {fileID: 8902048887913138076, guid: d02892223ba417046b2c16319184912b, type: 3}
+      propertyPath: _movementIdleState
+      value: 
+      objectReference: {fileID: 3201599501743468350}
+    - target: {fileID: 8902048887913138076, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: _storableFormationController
       value: 
       objectReference: {fileID: 105469625}
@@ -7123,6 +7128,7 @@ MonoBehaviour:
   _storableFormationController: {fileID: 942055388}
   _storeCommand: {fileID: 11400000, guid: 23bad03d1155a144fada9c5489fff786, type: 2}
   _baseCharacterDetector: {fileID: 2325740990468742655}
+  _consumerBase: {fileID: 645493520}
 --- !u!1001 &7274315423744355038
 PrefabInstance:
   m_ObjectHideFlags: 0

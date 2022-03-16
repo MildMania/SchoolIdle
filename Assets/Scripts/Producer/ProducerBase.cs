@@ -8,7 +8,7 @@ public abstract class ProducerBase : MonoBehaviour
 	[SerializeField] protected int _produceLimit;
 
 	[SerializeField] private int _limitPerProduce;
-	
+
 	[SerializeField] protected float _produceDelayTime;
 
 	[SerializeField] private GameObject _toBeProducedPrefab;
@@ -18,12 +18,14 @@ public abstract class ProducerBase : MonoBehaviour
 	[SerializeField] private StorableDropHandler _storableDropHandler;
 
 	protected Coroutine _produceRoutine;
+
 	private int _numberOfProduced;
-	
+	public EStorableType ProducedStorableType { get; set; }
 	public Action<StorableBase> OnProduced { get; set; }
 
 	private void Awake()
 	{
+		ProducedStorableType = _toBeProducedPrefab.GetComponentInChildren<StorableBase>().StorableType;
 		_storableDropHandler.OnStorableDropped += OnDropped;
 		OnAwakeCustomActions();
 	}
@@ -39,13 +41,12 @@ public abstract class ProducerBase : MonoBehaviour
 
 	protected virtual void OnAwakeCustomActions()
 	{
-		
 	}
 
 	protected virtual void OnDroppedCustomActions()
 	{
-		
 	}
+
 	private void OnDropped(StorableBase storable)
 	{
 		_numberOfProduced--;
@@ -60,8 +61,8 @@ public abstract class ProducerBase : MonoBehaviour
 
 	protected virtual void OnDestroyCustomActions()
 	{
-		
 	}
+
 	public void StartProduce()
 	{
 		_produceRoutine = StartCoroutine(ProduceRoutine());
@@ -78,10 +79,11 @@ public abstract class ProducerBase : MonoBehaviour
 
 	private IEnumerator ProduceRoutine()
 	{
+		var delay = new WaitForSeconds(_produceDelayTime);
 		while (true)
 		{
-			yield return new WaitForSeconds(_produceDelayTime);
-			
+			yield return delay;
+
 			if (_numberOfProduced >= _produceLimit)
 			{
 				yield return null;
@@ -96,7 +98,7 @@ public abstract class ProducerBase : MonoBehaviour
 				var storable = producedObject.GetComponent<StorableBase>();
 				_numberOfProduced++;
 				OnProduced?.Invoke(storable);
-				
+
 				yield return null;
 			}
 		}

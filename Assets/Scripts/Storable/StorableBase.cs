@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class StorableBase : MonoBehaviour
 {
+
+    [SerializeField] private EStorableType _storableType;
+
+    public EStorableType StorableType => _storableType;
+
     public Action<StorableBase> OnStored { get; set; }
     public Action<StorableBase> OnDropped { get; set; }
     

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class StorableDropHandler : MonoBehaviour
 {
-    
     [SerializeField] protected StorableController _storableController;
     
     [SerializeField] private DropCommandBase _dropCommand;
@@ -58,6 +57,7 @@ public abstract class StorableDropHandler : MonoBehaviour
 
     private IEnumerator DropRoutine()
     {
+        var delay = new WaitForSeconds(0.2f);
         while (true)
         {
             int storableListCount = _storableController.StorableList.Count;
@@ -67,12 +67,21 @@ public abstract class StorableDropHandler : MonoBehaviour
                 yield return null;
                 continue;
             }
+
+            StorableBase droppedStorable;
+            if (_storableController.LastDropable != null)
+            {
+                droppedStorable = _storableController.LastDropable;
+            }
+            else
+            {
+                droppedStorable = _storableController.StorableList[storableListCount - 1];
+            }
             
-            StorableBase droppedStorable = _storableController.StorableList[storableListCount - 1];
             _storableController.StorableList.Remove(droppedStorable);
             DropStorable(droppedStorable);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return delay;
         }
     }
 
