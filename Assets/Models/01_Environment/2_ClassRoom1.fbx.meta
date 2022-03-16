@@ -22,6 +22,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Emission
+    second: {fileID: 2100000, guid: 6c1fa20775efa1543ab869b92bebec32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Room1
     second: {fileID: 2100000, guid: 966d2ae79cef9b84a8f00a34b2b17dde, type: 2}
   materials:
