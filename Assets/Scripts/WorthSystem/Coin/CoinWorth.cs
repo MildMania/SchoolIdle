@@ -3,12 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class CoinWorth : IWorth
 {
-	[SerializeField] private ECoinType _coinType = default;
+	[SerializeField] private ECoin _coin = default;
 
-	public ECoinType CoinType
+	public ECoin Coin
 	{
-		get => _coinType;
-		set => _coinType = value;
+		get => _coin;
+		set => _coin = value;
 	}
 
 	[SerializeField] private int _count = 0;
@@ -20,10 +20,10 @@ public class CoinWorth : IWorth
 	}
 
 	public CoinWorth(
-		ECoinType coinType,
+		ECoin coin,
 		int count)
 	{
-		_coinType = coinType;
+		_coin = coin;
 		_count = count;
 	}
 }

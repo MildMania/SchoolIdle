@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d4c5f7e27c46beb1454cb846e1aa84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinType: 1
+  _coin: 1
   _count: 1
 --- !u!114 &7378266633162341289
 MonoBehaviour:

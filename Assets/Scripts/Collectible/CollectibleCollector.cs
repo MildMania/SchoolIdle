@@ -41,9 +41,7 @@ public class CollectibleCollector : MonoBehaviour
 
     public void OnDetected(Collectible collectible)
     {
-        Debug.Log("ONDETECTED");
-        var worthDefiner = collectible.GetComponent<CoinWorthDefiner>();
-        _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.CoinType,worthDefiner.Count));
+
         BaseCollectCommand collectCommandClone = null;
         if (_collectCommand != null)
         {
@@ -56,6 +54,8 @@ public class CollectibleCollector : MonoBehaviour
 
     private void OnCollected(Collectible collectible)
     {
+        var worthDefiner = collectible.GetComponent<CoinWorthDefiner>();
+        _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin,worthDefiner.Count));
         collectible.OnCollected -= OnCollected;
         OnCollectibleCollected?.Invoke(collectible);
     }

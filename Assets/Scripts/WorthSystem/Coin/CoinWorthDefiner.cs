@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CoinWorthDefiner : WorthDefinerWrapper
 {
-    [SerializeField] private ECoinType _coinType = default;
-    public ECoinType CoinType
+    [SerializeField] private ECoin _coin = default;
+    public ECoin Coin
     {
-        get => _coinType;
-        set => _coinType = value;
+        get => _coin;
+        set => _coin = value;
     }
 
     [SerializeField] private int _count = 0;
@@ -20,7 +20,7 @@ public class CoinWorthDefiner : WorthDefinerWrapper
     {
         return new List<IWorth>
         {
-            new CoinWorth(CoinType,Count)
+            new CoinWorth(Coin,Count)
         };
     }
 }

@@ -3,12 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class CoinDropData : DropData
 {
-    [SerializeField] private ECoinType _coinType = default;
+    [SerializeField] private ECoin _coin = default;
 
-    public ECoinType Currency
+    public ECoin Currency
     {
-        get => _coinType;
-        set => _coinType = value;
+        get => _coin;
+        set => _coin = value;
     }
     
     [SerializeField] private int _count = 0;
@@ -18,9 +18,9 @@ public class CoinDropData : DropData
         set => _count = value;
     }
     
-    public CoinDropData(Drop drop, ECoinType coinType, int count) : base(drop)
+    public CoinDropData(Drop drop, ECoin coin, int count) : base(drop)
     {
-        _coinType = coinType;
+        _coin = coin;
         _count = count;
     }
 }
