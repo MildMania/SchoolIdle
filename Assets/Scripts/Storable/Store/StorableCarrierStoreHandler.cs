@@ -7,6 +7,8 @@ public class StorableCarrierStoreHandler : StorableStoreHandler
 
 	[SerializeField] private MovementIdleState _movementIdleState;
 
+	[SerializeField] private CarrierBase _carrierBase;
+	
 	private Coroutine _checkIdleStateRoutine;
 
 	private bool _onIdleState;
@@ -47,6 +49,7 @@ public class StorableCarrierStoreHandler : StorableStoreHandler
 	{
 		_storableFormationController.Reformat();
 		StoreStorable(storableBase);
+		_carrierBase.IncreaseCarry();
 	}
 
 	private IEnumerator CheckIdleStateRoutine(ProducerBase producerBase)
@@ -55,6 +58,14 @@ public class StorableCarrierStoreHandler : StorableStoreHandler
 		storableDropHandler.OnStorableDropped += OnStorableDropped;
 		while (true)
 		{
+			if (!_carrierBase.CanCarry())
+			{
+				storableDropHandler.StopDrop();
+				_isDropRoutineRun = false;
+				yield return null;
+				continue;
+			}
+			
 			if (_onIdleState && !_isDropRoutineRun)
 			{
 				storableDropHandler.StartDrop();

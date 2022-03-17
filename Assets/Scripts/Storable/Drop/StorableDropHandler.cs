@@ -37,12 +37,16 @@ public abstract class StorableDropHandler : MonoBehaviour
     public void DropStorable(StorableBase storable)
     {
         storable.OnDropped += OnDropped;
-
         DropCommandBase dropCommandBase = CreateDropCommand();
         storable.Drop(dropCommandBase);
         OnStorableDropped?.Invoke(storable);
+        OnDropCustomActions();
     }
 
+    protected virtual void OnDropCustomActions()
+    {
+        
+    }
     private void OnDropped(StorableBase storable)
     {
         _storableFormationController.Reformat();
