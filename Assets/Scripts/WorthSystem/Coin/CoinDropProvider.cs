@@ -11,7 +11,7 @@ public class CoinDropProvider : DropProvider
         List<DropData> drops = new List<DropData>();
 
         for (int i = 0; i < _coinCount; i++)
-            drops.Add(new CoinDropData(_coinDrop));
+            drops.Add(new CoinDropData(_coinDrop,ECoinType.Gold,1));
 
         return drops;
     }

@@ -10,22 +10,10 @@ public class CollectibleCollector : MonoBehaviour
     [SerializeField] private Transform _characterTransform;
     [SerializeField] private FormationController _formationController;
 
-    private BaseCollectibleDetector[] _collectibleDetectors;
-
+    [SerializeField] private BaseCollectibleDetector _collectibleDetector;
+    [SerializeField] private CoinWorthCollector _coinWorthCollector;
     public Action<Collectible> OnCollectibleCollected { get; set; }
-
-    public BaseCollectibleDetector[] CollectibleDetectors
-    {
-        get
-        {
-            if (_collectibleDetectors == null)
-            {
-                _collectibleDetectors = GetComponentsInChildren<BaseCollectibleDetector>();
-            }
-
-            return _collectibleDetectors;
-        }
-    }
+    
 
     public BaseCollectCommand CollectCommand
     {
@@ -38,18 +26,12 @@ public class CollectibleCollector : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var collectibleDetector in CollectibleDetectors)
-        {
-            collectibleDetector.OnDetected += OnDetected;
-        }
+        _collectibleDetector.OnDetected += OnDetected;
     }
 
     private void OnApplicationQuit()
     {
-        foreach (var collectibleDetector in CollectibleDetectors)
-        {
-            collectibleDetector.OnDetected -= OnDetected;
-        }
+        _collectibleDetector.OnDetected -= OnDetected;
 
         foreach (var collectedCollectible in _collectibleController.CollectedCollectibles)
         {
@@ -59,6 +41,9 @@ public class CollectibleCollector : MonoBehaviour
 
     public void OnDetected(Collectible collectible)
     {
+        Debug.Log("ONDETECTED");
+        var worthDefiner = collectible.GetComponent<CoinWorthDefiner>();
+        _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.CoinType,worthDefiner.Count));
         BaseCollectCommand collectCommandClone = null;
         if (_collectCommand != null)
         {
