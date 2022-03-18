@@ -35,7 +35,21 @@ public class UserManager : MonoBehaviour
     private void CreateUser()
     {
         _localUser = UserFactory.CreateUser();
-
+        
         LocalUser.LoadData(null);
+    }
+
+
+    public int GetCoinCount(ECoin coinType)
+    {
+        Coin trackable;
+		
+        _localUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingleTrackable(coinType,out trackable);
+
+        int currentCount = trackable.TrackData.CurrentCount;
+		
+        Debug.Log("CURRENT GOLD COUNT" + currentCount);
+
+        return currentCount;
     }
 }

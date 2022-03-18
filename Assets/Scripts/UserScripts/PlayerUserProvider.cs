@@ -1,5 +1,4 @@
-﻿using MatchSystem;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerUserProvider : MonoBehaviour,
     IUserProvider

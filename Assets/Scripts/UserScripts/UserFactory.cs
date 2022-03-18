@@ -33,12 +33,22 @@ public static class UserFactory
         InventoryController<EInventory> inventoryController =
             new InventoryController<EInventory>(
                 coinInventory);
+        
+        UserUnlockableData unlockableData =
+            new UserUnlockableData(
+                new JSONTrackerIO<UnlockableTrackData, string>(
+                    Path.Combine(DATA_FOLDER_PATH, "UnlockableData")));
+
+        UnlockableUpdater unlockableUpdater
+            = new UnlockableUpdater(unlockableData);
 
         return new User(
             isLocalUser: true,
             inventoryController,
+            unlockableUpdater,
             genericData,
-            coinInventoryData);
+            coinInventoryData,
+            unlockableData);
     }
     
 }

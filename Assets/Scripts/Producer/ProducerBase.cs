@@ -3,8 +3,10 @@ using System.Collections;
 using UnityEngine;
 
 
-public abstract class ProducerBase : MonoBehaviour
+public abstract class ProducerBase : MonoBehaviour,IUnlockable
 {
+	[SerializeField] public Unlockable Unlockable { get; }
+	
 	[SerializeField] protected int _produceLimit;
 
 	[SerializeField] private int _limitPerProduce;
@@ -103,4 +105,5 @@ public abstract class ProducerBase : MonoBehaviour
 			}
 		}
 	}
+	
 }

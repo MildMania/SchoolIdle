@@ -1,4 +1,5 @@
-﻿using MMFramework.TrackerSystem;
+﻿using System.Linq;
+using MMFramework.TrackerSystem;
 using WarHeroes.InventorySystem;
 
 
@@ -68,7 +69,7 @@ public class CoinInventory : InventoryBase<CoinTracker, Coin, CoinTrackData, ECo
 
     protected override EInventory GetInventoryType()
     {
-        return EInventory.Currency;
+        return EInventory.Coin;
     }
 
     public void CountUpdated(ICountable countable)
@@ -77,4 +78,18 @@ public class CoinInventory : InventoryBase<CoinTracker, Coin, CoinTrackData, ECo
 
         Tracker.TrackerUpdated(coin);
     }
+    
+    public bool CanAfford(ECoin resourceType, int cost)
+    {
+        Coin coin = Tracker.Trackables.FirstOrDefault(val
+            => val.TrackData.TrackID.Equals(resourceType));
+
+        if (coin == null)
+        {
+            return false;
+        }
+
+        return coin.TrackData.CurrentCount >= cost;
+    }
+    
 }

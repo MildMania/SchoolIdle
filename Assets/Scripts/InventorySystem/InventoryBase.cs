@@ -6,10 +6,7 @@ namespace WarHeroes.InventorySystem
     public enum EInventory
     {
         None = 0,
-        PowerBelt = 1,
-        Skin = 2,
-        Chest = 3,
-        Currency = 4,
+        Coin = 1,
     }
 
     public interface IInventory<TEnum>
@@ -18,6 +15,11 @@ namespace WarHeroes.InventorySystem
         TEnum InventoryType { get; }
     }
 
+    public interface ICounterInventory<TID>
+    {
+        void TryCreateDefaultTrackableWithID(TID id, bool saveChanges = true);
+    }
+    
     public abstract class InventoryBase<TTracker, TTrackable, TTrackInfo, TID, TEnum> : IInventory<TEnum>
         where TTracker : TrackerBase<TTrackable, TTrackInfo, TID>
         where TTrackable : ITrackable<TTrackInfo, TID>
@@ -92,4 +94,36 @@ namespace WarHeroes.InventorySystem
 
         protected abstract TEnum GetInventoryType();
     }
+    
+    public static class ICounterInventoryExtensions
+    {
+        public static bool TryIncreaseCount<TTracker, TTrackable, TTrackInfo, TID, TEnum>(
+            this InventoryBase<TTracker, TTrackable, TTrackInfo, TID, TEnum> inventory,
+            TID id,
+            int count,
+            bool saveChanges = true)
+            where TTracker : TrackerBase<TTrackable, TTrackInfo, TID>
+            where TTrackable : ITrackable<TTrackInfo, TID>
+            where TTrackInfo : TrackData<TID>
+            where TEnum : Enum
+            where TID : IConvertible
+        {
+            if (!(inventory is ICounterInventory<TID> counterInventory))
+                return false;
+
+            counterInventory.TryCreateDefaultTrackableWithID(id, false);
+            inventory.Tracker.TryGetSingleTrackable(id, out TTrackable trackable);
+
+            if (!(trackable is ICountable countable))
+                return false;
+
+            countable.Countable.IncreaseCount(count);
+
+            if (saveChanges)
+                inventory.Tracker.SaveTrackables();
+
+            return true;
+        }
+    }
+    
 }

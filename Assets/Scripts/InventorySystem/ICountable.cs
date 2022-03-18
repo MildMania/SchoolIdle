@@ -4,7 +4,7 @@ namespace WarHeroes.InventorySystem
 {
     public interface ICountableTrackData
     {
-        int Count { get; set; }
+        int CurrentCount { get; set; }
     }
 
     public interface ICountable
@@ -16,8 +16,8 @@ namespace WarHeroes.InventorySystem
     {
         public int Count
         {
-            get => _countableTrackData.Count;
-            private set => _countableTrackData.Count = value;
+            get => _countableTrackData.CurrentCount;
+            private set => _countableTrackData.CurrentCount = value;
         }
 
         public Action<int> OnCountUpdated { get; set; }

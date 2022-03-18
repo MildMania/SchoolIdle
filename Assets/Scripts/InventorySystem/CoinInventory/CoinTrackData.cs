@@ -6,14 +6,14 @@ using MMUtilities = MMFramework.Utilities.Utilities;
 public class CoinTrackData : TrackData<ECoin>,
     ICountableTrackData
 {
-    public int Count { get; set; }
+    public int CurrentCount { get; set; }
 
     public CoinTrackData(
         ECoin trackID,
         int count)
         : base(trackID)
     {
-        Count = count;
+        CurrentCount = count;
     }
 
     public CoinTrackData(JSONObject trackDataObj)
@@ -30,14 +30,14 @@ public class CoinTrackData : TrackData<ECoin>,
 
     protected override void DeserializeCustomActions(JSONObject trackObj)
     {
-        Count = (int) trackObj.GetNumber(COUNT);
+        CurrentCount = (int) trackObj.GetNumber(COUNT);
 
         base.DeserializeCustomActions(trackObj);
     }
 
     protected override void SerializeCustomActions(ref JSONObject trackableObj)
     {
-        trackableObj.Add(COUNT, Count);
+        trackableObj.Add(COUNT, CurrentCount);
 
         base.SerializeCustomActions(ref trackableObj);
     }

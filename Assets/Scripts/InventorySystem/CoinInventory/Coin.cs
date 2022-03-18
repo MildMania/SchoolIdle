@@ -30,6 +30,6 @@ public class Coin : ITrackable<CoinTrackData, ECoin>,
     public void UpdateData(CoinTrackData data)
     {
         TrackData.TrackID = data.TrackID;
-        TrackData.Count = data.Count;
+        TrackData.CurrentCount = data.CurrentCount;
     }
 }

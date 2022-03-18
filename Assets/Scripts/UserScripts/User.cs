@@ -23,6 +23,7 @@ public class User
     public User(
         bool isLocalUser,
         InventoryController<EInventory> inventoryController,
+        UnlockableUpdater unlockableUpdater,
         params UserData[] userDataParams)
     {
         IsLocalUser = isLocalUser;
