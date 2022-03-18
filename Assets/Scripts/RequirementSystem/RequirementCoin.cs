@@ -41,7 +41,7 @@ public struct RequirementDataCoin : IRequirementData
 }
 
 public class RequirementCoin : RequirementBase<ERequirement, RequirementDataCoin>,
-	ISatisfyable
+	ISatisfyable,IFillable
 {
 	public RequirementCoin(User user, RequirementDataCoin data)
 		: base(user, data)
@@ -55,8 +55,11 @@ public class RequirementCoin : RequirementBase<ERequirement, RequirementDataCoin
 
 	public override bool IsSatisfied()
 	{
-		CoinInventory coinInventory = default;
+		IInventory<EInventory> inventory;
+		UserManager.Instance.LocalUser.InventoryController.TryGetInventoryOfType(EInventory.Coin,out inventory);
 
+		CoinInventory coinInventory = (CoinInventory) inventory;
+		
 		return coinInventory.CanAfford(
 			RequirementData.CoinType,
 			RequirementData.RequiredAmount);
@@ -73,10 +76,15 @@ public class RequirementCoin : RequirementBase<ERequirement, RequirementDataCoin
 
 	public bool TrySatisfy()
 	{
-		CoinInventory coinInventory = default;
+		IInventory<EInventory> inventory;
+		UserManager.Instance.LocalUser.InventoryController.TryGetInventoryOfType(EInventory.Coin,out inventory);
+		
+		CoinInventory coinInventory = (CoinInventory) inventory;
 
 		return coinInventory.TryIncreaseCount(
 			RequirementData.CoinType,
 			-RequirementData.RequiredAmount);
 	}
+
+	public Fillable Fillable { get; }
 }
