@@ -41,7 +41,7 @@ public struct RequirementDataCoin : IRequirementData
 }
 
 public class RequirementCoin : RequirementBase<ERequirement, RequirementDataCoin>,
-	ISatisfyable,IFillable
+	IFillable
 {
 	public RequirementCoin(User user, RequirementDataCoin data)
 		: base(user, data)

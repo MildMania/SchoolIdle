@@ -1100,68 +1100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec343873faaacb459da9bb78ec317d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &386609848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386609841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155632c59ae64f94a5fe3a081dc24278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: Unlockable
-      Entry: 7
-      Data: 0|Unlockable, Assembly-CSharp
-    - Name: IsLocked
-      Entry: 5
-      Data: true
-    - Name: RequirementData
-      Entry: 7
-      Data: 1|IRequirementData[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _lockedTaskExecutor
-      Entry: 7
-      Data: 2|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
-    - Name: _taskCarrier
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _unlockedTaskExecutor
-      Entry: 7
-      Data: 3|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
-    - Name: _taskCarrier
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  _unlockableGO: {fileID: 0}
-  _baseCharacterDetector: {fileID: 0}
 --- !u!1 &404356384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1212,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34758
+  m_Name: pb_Mesh39160
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2121,7 +2059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &678596744
 Transform:
   m_ObjectHideFlags: 0
@@ -2283,7 +2221,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34680
+  m_Name: pb_Mesh39072
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4002,7 +3940,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34840
+  m_Name: pb_Mesh39242
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4414,7 +4352,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34914
+  m_Name: pb_Mesh39324
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5633,7 +5571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1475885007
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5671,24 +5609,27 @@ MonoBehaviour:
     - Name: Unlockable
       Entry: 7
       Data: 0|Unlockable, Assembly-CSharp
-    - Name: IsLocked
-      Entry: 5
-      Data: true
-    - Name: RequirementData
+    - Name: Requirements
       Entry: 7
-      Data: 1|IRequirementData[], Assembly-CSharp
+      Data: 1|IRequirement[], Assembly-CSharp
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|RequirementDataCoin, Assembly-CSharp
+      Data: 2|FillableCoinRequirement, Assembly-CSharp
+    - Name: RequirementData
+      Entry: 7
+      Data: RequirementDataCoin, Assembly-CSharp
     - Name: _coinType
       Entry: 3
       Data: 1
     - Name: _requiredAmount
       Entry: 3
       Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -5719,6 +5660,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _guid
+      Entry: 2
+      Data: 24d2bb15fcc04ab7a9045f76bf8d9181
   _unlockableGO: {fileID: 678596743}
   _baseCharacterDetector: {fileID: 780530737}
 --- !u!4 &1475885009
@@ -7543,19 +7487,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.17767
+      value: 26.150635
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.322331
+      value: 6.5000005
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.8660254
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805011976133251564, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: data.dataString

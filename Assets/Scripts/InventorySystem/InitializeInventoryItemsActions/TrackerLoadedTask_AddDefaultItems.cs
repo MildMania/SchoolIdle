@@ -31,10 +31,10 @@ namespace WarHeroes.InventorySystem
                 if (tracker.HasTrackable(data.TrackID))
                     continue;
 
-                tracker.TryAddToTracker(data, false);
+                tracker.TryUpsert(data, false);
             }
 
-            tracker.SaveTrackables();
+            tracker.Write();
         }
     }
 }

@@ -50,7 +50,7 @@ public class CoinWorthCollector : WorthCollector<CoinWorth>
                 coinWorth.Coin,
                 count: coinWorth.Count);
         
-        _CoinInventory.Tracker.TryAddToTracker(
+        _CoinInventory.Tracker.TryUpsert(
             coinTrackData);
         
         _coinController.Collect();

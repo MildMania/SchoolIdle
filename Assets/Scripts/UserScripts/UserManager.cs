@@ -44,7 +44,7 @@ public class UserManager : MonoBehaviour
     {
         Coin trackable;
 		
-        _localUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingleTrackable(coinType,out trackable);
+        _localUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingle(coinType,out trackable);
 
         int currentCount = trackable.TrackData.CurrentCount;
 		

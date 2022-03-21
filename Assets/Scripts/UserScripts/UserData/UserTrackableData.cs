@@ -5,7 +5,6 @@ public class UserTrackableData<TTracker, TTrackable, TTrackData, TID> : UserData
     where TTracker : TrackerBase<TTrackable, TTrackData, TID>
     where TTrackable : ITrackable<TTrackData, TID>
     where TTrackData : TrackData<TID>
-    where TID : IConvertible
 {
     public TTracker Tracker { get; private set; }
 
@@ -24,11 +23,11 @@ public class UserTrackableData<TTracker, TTrackable, TTrackData, TID> : UserData
             onLoadedCallback?.Invoke();
         }
 
-        Tracker.LoadTrackData(onLoaded);
+        Tracker.Read(onLoaded);
     }
 
     public override void SaveData(Action onSavedCallback)
     {
-        Tracker.SaveTrackables(onSavedCallback);
+        Tracker.Write(onSavedCallback);
     }
 }
