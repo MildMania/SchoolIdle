@@ -10,31 +10,8 @@ public class CoinTracker : TrackerBase<Coin, CoinTrackData, ECoin>
         : base(trackerIO)
     {
     }
-
-    protected override TrackerModifierBase<Coin, CoinTrackData, ECoin> GetTrackerModifier()
-    {
-        return new CoinTrackerModifier(this);
-    }
+    
 }
-
-public class CoinTrackerModifier : TrackerModifierBase<Coin, CoinTrackData, ECoin>
-{
-    public CoinTrackerModifier(TrackerBase<Coin, CoinTrackData, ECoin> tracker)
-        : base(tracker)
-    {
-    }
-
-    public override ETrackerModifyAction UpdateTrackable(
-        Coin existingTrackable,
-        Coin newTrackable)
-    {
-        existingTrackable.Countable.IncreaseCount(
-            newTrackable.Countable.Count);
-
-        return base.UpdateTrackable(existingTrackable, newTrackable);
-    }
-}
-
 
 public class CoinInventory : InventoryBase<CoinTracker, Coin, CoinTrackData, ECoin, EInventory>,
     ICounter

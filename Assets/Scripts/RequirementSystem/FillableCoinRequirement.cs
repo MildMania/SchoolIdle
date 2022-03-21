@@ -1,8 +1,4 @@
-﻿using MMFramework.StatSystem;
-using MMFramework.TrackerSystem;
-using WarHeroes.InventorySystem;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FillableCoinRequirement : RequirementCoin, IFillable
 {
@@ -12,9 +8,19 @@ public class FillableCoinRequirement : RequirementCoin, IFillable
 	public FillableCoinRequirement(User user, RequirementDataCoin data) : base(user, data)
 	{
 	}
+	
+	private Fillable _fillable;
+	public Fillable Fillable
+	{
+		get
+		{
+			if (_fillable == null)
+				_fillable = new Fillable(0);
 
-	public Fillable Fillable { get; }
-
+			return _fillable;
+		}
+	}
+	
 	public void TryFill(User user)
 	{
 		int goldAmount = UserManager.Instance.GetCoinCount(ECoin.Gold);
@@ -26,5 +32,6 @@ public class FillableCoinRequirement : RequirementCoin, IFillable
 		Fillable.Fill(goldAmount,out fillAmount);
 		
 		Debug.Log("FİLL AMOUNT: " + fillAmount);
+		
 	}
 }

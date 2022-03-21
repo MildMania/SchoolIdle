@@ -1,16 +1,17 @@
-﻿using Boomlagoon.JSON;
+﻿using System;
+using Boomlagoon.JSON;
 using MMFramework.TrackerSystem;
 using WarHeroes.InventorySystem;
 using MMUtils = MMFramework.Utilities.Utilities;
 
-public class UnlockableTrackData : TrackData<string>,
+public class UnlockableTrackData : TrackData<Guid>,
 	ICountableTrackData
 {
 	public int CurrentCount { get; set; }
 	public bool IsUnlock { get; set; }
 
 	public UnlockableTrackData(
-		string trackID,
+		Guid trackID,
 		int currentCount, bool isUnlock)
 		: base(trackID)
 	{
@@ -27,9 +28,9 @@ public class UnlockableTrackData : TrackData<string>,
 
 	private const string ISUNLOCK = "IsUnlock";
 
-	protected override string DeserializeTrackableID(string trackableIDStr)
+	protected override Guid DeserializeTrackableID(string trackableIDStr)
 	{
-		return MMUtils.IdentifyObjectEnum<string>(trackableIDStr);
+		return Guid.Parse(trackableIDStr);
 	}
 
 	protected override void DeserializeCustomActions(JSONObject trackObj)

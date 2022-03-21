@@ -1,26 +1,27 @@
-﻿using MMFramework.TrackerSystem;
+﻿using System;
+using MMFramework.TrackerSystem;
 
-public class UserUnlockableData : UserTrackableData<UnlockableTracker, UnlockableTrackable, UnlockableTrackData, string>,
+public class UserUnlockableData : UserTrackableData<UnlockableTracker, UnlockableTrackable, UnlockableTrackData, Guid>,
 	IUnlockableDataProvider
 {
 	public UserUnlockableData(
-		TrackerIOBase<UnlockableTrackData, string> trackerIO)
+		TrackerIOBase<UnlockableTrackData, Guid> trackerIO)
 		: base(trackerIO)
 	{
 	}
     
-	public int GetUnlockable(string statisticsType)
+	public int GetUnlockable(Guid unlockableID)
 	{
-		if (!Tracker.TryGetSingleTrackable(statisticsType, out UnlockableTrackable trackable))
+		if (!Tracker.TryGetSingle(unlockableID, out UnlockableTrackable trackable))
 			return 0;
 
 		return trackable.TrackData.CurrentCount;
 	}
 
-	public void SetUnlockable(string unlockableID, int currentCount, bool isUnlock)
+	public void SetUnlockable(Guid unlockableID, int currentCount, bool isUnlock)
 	{
-		Tracker.TryGetSingleTrackable(unlockableID, out UnlockableTrackable trackable);
+		Tracker.TryGetSingle(unlockableID, out UnlockableTrackable trackable);
 
-		Tracker.TryAddToTracker(new UnlockableTrackData(unlockableID, currentCount,isUnlock));
+		Tracker.TryUpsert(new UnlockableTrackData(unlockableID, currentCount,isUnlock));
 	}
 }

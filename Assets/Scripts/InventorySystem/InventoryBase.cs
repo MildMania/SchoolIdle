@@ -112,7 +112,7 @@ namespace WarHeroes.InventorySystem
                 return false;
 
             counterInventory.TryCreateDefaultTrackableWithID(id, false);
-            inventory.Tracker.TryGetSingleTrackable(id, out TTrackable trackable);
+            inventory.Tracker.TryGetSingle(id, out TTrackable trackable);
 
             if (!(trackable is ICountable countable))
                 return false;
@@ -120,7 +120,7 @@ namespace WarHeroes.InventorySystem
             countable.Countable.IncreaseCount(count);
 
             if (saveChanges)
-                inventory.Tracker.SaveTrackables();
+                inventory.Tracker.Write();
 
             return true;
         }

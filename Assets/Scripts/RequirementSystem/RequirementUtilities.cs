@@ -39,13 +39,11 @@ public static class RequirementUtilities
 
 	public static bool AreRequirementsSatisfied(
 		User user,
-		IRequirementData[] reqDatum)
+		IRequirement[] reqDatum)
 	{
-		foreach (IRequirementData data in reqDatum)
+		foreach (IRequirement data in reqDatum)
 		{
-			IRequirement requirement = data.CreateRequirement(user);
-
-			if (!requirement.IsSatisfied())
+			if (!data.IsSatisfied())
 				return false;
 		}
 
@@ -54,13 +52,10 @@ public static class RequirementUtilities
 
 	public static bool TrySatisfyRequirements(
 		User user,
-		IRequirementData[] reqDatum)
+		IRequirement[] reqDatum)
 	{
-
-		foreach (IRequirementData data in reqDatum)
+		foreach (IRequirement requirement in reqDatum)
 		{
-			IRequirement requirement = data.CreateRequirement(user);
-			
 			if (requirement is FillableCoinRequirement fillableCoinRequirement)
 			{
 				fillableCoinRequirement.TryFill(user);
@@ -72,14 +67,14 @@ public static class RequirementUtilities
 			return false;
 		}
 		
-		foreach (IRequirementData data in reqDatum)
+		foreach (IRequirement data in reqDatum)
 		{
-			IRequirement requirement = data.CreateRequirement(user);
-
-			if (!(requirement is ISatisfyable satisfyableReq))
+			if (!(data is ISatisfyable)
+			&& data is IFillable)
 				continue;
 
-			if (!satisfyableReq.TrySatisfy())
+			ISatisfyable req = (ISatisfyable) data; 
+			if (!req.TrySatisfy())
 				return false;
 		}
 

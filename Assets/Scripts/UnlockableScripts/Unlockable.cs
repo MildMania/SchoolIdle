@@ -1,6 +1,10 @@
 using MMFramework.TasksV2;
 using System;
+using System.Linq;
+using Sirenix.Serialization;
 using UnityEngine;
+using WarHeroes.InventorySystem;
+using Countable = MMFramework.InventorySystem.Countable;
 
 
 public interface IUnlockable
@@ -11,20 +15,27 @@ public interface IUnlockable
 [Serializable]
 public class Unlockable
 {
-	[SerializeField] public bool IsLocked { get; private set; } = true;
+	public IRequirement[] Requirements = Array.Empty<IRequirement>();
+	public bool IsLocked { get; private set; }
+	public int Count { get; private set; }
 
-	[SerializeField] public IRequirementData[] RequirementData
-		= Array.Empty<IRequirementData>();
+	// [OdinSerialize] public IRequirementData[] RequirementData
+	// 	= Array.Empty<IRequirementData>();
 
 	[SerializeField] private MMTaskExecutor _lockedTaskExecutor
 		= new MMTaskExecutor();
 
 	[SerializeField] private MMTaskExecutor _unlockedTaskExecutor
 		= new MMTaskExecutor();
-	
-	public UnlockableTrackData TrackData { get; set; }
+
 	public Action<bool> OnLockedChanged { get; set; }
 
+	public void Init(UnlockableTrackData trackData)
+	{
+		IsLocked = trackData.IsUnlock;
+		Count = trackData.CurrentCount;
+	}
+	
 	public bool TrySetLocked(
 		User user,
 		bool isLocked)
@@ -48,10 +59,10 @@ public class Unlockable
 		return true;
 	}
 
-	private bool TryUnlock(User user)
+	public bool TryUnlock(User user)
 	{
 		return RequirementUtilities.TrySatisfyRequirements(
-			user, RequirementData);
+			user,Requirements );
 	}
 
 	public void ForceSetLocked(

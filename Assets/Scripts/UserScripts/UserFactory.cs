@@ -1,4 +1,5 @@
-﻿using SerializableData;
+﻿using System;
+using SerializableData;
 using System.IO;
 using WarHeroes.InventorySystem;
 using MMFramework.TrackerSystem;
@@ -36,7 +37,7 @@ public static class UserFactory
         
         UserUnlockableData unlockableData =
             new UserUnlockableData(
-                new JSONTrackerIO<UnlockableTrackData, string>(
+                new JSONTrackerIO<UnlockableTrackData, Guid>(
                     Path.Combine(DATA_FOLDER_PATH, "UnlockableData")));
 
         UnlockableUpdater unlockableUpdater

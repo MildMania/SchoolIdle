@@ -1,6 +1,7 @@
-﻿using MMFramework.TrackerSystem;
+﻿using System;
+using MMFramework.TrackerSystem;
 
-public class UnlockableTrackable : ITrackable<UnlockableTrackData, string>
+public class UnlockableTrackable : ITrackable<UnlockableTrackData, Guid>
 {
 	public UnlockableTrackData TrackData { get; private set; }
 
@@ -18,34 +19,12 @@ public class UnlockableTrackable : ITrackable<UnlockableTrackData, string>
 	}
 }
 
-public class UnlockableTracker : TrackerBase<UnlockableTrackable, UnlockableTrackData, string>
+public class UnlockableTracker : TrackerBase<UnlockableTrackable, UnlockableTrackData, Guid>
 {
 	public UnlockableTracker(
-		TrackerIOBase<UnlockableTrackData, string> trackerIO) 
+		TrackerIOBase<UnlockableTrackData, Guid> trackerIO) 
 		: base(trackerIO)
 	{
 	}
-
-	protected override TrackerModifierBase<UnlockableTrackable, UnlockableTrackData, string> GetTrackerModifier()
-	{
-		return new UnlockableTrackerModifier(this);
-	}
-}
-
-public class UnlockableTrackerModifier : TrackerModifierBase<UnlockableTrackable, UnlockableTrackData, string>
-{
-	public UnlockableTrackerModifier(TrackerBase<UnlockableTrackable, UnlockableTrackData, string> tracker) 
-		: base(tracker)
-	{
-	}
-
-	public override ETrackerModifyAction UpdateTrackable(
-		UnlockableTrackable existingTrackable,
-		UnlockableTrackable newTrackable)
-	{
-		existingTrackable.TrackData.CurrentCount = newTrackable.TrackData.CurrentCount;
-		existingTrackable.TrackData.IsUnlock = newTrackable.TrackData.IsUnlock;
-
-		return base.UpdateTrackable(existingTrackable, newTrackable);
-	}
+	
 }

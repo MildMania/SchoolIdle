@@ -1,5 +1,7 @@
-﻿public interface IUnlockableDataProvider
+﻿using System;
+
+public interface IUnlockableDataProvider
 {
-	int GetUnlockable(string unlockableID);
-	void SetUnlockable(string unlockableID, int currentCount, bool isUnlock);
+	int GetUnlockable(Guid unlockableID);
+	void SetUnlockable(Guid unlockableID, int currentCount, bool isUnlock);
 }
