@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class UserManager : MonoBehaviour
 {
@@ -49,6 +50,17 @@ public class UserManager : MonoBehaviour
         int currentCount = trackable.TrackData.CurrentCount;
 		
         Debug.Log("CURRENT GOLD COUNT" + currentCount);
+
+        return currentCount;
+    }
+
+    public int GetUnlockableCurrentCount(Guid guid)
+    {
+        UnlockableTrackable trackable;
+
+        _localUser.GetUserData<UserUnlockableData>().Tracker.TryGetSingle(guid, out trackable);
+
+        int currentCount = trackable.TrackData.CurrentCount;
 
         return currentCount;
     }

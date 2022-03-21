@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinDrop: {fileID: 0}
-  _coinCount: 0
+  _coinCount: 1
 --- !u!114 &3418796926556795235
 MonoBehaviour:
   m_ObjectHideFlags: 0
