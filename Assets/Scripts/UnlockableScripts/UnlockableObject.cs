@@ -10,7 +10,8 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	[SerializeField] private Guid _guid;
 		
 	[SerializeField] private GameObject _unlockableGO;
-	
+	[SerializeField] private GameObject _triggerGO;
+
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
 	
 	private void Awake()
@@ -21,13 +22,25 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	private void Start()
 	{
 		UnlockableTrackable unlockableTrackable;
+		UnlockableTrackData unlockableTrackData;
 
 		if (UserManager.Instance.LocalUser.GetUserData<UserUnlockableData>().Tracker
 			.TryGetSingle(_guid, out unlockableTrackable))
 		{
-			var unlockableTrackData = unlockableTrackable.TrackData;
-			Unlockable.Init(unlockableTrackData);
+			unlockableTrackData = unlockableTrackable.TrackData;
 		}
+		else
+		{
+			unlockableTrackData = new UnlockableTrackData(_guid, 0, false);
+			unlockableTrackable = new UnlockableTrackable(unlockableTrackData);
+			UserManager.Instance.LocalUser.GetUserData<UserUnlockableData>().Tracker.TryCreate(unlockableTrackable);
+		}
+		
+		Unlockable.Init(unlockableTrackData);
+		
+		_unlockableGO.SetActive(unlockableTrackData.IsUnlock);
+		gameObject.SetActive(!unlockableTrackData.IsUnlock);
+		
 	}
 
 	private void OnDestroy()
@@ -40,7 +53,16 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
 			Debug.Log("Unlockable Object Unlock");
+
 			_unlockableGO.SetActive(true);
+			gameObject.SetActive(false);
+			
+		}
+		
+		UserManager.Instance.LocalUser.SaveData(onSavedCallback);
+		void onSavedCallback()
+		{
+			Debug.Log("SAVED!!!");
 		}
 	}
 }

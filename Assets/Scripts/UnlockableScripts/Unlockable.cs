@@ -19,6 +19,8 @@ public class Unlockable
 	public bool IsLocked { get; private set; }
 	public int Count { get; private set; }
 
+	private UnlockableTrackData _unlockableTrackData;
+
 	// [OdinSerialize] public IRequirementData[] RequirementData
 	// 	= Array.Empty<IRequirementData>();
 
@@ -32,6 +34,7 @@ public class Unlockable
 
 	public void Init(UnlockableTrackData trackData)
 	{
+		_unlockableTrackData = trackData;
 		IsLocked = trackData.IsUnlock;
 		Count = trackData.CurrentCount;
 	}
@@ -61,8 +64,55 @@ public class Unlockable
 
 	public bool TryUnlock(User user)
 	{
-		return RequirementUtilities.TrySatisfyRequirements(
-			user,Requirements );
+		var userCoinInventoryData = user.GetUserData<UserCoinInventoryData>();
+
+		var userUnlockableData = user.GetUserData<UserUnlockableData>();
+
+		
+
+		Coin trackableCoin;
+		userCoinInventoryData.Tracker.TryGetSingle(ECoin.Gold, out trackableCoin);
+		
+		if (RequirementUtilities.TrySatisfyRequirements(user, Requirements))
+		{
+			int totalRequiredAmount = 0;
+			
+			foreach (var requirement in Requirements)
+			{
+				var requirementCoin = (RequirementCoin) requirement;
+
+				totalRequiredAmount += requirementCoin.RequirementData.RequiredAmount;
+			}
+			
+			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, totalRequiredAmount,true);
+			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
+			
+			CoinTrackData coinTrackData =
+				new CoinTrackData(
+					ECoin.Gold,
+					count: trackableCoin.TrackData.CurrentCount - totalRequiredAmount);
+		
+			trackableCoin.UpdateData(coinTrackData);
+			
+
+			return true;
+
+		}
+		else
+		{
+			
+			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, trackableCoin.TrackData.CurrentCount,false);
+			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
+			
+			CoinTrackData coinTrackData =
+				new CoinTrackData(
+					ECoin.Gold,
+					count: 0);
+		
+			trackableCoin.UpdateData(coinTrackData);
+			
+			return false;
+		}
 	}
 
 	public void ForceSetLocked(
