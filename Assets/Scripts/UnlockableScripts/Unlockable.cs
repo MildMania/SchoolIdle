@@ -113,9 +113,6 @@ public class Unlockable
 			
 			return false;
 		}
-
-
-
 	}
 
 	public void ForceSetLocked(
@@ -136,5 +133,19 @@ public class Unlockable
 		}
 
 		OnLockedChanged?.Invoke(IsLocked);
+	}
+	
+	public int GetRequirementCoin()
+	{
+		int requirementCoin = 0;
+		foreach (var requirement in Requirements)
+		{
+			if (requirement is FillableCoinRequirement fillableCoinRequirement)
+			{
+				requirementCoin += fillableCoinRequirement.RequirementData.RequiredAmount;
+			}
+		}
+
+		return requirementCoin;
 	}
 }

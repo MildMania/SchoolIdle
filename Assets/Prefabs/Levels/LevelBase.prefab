@@ -613,7 +613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d4c23c9ee1498bae2f214e62b15868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinController: {fileID: 0}
 --- !u!1 &4645199932600013787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,6 +1695,14 @@ PrefabInstance:
     - target: {fileID: 8674694201309453425, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}
       propertyPath: _progressionFillBarWidget
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952388027740572784, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952388027740572784, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}

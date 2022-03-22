@@ -10,10 +10,12 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	[SerializeField] private Guid _guid;
 		
 	[SerializeField] private GameObject _unlockableGO;
-	[SerializeField] private GameObject _triggerGO;
 
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
-	
+
+	private UnlockableTrackData _unlockableTrackData;
+	public Action<UnlockableTrackData> OnUnlockableInit;
+	public Action<UnlockableTrackData> OnTryUnlock;
 	private void Awake()
 	{
 		_baseCharacterDetector.OnDetected += OnDetected;
@@ -22,24 +24,23 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	private void Start()
 	{
 		UnlockableTrackable unlockableTrackable;
-		UnlockableTrackData unlockableTrackData;
 
 		if (UserManager.Instance.LocalUser.GetUserData<UserUnlockableData>().Tracker
 			.TryGetSingle(_guid, out unlockableTrackable))
 		{
-			unlockableTrackData = unlockableTrackable.TrackData;
+			_unlockableTrackData = unlockableTrackable.TrackData;
 		}
 		else
 		{
-			unlockableTrackData = new UnlockableTrackData(_guid, 0, false);
-			unlockableTrackable = new UnlockableTrackable(unlockableTrackData);
+			_unlockableTrackData = new UnlockableTrackData(_guid, 0, false);
+			unlockableTrackable = new UnlockableTrackable(_unlockableTrackData);
 			UserManager.Instance.LocalUser.GetUserData<UserUnlockableData>().Tracker.TryCreate(unlockableTrackable);
 		}
 		
-		Unlockable.Init(unlockableTrackData);
-		
-		_unlockableGO.SetActive(unlockableTrackData.IsUnlock);
-		gameObject.SetActive(!unlockableTrackData.IsUnlock);
+		Unlockable.Init(_unlockableTrackData);
+		OnUnlockableInit?.Invoke(_unlockableTrackData);
+		_unlockableGO.SetActive(_unlockableTrackData.IsUnlock);
+		gameObject.SetActive(!_unlockableTrackData.IsUnlock);
 		
 	}
 
@@ -58,7 +59,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 			gameObject.SetActive(false);
 			
 		}
-		
+		OnTryUnlock?.Invoke(_unlockableTrackData);
 		UserManager.Instance.LocalUser.SaveData(onSavedCallback);
 		void onSavedCallback()
 		{

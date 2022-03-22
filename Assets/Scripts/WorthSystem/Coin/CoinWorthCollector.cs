@@ -44,15 +44,18 @@ public class CoinWorthCollector : WorthCollector<CoinWorth>
         Debug.Log("Coin Count : " + coinWorth.Count + " CoinType : " + coinWorth.Coin);
         Debug.Log("CollectWorthCustomActions");
         
+        Coin trackable;
+        _CoinInventory.Tracker.TryGetSingle(ECoin.Gold, out trackable);
+        int currentCountCount = trackable.TrackData.CurrentCount + coinWorth.Count;
+        
         CoinTrackData coinTrackData =
             new CoinTrackData(
                 coinWorth.Coin,
-                count: coinWorth.Count + UserManager.Instance.GetCoinCount(ECoin.Gold));
-
+                count: currentCountCount);
+        
         _CoinInventory.Tracker.TryUpsert(
             coinTrackData);
-        
-        _coinController.Collect();
+        _coinController.Collect(currentCountCount);
         base.CollectWorthCustomActions(coinWorth);
         
     }

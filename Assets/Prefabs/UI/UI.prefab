@@ -535,7 +535,6 @@ MonoBehaviour:
   _animateOnAwakeActivation: 1
   _activateSubWidgetsAfterSelf: 0
   _deactivateSubWidgetsAfterSelf: 0
-  _disableCanvasOnDeactivate: 0
   _activationTransitions: []
   _deactivationTransitions: []
   _canvasGroup: {fileID: 0}

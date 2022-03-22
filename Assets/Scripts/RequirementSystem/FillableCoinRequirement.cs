@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WarHeroes.InventorySystem;
 
 public class FillableCoinRequirement : RequirementCoin, IFillable
 {
@@ -23,7 +24,11 @@ public class FillableCoinRequirement : RequirementCoin, IFillable
 	
 	public void TryFill(User user)
 	{
-		int goldAmount = UserManager.Instance.GetCoinCount(ECoin.Gold);
+		Coin trackable;
+		
+		user.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingle(ECoin.Gold,out trackable);
+
+		int goldAmount = trackable.TrackData.CurrentCount;
 		
 		Debug.Log("CURRENT GOLD COUNT: " + goldAmount);
 
