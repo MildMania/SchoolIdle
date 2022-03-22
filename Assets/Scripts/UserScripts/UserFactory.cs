@@ -15,14 +15,7 @@ public static class UserFactory
     private static User CreateDefaultUser()
     {
         const string DATA_FOLDER_PATH = "SaveData/UserData/";
-
-        UserGenericData genericData =
-            new UserGenericData(
-                new JSONDataIO<UserGenericData.GenericData>(
-                    Path.Combine(DATA_FOLDER_PATH, "GenericData")));
-
-
-
+        
         UserCoinInventoryData coinInventoryData =
             new UserCoinInventoryData(
                 new JSONTrackerIO<CoinTrackData, ECoin>(
@@ -43,13 +36,22 @@ public static class UserFactory
         UnlockableUpdater unlockableUpdater
             = new UnlockableUpdater(unlockableData);
 
+        UserUpgradableData upgradableData =
+            new UserUpgradableData(
+                new JSONTrackerIO<UpgradableTrackData, EUpgradable>(
+                    Path.Combine(DATA_FOLDER_PATH, "UpgradableData")));
+
+        UpgradableUpdater upgradableUpdater
+            = new UpgradableUpdater(upgradableData);
+        
         return new User(
             isLocalUser: true,
             inventoryController,
             unlockableUpdater,
-            genericData,
+            upgradableUpdater,
             coinInventoryData,
-            unlockableData);
+            unlockableData,
+            upgradableData);
     }
     
 }
