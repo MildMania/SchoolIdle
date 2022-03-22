@@ -67,24 +67,26 @@ public class Unlockable
 		var userCoinInventoryData = user.GetUserData<UserCoinInventoryData>();
 
 		var userUnlockableData = user.GetUserData<UserUnlockableData>();
-
 		
-
 		Coin trackableCoin;
 		userCoinInventoryData.Tracker.TryGetSingle(ECoin.Gold, out trackableCoin);
 		
-		if (RequirementUtilities.TrySatisfyRequirements(user, Requirements))
+		
+		int totalRequiredAmount = 0;
+			
+		foreach (var requirement in Requirements)
 		{
-			int totalRequiredAmount = 0;
-			
-			foreach (var requirement in Requirements)
-			{
-				var requirementCoin = (RequirementCoin) requirement;
+			var requirementCoin = (RequirementCoin) requirement;
 
-				totalRequiredAmount += requirementCoin.RequirementData.RequiredAmount;
-			}
-			
-			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, totalRequiredAmount,true);
+			totalRequiredAmount += requirementCoin.RequirementData.RequiredAmount;
+		}
+
+		totalRequiredAmount -= _unlockableTrackData.CurrentCount;
+
+		if (trackableCoin.TrackData.CurrentCount >= totalRequiredAmount)
+		{
+			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
+				_unlockableTrackData.CurrentCount + totalRequiredAmount,true);
 			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
 			
 			CoinTrackData coinTrackData =
@@ -93,15 +95,13 @@ public class Unlockable
 					count: trackableCoin.TrackData.CurrentCount - totalRequiredAmount);
 		
 			trackableCoin.UpdateData(coinTrackData);
-			
-
 			return true;
-
 		}
 		else
 		{
-			
-			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, trackableCoin.TrackData.CurrentCount,false);
+			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
+				_unlockableTrackData.CurrentCount + trackableCoin.TrackData.CurrentCount,
+				false);
 			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
 			
 			CoinTrackData coinTrackData =
@@ -113,6 +113,9 @@ public class Unlockable
 			
 			return false;
 		}
+
+
+
 	}
 
 	public void ForceSetLocked(
