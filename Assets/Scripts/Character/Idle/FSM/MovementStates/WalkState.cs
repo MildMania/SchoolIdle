@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using EState = CharacterFSMController.EState;
 
@@ -7,13 +8,25 @@ public class WalkState : State<EState, EState>
 	[MMSerializedInterface(typeof(IMovementCommander))] [SerializeField]
 	private Component _movementCommander = null;
 
+	[SerializeField] private Upgradable _characterUpgradable;
 	public IMovementCommander MovementCommander => _movementCommander as IMovementCommander;
 
 	[MMSerializedInterface(typeof(IMovementExecutor))] [SerializeField]
 	private Component _movementExecutor = null;
 
+	private float _walkSpeed;
 	public IMovementExecutor MovementExecutor => _movementExecutor as IMovementExecutor;
-	
+
+	private void Awake()
+	{
+		_walkSpeed = GameConfigManager.Instance.GameConfig.WalkSpeed;
+		_characterUpgradable.OnUpgradableTrackDataInit += OnUpgradableTrackDataInit;
+	}
+
+	private void OnDestroy()
+	{
+		_characterUpgradable.OnUpgradableTrackDataInit -= OnUpgradableTrackDataInit;
+	}
 
 	public override void OnEnterCustomActions()
 	{
@@ -25,6 +38,12 @@ public class WalkState : State<EState, EState>
 	{
 		UnregisterFromMovementCommander();
 		base.OnExitCustomActions();
+	}
+
+	private void OnUpgradableTrackDataInit(UpgradableTrackData upgradableTrackData)
+	{
+		 _walkSpeed = upgradableTrackData.Attributes["CHARACTER_SPEED"];
+		Debug.Log("WALK SPEED : " + _walkSpeed);
 	}
 
 	private void RegisterToMovementCommander()
@@ -43,7 +62,7 @@ public class WalkState : State<EState, EState>
 
 	private void OnMoveCommand(Vector3 direction)
 	{
-		MovementExecutor.Move(direction, GameConfigManager.Instance.GameConfig.WalkSpeed);
+		MovementExecutor.Move(direction,_walkSpeed);
 	}
 
 	private void OnMoveCancelledCommand()

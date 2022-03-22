@@ -1755,7 +1755,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh137768
+  m_Name: pb_Mesh193694
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2949,7 +2949,7 @@ MonoBehaviour:
     SerializationNodes:
     - Name: _upgradableAttributes
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
@@ -2960,28 +2960,16 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
     - Name: $k
       Entry: 1
-      Data: 'StudentSpeed '
+      Data: STUDENT_SPEED
     - Name: $v
-      Entry: 1
-      Data: 1.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: ClassVisual
-    - Name: $v
-      Entry: 1
-      Data: Math
+      Entry: 4
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -2996,30 +2984,15 @@ MonoBehaviour:
       Data: 2|IRequirement[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 3|RequirementCoin, Assembly-CSharp
-    - Name: RequirementData
-      Entry: 7
-      Data: RequirementDataCoin, Assembly-CSharp
-    - Name: _coinType
-      Entry: 3
-      Data: 1
-    - Name: _requiredAmount
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
+      Data: 
+    - Name: OnUpgradableTrackDataInit
+      Entry: 6
       Data: 
     - Name: OnLevelUpgraded
       Entry: 6
@@ -3245,7 +3218,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh137688
+  m_Name: pb_Mesh193614
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5485,7 +5458,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh138022
+  m_Name: pb_Mesh193948
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6455,7 +6428,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh138000
+  m_Name: pb_Mesh193926
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7724,7 +7697,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-326580
+  m_Name: pb_Mesh-513444
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10798,7 +10771,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-326592
+  m_Name: pb_Mesh-513456
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11453,6 +11426,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 668884982458712200, guid: d02892223ba417046b2c16319184912b, type: 3}
+      propertyPath: _characterUpgradable
+      value: 
+      objectReference: {fileID: 3201599501743468367}
     - target: {fileID: 1172211241498062488, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: _isDebugEnabled
       value: 0
@@ -11859,6 +11836,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerWrapper: {fileID: 3201599501743468364}
+--- !u!114 &3201599501743468367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201599501743468360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45d7e41f67240e3949f5893eb271655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _upgradableAttributes
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: CHARACTER_SPEED
+    - Name: $v
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RequirementData
+      Entry: 7
+      Data: 2|IRequirement[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnUpgradableTrackDataInit
+      Entry: 6
+      Data: 
+    - Name: OnLevelUpgraded
+      Entry: 6
+      Data: 
+  _upgradableType: 1
 --- !u!1 &4322279361336538597
 GameObject:
   m_ObjectHideFlags: 0

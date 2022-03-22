@@ -51,6 +51,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private void OnDetected(Character character)
 	{
+		
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
 			Debug.Log("Unlockable Object Unlock");

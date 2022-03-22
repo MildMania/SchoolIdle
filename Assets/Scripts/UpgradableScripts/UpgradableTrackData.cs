@@ -9,10 +9,10 @@ public class UpgradableTrackData : TrackData<EUpgradable>
 {
 	public int Level { get; set; }
 
-	public Dictionary<string, string> Attributes;
+	public Dictionary<string, float> Attributes;
 	public UpgradableTrackData(
 		EUpgradable upgradable, 
-		int level,Dictionary<string,string> attributes)
+		int level,Dictionary<string,float> attributes)
 		: base(upgradable)
 	{
 		Level = level;
@@ -37,6 +37,12 @@ public class UpgradableTrackData : TrackData<EUpgradable>
 	{
 		Level = (int) trackObj.GetNumber(LEVEL);
 		
+		Attributes = new Dictionary<string, float>();
+		var jsonAttr = trackObj.GetObject(ATTRIBUTES);
+		foreach (var attr in jsonAttr)
+		{
+			Attributes.Add(attr.Key,float.Parse(attr.Value.ToString()));
+		}
 		base.DeserializeCustomActions(trackObj);
 	}
 

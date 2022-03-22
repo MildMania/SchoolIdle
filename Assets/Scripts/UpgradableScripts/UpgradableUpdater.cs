@@ -13,7 +13,7 @@ public class UpgradableUpdater
 		_upgradableDataProvider = upgradableDataProvider;
 	}
 
-	public void UpdateUpgradable(EUpgradable upgradable, int level, Dictionary<string,string> attributes)
+	public void UpdateUpgradable(EUpgradable upgradable, int level, Dictionary<string,float> attributes)
 	{
 		_upgradableDataProvider.SetUpgradable(upgradable, 
 			_upgradableDataProvider.GetUpgradableLevel(upgradable) + level,attributes);

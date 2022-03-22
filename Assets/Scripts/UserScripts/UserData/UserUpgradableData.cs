@@ -19,7 +19,7 @@ public class UserUpgradableData : UserTrackableData<UpgradableTracker, Upgradabl
 		return trackable.TrackData.Level;
 	}
 
-	public void SetUpgradable(EUpgradable upgradable, int level, Dictionary<string,string> attributes)
+	public void SetUpgradable(EUpgradable upgradable, int level, Dictionary<string,float> attributes)
 	{
 		Tracker.TryGetSingle(upgradable, out UpgradableTrackable trackable);
 
