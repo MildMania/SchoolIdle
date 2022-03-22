@@ -4,7 +4,7 @@ public class UnlockableUpdater
 {
 	private IUnlockableDataProvider _unlockableDataProvider;
 
-	public Action<Guid, int> OnStatisticsUpdated { get; set; }
+	public Action<Guid, int> OnUnlockableUpdated { get; set; }
     
 	public UnlockableUpdater(
 		IUnlockableDataProvider unlockableDataProvider)
@@ -17,7 +17,7 @@ public class UnlockableUpdater
 		_unlockableDataProvider.SetUnlockable(unlockableID, 
 			_unlockableDataProvider.GetUnlockable(unlockableID) + currentCount,isUnlock);
 
-		OnStatisticsUpdated?.Invoke(unlockableID, _unlockableDataProvider.GetUnlockable(unlockableID));
+		OnUnlockableUpdated?.Invoke(unlockableID, _unlockableDataProvider.GetUnlockable(unlockableID));
 	}
 
 	public int GetUnlockable(Guid unlockableID)

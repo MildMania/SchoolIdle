@@ -24,6 +24,7 @@ public class User
         bool isLocalUser,
         InventoryController<EInventory> inventoryController,
         UnlockableUpdater unlockableUpdater,
+        UpgradableUpdater upgradableUpdater,
         params UserData[] userDataParams)
     {
         IsLocalUser = isLocalUser;
