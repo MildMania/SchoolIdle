@@ -4,26 +4,39 @@ using UnityEngine;
 public class CoinController : MonoBehaviour
 {
 	private int _currentCoinCount;
-	public Action<int> OnCoinUpdated;
-	public Action<int> OnCoinInit;
+
+	[SerializeField] private CurrencyObserver _currencyObserver;
+	
 	private void Awake()
 	{
-		Coin trackable;
-		
-		UserManager.Instance.LocalUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingle(ECoin.Gold,out trackable);
-
-		_currentCoinCount = trackable.TrackData.CurrentCount;
+		LoadCoinCount();
 	}
 
 	private void Start()
 	{
-		OnCoinInit?.Invoke(_currentCoinCount);
+		_currencyObserver.OnCurrencyUpdated?.Invoke(_currentCoinCount);
 	}
 
 	public void Collect(int currentCoinCount)
 	{
 		_currentCoinCount = currentCoinCount;
-		OnCoinUpdated?.Invoke(currentCoinCount);
+		_currencyObserver.OnCurrencyUpdated?.Invoke(_currentCoinCount);
+		
 		Debug.Log("COINCONTROLLER COLLECT");
+	}
+
+	public void UpdateCoinCount()
+	{
+
+		LoadCoinCount();
+		_currencyObserver.OnCurrencyUpdated?.Invoke(_currentCoinCount);
+	}
+
+	private void LoadCoinCount()
+	{
+		Coin trackable;
+		UserManager.Instance.LocalUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingle(ECoin.Gold,out trackable);
+
+		_currentCoinCount = trackable.TrackData.CurrentCount;
 	}
 }
