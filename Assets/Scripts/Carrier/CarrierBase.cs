@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 public abstract class CarrierBase : MonoBehaviour
@@ -11,6 +12,16 @@ public abstract class CarrierBase : MonoBehaviour
 	{
 		InitCarrierLimit();
 		OnAwakeCustomActions();
+	}
+
+	private void OnDestroy()
+	{
+		OnDestroyCustomActions();
+	}
+
+	protected virtual void OnDestroyCustomActions()
+	{
+	
 	}
 
 	protected virtual void OnAwakeCustomActions()
@@ -34,6 +45,11 @@ public abstract class CarrierBase : MonoBehaviour
 		{
 			_numberOfCarried = 0;
 		}
+	}
+
+	public void UpdateCarryCapacity(int value)
+	{
+		_carrierLimit = value;
 	}
 
 	public bool CanCarry()

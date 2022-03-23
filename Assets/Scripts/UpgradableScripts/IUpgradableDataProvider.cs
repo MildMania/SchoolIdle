@@ -3,5 +3,5 @@
 public interface IUpgradableDataProvider
 {
 	int GetUpgradableLevel(EUpgradable upgradable);
-	void SetUpgradable(EUpgradable upgradable, int level, Dictionary<string,float> attributes);
+	void SetUpgradable(EUpgradable upgradable, int level);
 }

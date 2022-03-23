@@ -15,7 +15,6 @@ public class UpgradableTrackable : ITrackable<UpgradableTrackData, EUpgradable>
 	{
 		TrackData.TrackID = data.TrackID;
 		TrackData.Level = data.Level;
-		TrackData.Attributes = data.Attributes;
 	}
 }
 

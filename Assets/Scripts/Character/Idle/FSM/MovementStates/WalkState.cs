@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using EState = CharacterFSMController.EState;
 
@@ -8,7 +9,7 @@ public class WalkState : State<EState, EState>
 	[MMSerializedInterface(typeof(IMovementCommander))] [SerializeField]
 	private Component _movementCommander = null;
 
-	[SerializeField] private Upgradable _characterUpgradable;
+	[SerializeField] private Upgradable _characterSpeedUpgradable;
 	public IMovementCommander MovementCommander => _movementCommander as IMovementCommander;
 
 	[MMSerializedInterface(typeof(IMovementExecutor))] [SerializeField]
@@ -19,13 +20,17 @@ public class WalkState : State<EState, EState>
 
 	private void Awake()
 	{
-		_walkSpeed = GameConfigManager.Instance.GameConfig.WalkSpeed;
-		_characterUpgradable.OnUpgradableTrackDataInit += OnUpgradableTrackDataInit;
+		//float value = GameConfigManager.Instance.GetUpgradeAttributeValue(EUpgradeAttribute.CHARACTER, upgradableTrackData);
+		//_walkSpeed = GameConfigManager.Instance.GameConfig.WalkSpeed;
+		
+		
+		
+		_characterSpeedUpgradable.OnUpgraded += OnSpeedUpgraded;
 	}
 
 	private void OnDestroy()
 	{
-		_characterUpgradable.OnUpgradableTrackDataInit -= OnUpgradableTrackDataInit;
+		_characterSpeedUpgradable.OnUpgraded -= OnSpeedUpgraded;
 	}
 
 	public override void OnEnterCustomActions()
@@ -40,10 +45,11 @@ public class WalkState : State<EState, EState>
 		base.OnExitCustomActions();
 	}
 
-	private void OnUpgradableTrackDataInit(UpgradableTrackData upgradableTrackData)
+	private void OnSpeedUpgraded(UpgradableTrackData upgradableTrackData)
 	{
-		 _walkSpeed = upgradableTrackData.Attributes["CHARACTER_SPEED"];
-		Debug.Log("WALK SPEED : " + _walkSpeed);
+		float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+
+		_walkSpeed = value;
 	}
 
 	private void RegisterToMovementCommander()
