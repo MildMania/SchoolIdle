@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
+using MMUtils = MMFramework.Utilities.Utilities;
 
-public abstract class ProducerBase : MonoBehaviour,IUnlockable
+public abstract class ProducerBase : MonoBehaviour, IUnlockable, IAIInteractable
 {
 	[SerializeField] public Unlockable Unlockable { get; }
 	
@@ -18,6 +19,10 @@ public abstract class ProducerBase : MonoBehaviour,IUnlockable
 	[SerializeField] private Transform _produceTarget;
 
 	[SerializeField] private StorableDropHandler _storableDropHandler;
+
+	//-----------
+	[SerializeField] private Collider _interactionArea;
+	//-----------
 
 	protected Coroutine _produceRoutine;
 
@@ -105,5 +110,19 @@ public abstract class ProducerBase : MonoBehaviour,IUnlockable
 			}
 		}
 	}
-	
+
+	//TODO : SOLVE MERGE CONFLICTS
+
+	public Vector3 GetInteractionPoint()
+	{
+		Vector3 center = _interactionArea.transform.position;
+		Vector3 randomInBound = MMUtils.RandomPointInBounds(_interactionArea.bounds);
+
+		randomInBound = new Vector3(randomInBound.x, 0, randomInBound.z);
+
+		Vector3 interactionPoint = center + randomInBound;
+
+		return interactionPoint;
+	}
+
 }

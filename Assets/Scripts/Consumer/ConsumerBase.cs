@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ConsumerBase : MonoBehaviour
+using MMUtils = MMFramework.Utilities.Utilities;
+
+public abstract class ConsumerBase : MonoBehaviour, IAIInteractable
 {
 	[SerializeField] private EStorableType _consumeType;
 
@@ -11,6 +13,8 @@ public abstract class ConsumerBase : MonoBehaviour
 
 	[SerializeField] protected float _consumeDelayTime;
 	[SerializeField] private StorableController _storableController;
+
+	[SerializeField] private Collider _interactionArea;
 
 	public Action<StorableBase> OnConsumed { get; set; }
 	public Action OnConsumerStopped { get; set; }
@@ -44,5 +48,19 @@ public abstract class ConsumerBase : MonoBehaviour
 
 			yield return new WaitForSeconds(_consumeDelayTime);
 		}
+	}
+
+	//TODO : SOLVE MERGE CONFLICTS
+
+	public Vector3 GetInteractionPoint()
+	{
+		Vector3 center = _interactionArea.transform.position;
+		Vector3 randomInBound = MMUtils.RandomPointInBounds(_interactionArea.bounds);
+
+		randomInBound = new Vector3(randomInBound.x, 0, randomInBound.z);
+
+		Vector3 interactionPoint = center + randomInBound;
+
+		return interactionPoint;
 	}
 }
