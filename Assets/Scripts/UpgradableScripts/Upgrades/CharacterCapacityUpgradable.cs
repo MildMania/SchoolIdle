@@ -5,7 +5,5 @@ using UnityEngine;
 public class CharacterCapacityUpgradable : Upgradable
 {
 
-    [SerializeField] private UpgradeWidget _upgradeWidget;
-    
-  
+
 }
