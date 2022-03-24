@@ -10,18 +10,18 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
         StopAllCoroutines();
     }
 
-    public void MoveProducible(Transform target)
+    public void MoveProducible(Transform target, Transform container)
     {
-        StartCoroutine(MoveRoutine(target));
+        StartCoroutine(MoveRoutine(target, container));
     }
 
 
-    public void MoveConsumable(Transform target)
+    public void MoveConsumable(Transform target, Transform container)
     {
-        StartCoroutine(MoveRoutine(target));
+        StartCoroutine(MoveRoutine(target, container));
     }
 
-    private IEnumerator MoveRoutine(Transform target)
+    private IEnumerator MoveRoutine(Transform target, Transform container)
     {
         float currentTime = 0;
 
@@ -43,6 +43,6 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
         }
 
         producibleTransform.position = target.position;
-        producibleTransform.SetParent(target);
+        producibleTransform.SetParent(container);
     }
 }

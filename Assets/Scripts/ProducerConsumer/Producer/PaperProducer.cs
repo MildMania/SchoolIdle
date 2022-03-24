@@ -37,15 +37,17 @@ public class PaperProducer : BaseProducer<Paper>
     public override void ProduceCustomActions(Paper paper)
     {
         UpdatedFormationController formationController = _updatedFormationController;
+        Transform container = formationController.Container;
         if (_deliverers.Count > 0)
         {
             int index = (int) Random.Range(0, _deliverers.Count - 0.1f);
             formationController = _deliverers[index].FormationController;
+            container = formationController.Container;
         }
 
         Transform targetTransform = formationController.GetLastTargetTransform(paper.transform);
 
         Paper clonedPaperProducible = Instantiate(paper, paper.transform.position, paper.transform.rotation);
-        clonedPaperProducible.MoveProducible(targetTransform);
+        clonedPaperProducible.MoveProducible(targetTransform, container);
     }
 }

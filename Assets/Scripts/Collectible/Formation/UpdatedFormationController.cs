@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UpdatedFormationController : MonoBehaviour
 {
+    [SerializeField] private Transform _container;
+
     private readonly Dictionary<EFormationGroupType, Transform[]> _formationGroupTypeToLeadingTransforms =
         new Dictionary<EFormationGroupType, Transform[]>();
 
@@ -38,6 +40,12 @@ public class UpdatedFormationController : MonoBehaviour
         set => _distance = value;
     }
 
+    public Transform Container
+    {
+        get => _container;
+        set => _container = value;
+    }
+
 
     private void Awake()
     {
@@ -65,6 +73,7 @@ public class UpdatedFormationController : MonoBehaviour
     public Transform GetLastTargetTransform(Transform producibleTransform)
     {
         Transform clonedTransform = Instantiate(producibleTransform, transform);
+        clonedTransform.gameObject.SetActive(false);
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
         CurrentColumn = _addedTransformCount % TargetTransforms.Length;
         clonedTransform.position = TargetTransforms[CurrentColumn][CurrentRow].position + _distance;
@@ -79,6 +88,7 @@ public class UpdatedFormationController : MonoBehaviour
         {
             return null;
         }
+
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
         CurrentColumn = _addedTransformCount % TargetTransforms.Length;
         Transform targetTransform = TargetTransforms[CurrentColumn][CurrentRow];
@@ -86,6 +96,4 @@ public class UpdatedFormationController : MonoBehaviour
         _addedTransformCount--;
         return targetTransform;
     }
-    
-    
 }
