@@ -21,8 +21,8 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
-  m_AmbientEquatorColor: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
-  m_AmbientGroundColor: {r: 0.84313726, g: 0.97942173, b: 1, a: 1}
+  m_AmbientEquatorColor: {r: 1, g: 0.9417687, b: 0.9019608, a: 1}
+  m_AmbientGroundColor: {r: 1, g: 0.84313726, b: 0.99148065, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1143714831}
   m_IndirectSpecularColor: {r: 0.099121004, g: 0.07275384, b: 0.04089349, a: 0.1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 721a0de7ab8efe5428566a9fbdbd74de, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: db9966799a7115e4d9b45837bf8b57c5, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -29537,7 +29537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732413691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.95, z: -5.92}
+  m_LocalPosition: {x: -0.27, y: 1.15, z: -5.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1531566311}
@@ -72810,7 +72810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859021447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.93, z: 3.05}
+  m_LocalPosition: {x: -0.27, y: 1.13, z: 3.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1531566311}
