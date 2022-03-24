@@ -43,5 +43,6 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
         }
 
         producibleTransform.position = target.position;
+        producibleTransform.SetParent(target);
     }
 }

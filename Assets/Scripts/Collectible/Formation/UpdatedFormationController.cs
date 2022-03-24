@@ -62,9 +62,9 @@ public class UpdatedFormationController : MonoBehaviour
     }
 
 
-    public Transform GetLastTargetTransform(List<IProducible> objects, Transform producibleTransform)
+    public Transform GetLastTargetTransform(Transform producibleTransform)
     {
-        Transform clonedTransform = Instantiate(producibleTransform);
+        Transform clonedTransform = Instantiate(producibleTransform, transform);
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
         CurrentColumn = _addedTransformCount % TargetTransforms.Length;
         clonedTransform.position = TargetTransforms[CurrentColumn][CurrentRow].position + _distance;
