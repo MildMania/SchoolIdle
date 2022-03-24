@@ -6,7 +6,6 @@ public class GameConfigManager : Singleton<GameConfigManager>
 {
     [SerializeField] private GameConfig _gameConfig;
 
-    public GameConfig GameConfig => _gameConfig;
     
     private Dictionary<EUpgradable, AttributeInfo[]> GetAttributes(EAttributeCategory attributeCategoryType)
     {
@@ -53,7 +52,7 @@ public class GameConfigManager : Singleton<GameConfigManager>
 
         if (!attributes.ContainsKey(upgradableTrackData.TrackID))
         {
-            return attributeValue;;
+            return attributeValue;
         }
         
         AttributeInfo[] attributeInfos = attributes[upgradableTrackData.TrackID];
@@ -69,6 +68,39 @@ public class GameConfigManager : Singleton<GameConfigManager>
 
         return attributeValue;
     }
+
+    public RequirementInfo GetNextRequirementInfo(EAttributeCategory attributeCategoryType, UpgradableTrackData upgradableTrackData)
+    {
+        RequirementInfo nextRequirementInfo = new RequirementInfo();
+
+        nextRequirementInfo.Level = -1;
+        
+        Dictionary<EUpgradable, RequirementInfo[]> requirements = GetRequirements(attributeCategoryType);
+
+        if (requirements.Count == 0)
+        {
+            return nextRequirementInfo;
+        }
+
+        if (!requirements.ContainsKey(upgradableTrackData.TrackID))
+        {
+            return nextRequirementInfo;
+        }
+        
+        RequirementInfo[] requirementInfos = requirements[upgradableTrackData.TrackID];
+        
+        foreach (var attributeInfo in requirementInfos)
+        {
+            if (attributeInfo.Level == upgradableTrackData.Level + 1)
+            {
+                nextRequirementInfo = attributeInfo;
+                break;
+            }
+        }
+
+        return nextRequirementInfo;
+    }
+    
 
     public List<IRequirement> CreateRequirementList(EAttributeCategory attributeCategoryType, EUpgradable upgradableType)
     {

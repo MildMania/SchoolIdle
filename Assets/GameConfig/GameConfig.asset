@@ -354,7 +354,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 3
-      Data: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -366,7 +366,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 3
-      Data: 20
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -378,7 +378,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 3
-      Data: 30
+      Data: 6
     - Name: 
       Entry: 8
       Data: 

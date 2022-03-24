@@ -7,6 +7,7 @@ using UnityEngine;
 public abstract class Upgradable : SerializedMonoBehaviour
 {
 	[OdinSerialize] protected EUpgradable _upgradableType;
+	[OdinSerialize] private EAttributeCategory _attributeCategory;
 
 	protected IRequirement[] RequirementData
 		= Array.Empty<IRequirement>();
@@ -15,9 +16,14 @@ public abstract class Upgradable : SerializedMonoBehaviour
 
 	protected UpgradableTrackData _upgradableTrackData;
 
+	public UpgradableTrackData UpgradableTrackData => _upgradableTrackData;
+
+	public EAttributeCategory AttributeCategory => _attributeCategory;
+	
+
 	private void Awake()
 	{
-		List<IRequirement> reqList = GameConfigManager.Instance.CreateRequirementList(EAttributeCategory.CHARACTER, _upgradableType);
+		List<IRequirement> reqList = GameConfigManager.Instance.CreateRequirementList(_attributeCategory, _upgradableType);
 
 		if (reqList == null)
 		{
@@ -50,6 +56,6 @@ public abstract class Upgradable : SerializedMonoBehaviour
 		return RequirementUtilities.TrySatisfyRequirements(
 			user, new []{ requirementData });
 	}
-	
+
 
 }
