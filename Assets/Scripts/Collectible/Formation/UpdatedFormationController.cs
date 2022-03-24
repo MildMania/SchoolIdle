@@ -72,4 +72,20 @@ public class UpdatedFormationController : MonoBehaviour
         _addedTransformCount++;
         return clonedTransform;
     }
+
+    public Transform GetLastTransform()
+    {
+        if (_addedTransformCount == 0)
+        {
+            return null;
+        }
+        CurrentRow = _addedTransformCount / TargetTransforms.Length;
+        CurrentColumn = _addedTransformCount % TargetTransforms.Length;
+        Transform targetTransform = TargetTransforms[CurrentColumn][CurrentRow];
+        TargetTransforms[CurrentColumn].Remove(targetTransform);
+        _addedTransformCount--;
+        return targetTransform;
+    }
+    
+    
 }
