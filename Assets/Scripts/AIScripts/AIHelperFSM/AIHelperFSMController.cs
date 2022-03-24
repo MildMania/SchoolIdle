@@ -6,7 +6,7 @@ public class AIHelperFSMController : FSMController<AIHelperFSMController.EState,
         None = 0,
         Idle = 1,
         Store = 2,
-        Drop = 3
+        Deliver = 3
     }
 
     public enum ETransition
@@ -14,6 +14,6 @@ public class AIHelperFSMController : FSMController<AIHelperFSMController.EState,
         None = 0,
         Idle = 1,
         Store = 2,
-        Drop = 3
+        Deliver = 3
     }
 }

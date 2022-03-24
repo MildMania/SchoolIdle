@@ -8,5 +8,12 @@ public class AIHelperIdleState : State<EState, ETransition>
         return EState.Idle;
     }
 
+    public override void OnEnterCustomActions()
+    {
+        base.OnEnterCustomActions();
+
+
+    }
+
 
 }
