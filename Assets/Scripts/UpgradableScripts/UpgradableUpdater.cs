@@ -13,10 +13,10 @@ public class UpgradableUpdater
 		_upgradableDataProvider = upgradableDataProvider;
 	}
 
-	public void UpdateUpgradable(EUpgradable upgradable, int level, Dictionary<string,string> attributes)
+	public void UpdateUpgradable(EUpgradable upgradable, int level)
 	{
 		_upgradableDataProvider.SetUpgradable(upgradable, 
-			_upgradableDataProvider.GetUpgradableLevel(upgradable) + level,attributes);
+			_upgradableDataProvider.GetUpgradableLevel(upgradable) + level);
 
 		OnUpgradableUpdated?.Invoke(upgradable, _upgradableDataProvider.GetUpgradableLevel(upgradable));
 	}

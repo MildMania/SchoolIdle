@@ -4,18 +4,28 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-public class Upgradable : SerializedMonoBehaviour
+public abstract class Upgradable : SerializedMonoBehaviour
 {
-	[SerializeField] private EUpgradable _upgradableType;
+	[OdinSerialize] protected EUpgradable _upgradableType;
 
-	[OdinSerialize] private Dictionary<string, string> _upgradableAttributes;
-	
-	[OdinSerialize] public IRequirement[] RequirementData
+	protected IRequirement[] RequirementData
 		= Array.Empty<IRequirement>();
 
-	public Action<int> OnLevelUpgraded;
+	public Action<UpgradableTrackData> OnUpgraded;
 
-	private UpgradableTrackData _upgradableTrackData;
+	protected UpgradableTrackData _upgradableTrackData;
+
+	private void Awake()
+	{
+		List<IRequirement> reqList = GameConfigManager.Instance.CreateRequirementList(EAttributeCategory.CHARACTER, _upgradableType);
+
+		if (reqList == null)
+		{
+			return;
+		}
+		RequirementData = reqList.ToArray();
+	}
+
 	private void Start()
 	{
 		UpgradableTrackable upgradableTrackable;
@@ -27,15 +37,19 @@ public class Upgradable : SerializedMonoBehaviour
 		}
 		else
 		{
-			_upgradableTrackData = new UpgradableTrackData(_upgradableType, 1,_upgradableAttributes);
+			_upgradableTrackData = new UpgradableTrackData(_upgradableType, 0);
 			upgradableTrackable = new UpgradableTrackable(_upgradableTrackData);
 			UserManager.Instance.LocalUser.GetUserData<UserUpgradableData>().Tracker.TryCreate(upgradableTrackable);
 		} 
+		
+		OnUpgraded?.Invoke(_upgradableTrackData);
 	}
 
-	public bool TryUpgrade(User user)
+	public bool TryUpgrade(User user, IRequirement requirementData)
 	{
 		return RequirementUtilities.TrySatisfyRequirements(
-			user, RequirementData);
+			user, new []{ requirementData });
 	}
+	
+
 }

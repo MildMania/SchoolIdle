@@ -16,8 +16,8 @@ TagManager:
   - Ground
   - Producer
   - Consumer
-  - AI
-  - Obstacle
+  - Consumible
+  - Producible
   - 
   - 
   - 

@@ -5,31 +5,26 @@ using UnityWeld.Binding;
 [Binding]
 public class CoinWidget : TextWidget
 {
-	[SerializeField] private CoinController _coinController;
-	
 	[SerializeField] private TMP_Text _coinText;
+	[SerializeField] private CurrencyObserver _currencyObserver;
 	
 	protected override void AwakeCustomActions()
 	{
-		_coinController.OnCoinUpdated += OnCoinUpdated;
-		_coinController.OnCoinInit += OnCoinInit;
 		base.AwakeCustomActions();
+
+		_currencyObserver.OnCurrencyUpdated += OnCurrencyUpdated;
+	}
+
+	private void OnCurrencyUpdated(int currencyCount)
+	{
+		_coinText.text = currencyCount.ToString();
 	}
 
 	protected override void OnDestroyCustomActions()
 	{
-		_coinController.OnCoinUpdated -= OnCoinUpdated;
-		_coinController.OnCoinInit -= OnCoinInit;
 		base.OnDestroyCustomActions();
-	}
-	
-	private void OnCoinInit(int totalCoin)
-	{
-		_coinText.text = totalCoin.ToString();
+		
+		_currencyObserver.OnCurrencyUpdated -= OnCurrencyUpdated;
 	}
 
-	private void OnCoinUpdated(int totalCoin)
-	{
-		_coinText.text = totalCoin.ToString();
-	}
 }

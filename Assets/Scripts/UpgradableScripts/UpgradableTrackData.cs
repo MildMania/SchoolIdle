@@ -8,15 +8,13 @@ using MMUtilities = MMFramework.Utilities.Utilities;
 public class UpgradableTrackData : TrackData<EUpgradable>
 {
 	public int Level { get; set; }
-
-	public Dictionary<string, string> Attributes;
+	
 	public UpgradableTrackData(
 		EUpgradable upgradable, 
-		int level,Dictionary<string,string> attributes)
+		int level)
 		: base(upgradable)
 	{
 		Level = level;
-		Attributes = attributes;
 	}
 
 	public UpgradableTrackData(JSONObject trackDataObj)
@@ -25,8 +23,6 @@ public class UpgradableTrackData : TrackData<EUpgradable>
 	}
 
 	private const string LEVEL = "Level";
-	private const string ATTRIBUTES = "Attributes";
-
 
 	protected override EUpgradable DeserializeTrackableID(string trackableIDStr)
 	{
@@ -36,7 +32,7 @@ public class UpgradableTrackData : TrackData<EUpgradable>
 	protected override void DeserializeCustomActions(JSONObject trackObj)
 	{
 		Level = (int) trackObj.GetNumber(LEVEL);
-		
+
 		base.DeserializeCustomActions(trackObj);
 	}
 
@@ -44,14 +40,6 @@ public class UpgradableTrackData : TrackData<EUpgradable>
 	{
 		trackableObj.Add(LEVEL, Level);
 		
-		var attributesJson = new JSONObject();
-
-		foreach (var attribute in Attributes)
-		{
-			attributesJson.Add(attribute.Key,attribute.Value);
-		}
-		
-		trackableObj.Add(ATTRIBUTES,attributesJson);
 		
 		base.SerializeCustomActions(ref trackableObj);
 	}

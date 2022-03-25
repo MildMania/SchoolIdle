@@ -1,7 +1,8 @@
 ﻿public enum EUpgradable
 {
 	None = 0,
-	Character = 1,
-	Helper = 2,
-	Class = 3
+	CHARACTER_SPEED = 1,
+	CHARACTER_CAPACITY = 2,
+	CHARACTER_STORE_SPEED = 3,
+	CLASSROOM_SPEED = 4,
 }

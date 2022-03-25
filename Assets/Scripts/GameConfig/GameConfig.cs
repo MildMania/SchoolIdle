@@ -2,29 +2,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameConfig",
     menuName = "GameConfig/Create a Game Config",
     order = 1)]
-public class GameConfig : ScriptableObject
+public class GameConfig : SerializedScriptableObject
 {
-    [Header("CHARACTER")] 
-    [SerializeField] private float _walkSpeed;
+    [Header("ATTRIBUTE UPGRADES")] [OdinSerialize]
+    private List<AttributeUpgrade> _attributeUpgrades;
 
-    [Header("STUDENT")] 
-    [SerializeField] private float _doingAssignmentSpeed;
+    [Header("ATTRIBUTE REQUIREMENTS")] [OdinSerialize]
+    private List<AttributeRequirement> _attributeRequirements;
 
-
-    [Header("PRINTER")]
-    [SerializeField] private int _printerLimit;
-    [Tooltip("Print Time Gap")]
-    [SerializeField] private float _printerDelay;
+    public List<AttributeUpgrade> AttributeUpgrades => _attributeUpgrades;
+    public List<AttributeRequirement> AttributeRequirements => _attributeRequirements;
     
+}
 
-    public float WalkSpeed => _walkSpeed;
-    public float DoingAssignmentSpeed => _doingAssignmentSpeed;
-    public int PrinterLimit => _printerLimit;
-    public float PrinterDelay => _printerDelay;
-    
+[Serializable]
+public struct AttributeUpgrade
+{
+    [OdinSerialize] public EAttributeCategory _attributeCategoryType;
+    [OdinSerialize] public Dictionary<EUpgradable, AttributeInfo[]> Attributes;
+}
+
+[Serializable]
+public struct AttributeRequirement
+{
+    [OdinSerialize] public EAttributeCategory _attributeCategoryType;
+    [OdinSerialize] public Dictionary<EUpgradable, RequirementInfo[]> Requirements;
+}
+
+[Serializable]
+public struct AttributeInfo
+{
+    [OdinSerialize] public int Level { get; set; }
+    [OdinSerialize] public float Value { get; set; }
+}
+
+[Serializable]
+public struct RequirementInfo
+{
+    [OdinSerialize] public int Level { get; set; }
+    [OdinSerialize] public int Value { get; set; }
+}
+
+public enum EAttributeCategory
+{
+    NONE = 0,
+    CHARACTER = 1,
+    HELPER = 2,
+    CLASSROOM = 3,
 }

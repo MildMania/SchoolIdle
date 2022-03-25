@@ -19,10 +19,8 @@ public class UserUpgradableData : UserTrackableData<UpgradableTracker, Upgradabl
 		return trackable.TrackData.Level;
 	}
 
-	public void SetUpgradable(EUpgradable upgradable, int level, Dictionary<string,string> attributes)
+	public void SetUpgradable(EUpgradable upgradable, int level)
 	{
-		Tracker.TryGetSingle(upgradable, out UpgradableTrackable trackable);
-
-		Tracker.TryUpsert(new UpgradableTrackData(upgradable, level,attributes));
+		Tracker.TryUpsert(new UpgradableTrackData(upgradable, level));
 	}
 }
