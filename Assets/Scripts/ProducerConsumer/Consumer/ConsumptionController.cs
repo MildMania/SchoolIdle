@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 
 public class ConsumptionController<TConsumer, TConsumable> : MonoBehaviour where TConsumer : BaseConsumer<TConsumable>
@@ -9,22 +10,33 @@ public class ConsumptionController<TConsumer, TConsumable> : MonoBehaviour where
 	[SerializeField] protected TConsumer _consumer;
 	[SerializeField] protected TConsumable _consumable;
 	[SerializeField] private float _consumptionDelay;
-	
-	protected IEnumerator ConsumeRoutine(TConsumable consumable, List<Deliverer> deliverers)
-	{
-		float currentTime = 0;
 
+	public Action OnUnconsumed { get; set; }
+	
+	[PhaseListener(typeof(GamePhase), true)]
+	public void OnGamePhaseStarted()
+	{
+		StartCoroutine(UnconsumeRoutine());
+	}
+
+	private void OnDestroy()
+	{
+		StopAllCoroutines();
+	}
+
+	private IEnumerator UnconsumeRoutine()
+	{
 		while (true)
 		{
-			currentTime += Time.deltaTime;
-
-			if (currentTime > _consumptionDelay && deliverers.Count > 0)
+			if (_consumer.Consumables.Count == 0 )
 			{
-				_consumer.Consume(consumable);
-				currentTime = 0;
+				yield return null;
+				continue;
 			}
-
-			yield return null;
+			
+			yield return new WaitForSeconds(_consumptionDelay);
+			_consumer.UnconsumeLast();
+			OnUnconsumed?.Invoke();
 		}
 	}
 }

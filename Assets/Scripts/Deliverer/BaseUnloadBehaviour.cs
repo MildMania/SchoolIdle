@@ -13,7 +13,6 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TConsumable> : MonoBeha
 
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 
-
     protected void OnProducerEnteredFieldOfView(TBaseConsumer producer)
     {
         _consumers.Add(producer);

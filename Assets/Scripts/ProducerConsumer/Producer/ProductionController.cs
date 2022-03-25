@@ -5,23 +5,11 @@ using UnityEngine;
 public class ProductionController<TProducer, TProducible> : MonoBehaviour where TProducer : BaseProducer<TProducible>
     where TProducible : IProducible
 {
-    [SerializeField] private TProducer _producer;
-    [SerializeField] private TProducible _producible;
+    [SerializeField] protected TProducer _producer;
+    [SerializeField] protected TProducible _producible;
     [SerializeField] private float _productionDelay = 0.2f;
-
-
-    [PhaseListener(typeof(GamePhase), true)]
-    public void OnGamePhaseStarted()
-    {
-        StartCoroutine(ProduceRoutine(_producible));
-    }
-
-    private void OnDestroy()
-    {
-        StopAllCoroutines();
-    }
-
-    private IEnumerator ProduceRoutine(TProducible producible)
+    
+    protected IEnumerator ProduceRoutine(TProducible producible)
     {
         float currentTime = 0;
 
