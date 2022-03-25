@@ -3,7 +3,6 @@ using UnityEngine;
 public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
 {
     [SerializeField] private PaperProducerFovController _paperProducerFovController;
-    [SerializeField] private float _loadDelay = .3f;
 
 
     private void Awake()
