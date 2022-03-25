@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class BaseConsumer<TConsumable> : MonoBehaviour, IConsumer<TConsumable>
     where TConsumable : IConsumable
 {
-    [SerializeField] private UpdatedFormationController _updatedFormationController;
-    protected List<TConsumable> _consumables  = new List<TConsumable>();
+    [SerializeField] protected UpdatedFormationController _updatedFormationController;
+    protected List<TConsumable> _consumables = new List<TConsumable>();
 
     public List<TConsumable> Consumables => _consumables;
 
@@ -18,15 +18,16 @@ public abstract class BaseConsumer<TConsumable> : MonoBehaviour, IConsumer<TCons
 
     public void UnconsumeLast()
     {
-        var lastConsumer =_consumables[0];
+        var lastConsumer = _consumables[0];
         if (lastConsumer is Paper paper)
         {
             paper.transform.SetParent(null);
             paper.transform.gameObject.SetActive(false);
         }
+
         _consumables.Remove(lastConsumer);
         _updatedFormationController.RemoveAndGetLastTransform();
     }
-    
+
     public abstract void ConsumeCustomActions(TConsumable consumable);
 }
