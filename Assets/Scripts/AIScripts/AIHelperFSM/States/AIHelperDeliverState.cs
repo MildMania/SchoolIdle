@@ -24,7 +24,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
     {
         Consumer_Test currentConsumer = default(Consumer_Test);
 
-        float minCost = float.MaxValue;
+        float maxScore = float.MinValue;
 
         foreach (var consumer in _consumerList)
         {
@@ -33,11 +33,11 @@ public class AIHelperDeliverState : State<EState, ETransition>
             float dist = (consumer.transform.position - transform.position).magnitude;
             float capacity = consumer.Capacity;
 
-            float cost = dist * (1 / capacity);
+            float score = (1 / dist) * capacity;
 
-            if(cost <= minCost)
+            if(score > maxScore)
             {
-                minCost = cost;
+                maxScore = score;
                 currentConsumer = consumer;
             }
 

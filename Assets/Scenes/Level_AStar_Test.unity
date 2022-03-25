@@ -2026,6 +2026,10 @@ PrefabInstance:
       propertyPath: _producerList.Array.data[2]
       value: 
       objectReference: {fileID: 1033543585}
+    - target: {fileID: 858863801147057414, guid: 4e76ac3d68c32164da6c9f88901f335d, type: 3}
+      propertyPath: _producerList.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4817281905885126782, guid: 4e76ac3d68c32164da6c9f88901f335d, type: 3}
       propertyPath: _consumerList.Array.size
       value: 3
