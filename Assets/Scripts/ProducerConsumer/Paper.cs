@@ -12,12 +12,14 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
 
     public void MoveProducible(Transform target, Transform container)
     {
+        StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));
     }
 
 
     public void MoveConsumable(Transform target, Transform container)
     {
+        StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));
     }
 

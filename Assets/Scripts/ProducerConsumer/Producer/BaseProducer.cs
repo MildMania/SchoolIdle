@@ -4,13 +4,29 @@ using UnityEngine;
 public abstract class BaseProducer<TProducible> : MonoBehaviour, IProducer<TProducible>
     where TProducible : IProducible
 {
-    protected List<IProducible> _producibles = new List<IProducible>();
+    protected List<TProducible> _producibles = new List<TProducible>();
 
     public void Produce(TProducible producible)
     {
-        ProduceCustomActions(producible);
-        _producibles.Add(producible);
+        _producibles.Add(ProduceCustomActions(producible));
     }
 
-    public abstract void ProduceCustomActions(TProducible paper);
+    public abstract TProducible ProduceCustomActions(TProducible producible);
+
+
+    public bool TryRemoveAndGetLastProducible(ref TProducible lastProducible)
+    {
+        if (_producibles.Count == 0)
+        {
+            return false;
+        }
+
+        lastProducible = _producibles[_producibles.Count - 1];
+        _producibles.Remove(lastProducible);
+        TryRemoveAndGetLastProducibleCustomActions();
+        return true;
+    }
+
+
+    protected abstract void TryRemoveAndGetLastProducibleCustomActions();
 }

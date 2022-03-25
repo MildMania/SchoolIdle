@@ -70,9 +70,9 @@ public class UpdatedFormationController : MonoBehaviour
     }
 
 
-    public Transform GetLastTargetTransform(Transform producibleTransform)
+    public Transform GetLastTargetTransform(Transform objectTransform)
     {
-        Transform clonedTransform = Instantiate(producibleTransform, transform);
+        Transform clonedTransform = Instantiate(objectTransform, transform);
         clonedTransform.gameObject.SetActive(false);
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
         CurrentColumn = _addedTransformCount % TargetTransforms.Length;
@@ -82,18 +82,21 @@ public class UpdatedFormationController : MonoBehaviour
         return clonedTransform;
     }
 
-    public Transform GetLastTransform()
+    public Transform RemoveAndGetLastTransform()
     {
         if (_addedTransformCount == 0)
         {
             return null;
         }
 
+        _addedTransformCount--;
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
         CurrentColumn = _addedTransformCount % TargetTransforms.Length;
-        Transform targetTransform = TargetTransforms[CurrentColumn][CurrentRow];
+        Transform targetTransform = TargetTransforms[CurrentColumn][CurrentRow + 1];
         TargetTransforms[CurrentColumn].Remove(targetTransform);
-        _addedTransformCount--;
+
+        targetTransform.SetParent(null);
+
         return targetTransform;
     }
 }
