@@ -3,7 +3,6 @@ using UnityEngine;
 public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 {
     [SerializeField] private PaperConsumerFovController _paperConsumerFovController;
-    [SerializeField] private float _unloadDelay = .3f;
 
 
     private void Awake()
