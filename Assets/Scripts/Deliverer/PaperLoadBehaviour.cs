@@ -22,10 +22,10 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
     }
 
 
-    public override void LoadCustomActions(Paper paper)
+    public override void LoadCustomActions(Paper resource)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
-        paper.MoveProducible(targetTransform, _updatedFormationController.Container);
-        _deliverer.Papers.Add(paper);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
+        resource.Move(targetTransform, _updatedFormationController.Container);
+        _deliverer.Papers.Add(resource);
     }
 }

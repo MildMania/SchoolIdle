@@ -1,33 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseConsumer<TConsumable> : MonoBehaviour, IConsumer<TConsumable>
-    where TConsumable : IConsumable
+public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResource>
+    where TResource : IResource
 {
+    [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
-    protected List<TConsumable> _consumables = new List<TConsumable>();
 
-    public List<TConsumable> Consumables => _consumables;
-
-    public void Consume(TConsumable consumable)
+    public BaseResourceProvider<TResource> ResourceProvider
     {
-        _consumables.Add(consumable);
-        ConsumeCustomActions(consumable);
+        get => _baseResourceProvider;
+        set => _baseResourceProvider = value;
     }
 
-    public void UnconsumeLast()
+    public void Consume(TResource resource)
     {
-        var lastConsumer = _consumables[0];
-        if (lastConsumer is Paper paper)
-        {
-            paper.transform.SetParent(null);
-            paper.transform.gameObject.SetActive(false);
-        }
-
-        _consumables.Remove(lastConsumer);
+        ResourceProvider.Resources.Remove(resource);
+        ConsumeCustomActions(resource);
         _updatedFormationController.RemoveAndGetLastTransform();
+
     }
 
-    public abstract void ConsumeCustomActions(TConsumable consumable);
+    // public void UnconsumeLast()
+    // {
+    //     var lastConsumer = ResourceProvider.Resources[0];
+    //     if (lastConsumer is Paper paper)
+    //     {
+    //         paper.transform.SetParent(null);
+    //         paper.transform.gameObject.SetActive(false);
+    //     }
+    //
+    //     ResourceProvider.Resources.Remove(lastConsumer);
+    //     _updatedFormationController.RemoveAndGetLastTransform();
+    // }
+
+    public abstract void ConsumeCustomActions(TResource paper);
 }

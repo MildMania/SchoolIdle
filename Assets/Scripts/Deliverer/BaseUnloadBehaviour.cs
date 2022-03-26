@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 
-public abstract class BaseUnloadBehaviour<TBaseConsumer, TConsumable> : MonoBehaviour
-    where TBaseConsumer : BaseConsumer<TConsumable>
-    where TConsumable : IConsumable
+public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehaviour
+    where TBaseConsumer : BaseConsumer<TResource>
+    where TResource : IResource
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;

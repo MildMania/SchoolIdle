@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using MMFramework.Utilities;
-using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 
 public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
@@ -20,22 +16,23 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
     {
         _moneyProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
-        
+
         StopAllCoroutines();
     }
-    
 
-    public override void LoadCustomActions(Money money)
+
+    public override void LoadCustomActions(Money resource)
     {
-        money.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        Transform targetTransform = _deliverer.transform;
-        money.MoveConsumable(targetTransform, _updatedFormationController.Container);
+        resource.OnMoveRoutineFinished += OnMoveRoutineFinished;
+        resource.Move(_deliverer.transform, null);
     }
 
-    private void OnMoveRoutineFinished(Money money)
+    private void OnMoveRoutineFinished(IResource resource)
     {
+        Money money = (Money) resource;
+        money.gameObject.SetActive(false);
         money.OnMoveRoutineFinished -= OnMoveRoutineFinished;
         var worthDefiner = money.GetComponent<CoinWorthDefiner>();
-        _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin,worthDefiner.Count));
+        _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin, worthDefiner.Count));
     }
 }

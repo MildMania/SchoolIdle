@@ -1,4 +1,4 @@
-public interface IConsumer<TConsumable> where TConsumable : IConsumable
+public interface IConsumer<TResource> where TResource : IResource
 {
-    public void Consume(TConsumable consumable);
+    public void Consume(TResource resource);
 }

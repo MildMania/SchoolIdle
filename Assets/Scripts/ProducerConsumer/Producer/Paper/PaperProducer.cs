@@ -4,13 +4,13 @@ public class PaperProducer : BaseProducer<Paper>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
 
-    public override Paper ProduceCustomActions(Paper paper)
+    public override Paper ProduceCustomActions(Paper resource)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
 
-        Paper clonedPaperProducible = Instantiate(paper, paper.transform.position, paper.transform.rotation);
+        Paper clonedPaperProducible = Instantiate(resource, resource.transform.position, resource.transform.rotation);
 
-        clonedPaperProducible.MoveProducible(targetTransform, _updatedFormationController.Container);
+        clonedPaperProducible.Move(targetTransform, _updatedFormationController.Container);
         return clonedPaperProducible;
     }
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 
-public abstract class BaseLoadBehaviour<TBaseProducer, TProducible> : MonoBehaviour
-    where TBaseProducer : BaseProducer<TProducible>
-    where TProducible : IProducible
+public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : MonoBehaviour
+    where TBaseProducer : BaseProducer<TResource>
+    where TResource : IResource
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
@@ -44,10 +44,10 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TProducible> : MonoBehavi
                 {
                     int index = (int) Random.Range(0, _producers.Count - 0.1f);
 
-                    TProducible producible = default(TProducible);
-                    if (_producers[index].TryRemoveAndGetLastProducible(ref producible))
+                    TResource resource = default(TResource);
+                    if (_producers[index].TryRemoveAndGetLastProducible(ref resource))
                     {
-                        LoadCustomActions(producible);
+                        LoadCustomActions(resource);
                     }
                 }
 
@@ -59,5 +59,5 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TProducible> : MonoBehavi
     }
 
 
-    public abstract void LoadCustomActions(TProducible producible);
+    public abstract void LoadCustomActions(TResource resource);
 }

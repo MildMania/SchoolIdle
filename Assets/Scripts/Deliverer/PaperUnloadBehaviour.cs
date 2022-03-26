@@ -34,9 +34,17 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 
     public override void UnloadCustomActions(int index)
     {
+        //Remove from self
         Paper paper = _deliverer.Papers[_deliverer.Papers.Count - 1];
         _deliverer.Papers.Remove(paper);
         _updatedFormationController.RemoveAndGetLastTransform();
-        _consumers[index].Consume(paper);
+
+        //Add To Consumer
+        PaperConsumer paperConsumer = _consumers[index];
+        UpdatedFormationController consumerFormationController =
+            paperConsumer.GetComponentInChildren<UpdatedFormationController>();
+        Transform targetTransform = consumerFormationController.GetLastTargetTransform(paper.transform);
+        paper.Move(targetTransform, consumerFormationController.Container);
+        paperConsumer.ResourceProvider.Resources.Add(paper);
     }
 }
