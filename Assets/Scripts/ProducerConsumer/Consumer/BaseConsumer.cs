@@ -19,5 +19,5 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResour
         _updatedFormationController.RemoveAndGetLastTransform();
     }
 
-    public abstract void ConsumeCustomActions(TResource paper);
+    public abstract void ConsumeCustomActions(TResource resource);
 }

@@ -103,4 +103,26 @@ public class UpdatedFormationController : MonoBehaviour
 
         return targetTransform;
     }
+    
+    public Transform RemoveCustomResourceTransform(int index)
+    {
+        if (_addedTransformCount == 0)
+        {
+            return null;
+        }
+        
+        _addedTransformCount--;
+        CurrentRow = index / TargetTransforms.Length;
+        CurrentColumn = index % TargetTransforms.Length;
+        Transform targetTransform = TargetTransforms[CurrentColumn][CurrentRow + 1];
+        TargetTransforms[CurrentColumn].Remove(targetTransform);
+        targetTransform.SetParent(null);
+        UpdateFormation();
+        
+        return targetTransform;
+    }
+    
+    public void UpdateFormation()
+    {
+    }
 }

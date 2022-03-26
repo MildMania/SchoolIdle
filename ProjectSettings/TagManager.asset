@@ -19,8 +19,8 @@ TagManager:
   - Consumible
   - Producible
   - MoneyProducer
-  - 
-  - 
+  - FolderProducer
+  - FolderConsumer
   - 
   - 
   - 

@@ -13,12 +13,12 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
 
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 
-    protected void OnProducerEnteredFieldOfView(TBaseConsumer producer)
+    protected void OnConsumerEnteredFieldOfView(TBaseConsumer producer)
     {
         _consumers.Add(producer);
     }
 
-    protected void OnProducerExitedFieldOfView(TBaseConsumer producer)
+    protected void OnConsumerExitedFieldOfView(TBaseConsumer producer)
     {
         _consumers.Remove(producer);
     }
@@ -42,7 +42,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
                 if (_consumers.Count > 0)
                 {
                     int index = (int) Random.Range(0, _consumers.Count - 0.1f);
-                    if (_deliverer.Papers.Count > 0)
+                    if (_deliverer.Resources.Count > 0)
                     {
                         UnloadCustomActions(index);
                     }
