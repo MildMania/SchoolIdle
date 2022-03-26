@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where TConsumer : BaseConsumer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected TConsumer _consumer;
     [SerializeField] private BaseResourceProvider<TResource> _resourceProvider;
-
-    public void StartConsumption(int amount)
+    public void StartConsumption(int amount, Action onConsumedCallback)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -15,5 +15,6 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
             _resourceProvider.Resources.Remove(resource);
             _consumer.Consume(resource);
         }
+        onConsumedCallback?.Invoke();
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,8 +19,8 @@ public class PaperToMoneyProductionRequirement : BaseProductionRequirement
         return true;
     }
 
-    public override void ConsumeRequirements()
+    public override void ConsumeRequirements(Action onConsumedCallback)
     {
-        _paperConsumptionController.StartConsumption(_amountNeeded);
+        _paperConsumptionController.StartConsumption(_amountNeeded,onConsumedCallback);
     }
 }
