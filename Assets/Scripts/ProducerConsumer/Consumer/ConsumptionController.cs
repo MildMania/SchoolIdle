@@ -12,7 +12,6 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
         {
             TResource resource = _resourceProvider.Resources[_resourceProvider.Resources.Count - 1];
             //TODO: Think about if it is the best way to remove resource here!
-            _resourceProvider.Resources.Remove(resource);
             _consumer.Consume(resource);
         }
         onConsumedCallback?.Invoke();
