@@ -3,6 +3,7 @@ using UnityEngine;
 public class MoneyProducer : BaseProducer<Money>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
+
     public override Money ProduceCustomActions(Money resource)
     {
         Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
@@ -16,5 +17,6 @@ public class MoneyProducer : BaseProducer<Money>
 
     protected override void TryRemoveAndGetLastProducibleCustomActions()
     {
+        _updatedFormationController.RemoveAndGetLastTransform();
     }
 }

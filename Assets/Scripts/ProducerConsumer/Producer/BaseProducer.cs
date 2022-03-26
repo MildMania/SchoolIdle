@@ -13,7 +13,7 @@ public abstract class BaseProducer<TResource> : MonoBehaviour, IProducer<TResour
     public abstract TResource ProduceCustomActions(TResource resource);
 
 
-    public bool TryRemoveAndGetLastProducible(ref TResource lastResource)
+    public bool TryRemoveAndGetLastResource(ref TResource lastResource)
     {
         if (_baseResourceProvider.Resources.Count == 0)
         {

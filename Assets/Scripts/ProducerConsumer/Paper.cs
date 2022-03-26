@@ -41,7 +41,6 @@ public class Paper : MonoBehaviour, IResource
 
         producibleTransform.position = target.position;
         producibleTransform.SetParent(container);
-        // producibleTransform.gameObject.SetActive(setActive);
         OnMoveRoutineFinished?.Invoke(this);
     }
 }

@@ -45,7 +45,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : MonoBehaviou
                     int index = (int) Random.Range(0, _producers.Count - 0.1f);
 
                     TResource resource = default(TResource);
-                    if (_producers[index].TryRemoveAndGetLastProducible(ref resource))
+                    if (_producers[index].TryRemoveAndGetLastResource(ref resource))
                     {
                         LoadCustomActions(resource);
                     }
