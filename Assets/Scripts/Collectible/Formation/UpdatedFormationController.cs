@@ -69,6 +69,10 @@ public class UpdatedFormationController : MonoBehaviour
         }
     }
 
+    public Transform GetFirstTargetTransform()
+    {
+        return TargetTransforms[0][0];
+    }
 
     public Transform GetLastTargetTransform(Transform objectTransform)
     {

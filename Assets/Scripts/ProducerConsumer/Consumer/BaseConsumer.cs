@@ -17,21 +17,7 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResour
         ResourceProvider.Resources.Remove(resource);
         ConsumeCustomActions(resource);
         _updatedFormationController.RemoveAndGetLastTransform();
-
     }
-
-    // public void UnconsumeLast()
-    // {
-    //     var lastConsumer = ResourceProvider.Resources[0];
-    //     if (lastConsumer is Paper paper)
-    //     {
-    //         paper.transform.SetParent(null);
-    //         paper.transform.gameObject.SetActive(false);
-    //     }
-    //
-    //     ResourceProvider.Resources.Remove(lastConsumer);
-    //     _updatedFormationController.RemoveAndGetLastTransform();
-    // }
 
     public abstract void ConsumeCustomActions(TResource paper);
 }

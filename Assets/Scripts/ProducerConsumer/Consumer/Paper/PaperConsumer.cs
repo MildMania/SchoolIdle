@@ -7,12 +7,17 @@ public class PaperConsumer : BaseConsumer<Paper>
 
     public override void ConsumeCustomActions(Paper paper)
     {
-        paper.transform.SetParent(null);
-        paper.transform.gameObject.SetActive(false);
-
-        // Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
-        // paper.Move(targetTransform, _updatedFormationController.Container);
+        Transform targetTransform = _updatedFormationController.GetFirstTargetTransform();
+        paper.Move(targetTransform, null);
+        paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
         Debug.Log("PAPER CONSUMED");
         OnConsumed?.Invoke(paper);
+    }
+
+    private void OnMoveRoutineFinished(IResource resource)
+    {
+        Paper paper = (Paper) resource;
+        paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        paper.gameObject.SetActive(false);
     }
 }
