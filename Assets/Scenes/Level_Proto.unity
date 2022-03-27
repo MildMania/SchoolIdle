@@ -307,6 +307,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TargetTransforms
+      Entry: 6
+      Data: 
   _container: {fileID: 1358150990}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 4
@@ -642,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1335085743}
+    - target: {fileID: 964119647564828376, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 964119647564828376, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
     - target: {fileID: 964119648480033168, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1109,7 +1125,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18754
+  m_Name: pb_Mesh-132984
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1673,6 +1689,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6429486222585667627, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6429486222585667627, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
     - target: {fileID: 6770516630875954365, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4511,6 +4531,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TargetTransforms
+      Entry: 6
+      Data: 
   _container: {fileID: 2056315354}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 5
@@ -4581,7 +4613,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18766
+  m_Name: pb_Mesh-132996
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4840,7 +4872,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18742
+  m_Name: pb_Mesh-132972
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6586,7 +6618,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18392
+  m_Name: pb_Mesh-132622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7251,7 +7283,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18380
+  m_Name: pb_Mesh-132610
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7630,7 +7662,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-22548
+  m_Name: pb_Mesh-133854
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8444,7 +8476,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18730
+  m_Name: pb_Mesh-132960
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9983,6 +10015,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TargetTransforms
+      Entry: 6
+      Data: 
   _container: {fileID: 166652252}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 4
@@ -10281,7 +10325,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-22560
+  m_Name: pb_Mesh-133866
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10765,7 +10809,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18404
+  m_Name: pb_Mesh-132634
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11574,6 +11618,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1502319541}
+    - target: {fileID: 964119647564828376, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 964119647564828376, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
     - target: {fileID: 964119648480033168, guid: 4a2d32e738881484bb90c605722d9741, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -12870,6 +12918,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: TargetTransforms
+      Entry: 6
+      Data: 
   _container: {fileID: 6264749161581576308}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 3
@@ -12923,6 +12983,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 645601974}
     m_Modifications:
+    - target: {fileID: 6429486222585667627, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6429486222585667627, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
     - target: {fileID: 6429486222585668054, guid: 76e0377404a01c843a32f1d9f39343e3, type: 3}
       propertyPath: _baseResourceProvider
       value: 
@@ -13212,6 +13276,10 @@ PrefabInstance:
       propertyPath: _baseResourceProvider
       value: 
       objectReference: {fileID: 1212002910}
+    - target: {fileID: 9178906829068477919, guid: c8c3a578cb48bc44b86bfa303dc0c9f2, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 9178906829068477919, guid: c8c3a578cb48bc44b86bfa303dc0c9f2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8c3a578cb48bc44b86bfa303dc0c9f2, type: 3}
 --- !u!114 &9178906828956239409 stripped

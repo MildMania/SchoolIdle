@@ -25,8 +25,8 @@ public class Paper : MonoBehaviour, IResource
 
         var producibleTransform = transform;
         Vector3 position = producibleTransform.position;
-
-
+        producibleTransform.SetParent(container);
+        
         while (currentTime < _moveDuration)
         {
             float step = currentTime / _moveDuration;
@@ -40,7 +40,7 @@ public class Paper : MonoBehaviour, IResource
         }
 
         producibleTransform.position = target.position;
-        producibleTransform.SetParent(container);
+        
         OnMoveRoutineFinished?.Invoke(this);
     }
 }

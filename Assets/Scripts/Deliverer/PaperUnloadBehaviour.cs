@@ -39,7 +39,15 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         UpdatedFormationController consumerFormationController =
             paperConsumer.GetComponentInChildren<UpdatedFormationController>();
         Transform targetTransform = consumerFormationController.GetLastTargetTransform(paper.transform);
+        paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
         paper.Move(targetTransform, consumerFormationController.Container);
         paperConsumer.ResourceProvider.Resources.Add(paper);
     }
+
+    private void OnMoveRoutineFinished(IResource paper)
+    {
+        paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        _updatedFormationController.UpdateResourcesPosition();
+    }
+    
 }
