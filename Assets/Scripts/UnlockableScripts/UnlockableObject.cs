@@ -62,13 +62,9 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		}
 		OnTryUnlock?.Invoke(_unlockableTrackData);
 
-//		var coinController = character.GetComponentInChildren<CoinController>();
-		//coinController.UpdateCoinCount();
+		var coinController = character.GetComponentInChildren<CoinController>();
+		coinController.UpdateCoinCount();
 		
-		
-
-
-
 		UserManager.Instance.LocalUser.SaveData(onSavedCallback);
 		void onSavedCallback()
 		{

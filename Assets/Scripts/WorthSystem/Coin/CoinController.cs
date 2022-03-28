@@ -22,7 +22,6 @@ public class CoinController : MonoBehaviour
 		_currentCoinCount = currentCoinCount;
 		_currencyObserver.OnCurrencyUpdated?.Invoke(_currentCoinCount);
 		
-		Debug.Log("COINCONTROLLER COLLECT");
 	}
 
 	public void UpdateCoinCount()
