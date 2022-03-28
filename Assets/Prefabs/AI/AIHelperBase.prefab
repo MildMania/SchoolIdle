@@ -310,9 +310,9 @@ MonoBehaviour:
     SerializationNodes: []
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
-  _canLoadUnlimited: 0
+  _canLoadUnlimited: 1
   _loadCapacityUpgradable: {fileID: 0}
-  _loadSpeedUpgradable: {fileID: 0}
+  _loadSpeedUpgradable: {fileID: 3773539565202976494}
   _paperProducerFovController: {fileID: 2123356473613521122}
 --- !u!114 &306734313923819103
 MonoBehaviour:
@@ -328,8 +328,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
-  _unloadSpeedUpgradable: {fileID: 0}
+  _unloadSpeedUpgradable: {fileID: 3773539565202976494}
   _paperConsumerFovController: {fileID: 4908879026252627175}
+--- !u!1 &2883037590306440289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2942347401161004762}
+  - component: {fileID: 3773539565202976494}
+  m_Layer: 6
+  m_Name: StoreSpeedUpgradable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2942347401161004762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883037590306440289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1087244987114617004}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3773539565202976494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883037590306440289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eee59d1228c6049a4995f4dd66ae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _upgradableType
+      Entry: 3
+      Data: 7
+    - Name: _attributeCategory
+      Entry: 3
+      Data: 2
+    - Name: OnUpgraded
+      Entry: 6
+      Data: 
 --- !u!1 &3075171956766641931
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitImmediately: 1
   _aiHelper: {fileID: 1725204988913337993}
-  _carrier: {fileID: 0}
   _movementBehaviour: {fileID: 1478696033679244692}
 --- !u!1 &3822104627037461146
 GameObject:
@@ -712,7 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
-  _unloadSpeedUpgradable: {fileID: 0}
+  _unloadSpeedUpgradable: {fileID: 3773539565202976494}
   _folderConsumerFovController: {fileID: 679033213494006119}
 --- !u!114 &5254883400007055168
 MonoBehaviour:
@@ -738,8 +798,8 @@ MonoBehaviour:
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
   _canLoadUnlimited: 0
-  _loadCapacityUpgradable: {fileID: 0}
-  _loadSpeedUpgradable: {fileID: 0}
+  _loadCapacityUpgradable: {fileID: 7060104527988003143}
+  _loadSpeedUpgradable: {fileID: 3773539565202976494}
   _folderProducerFovController: {fileID: 8521418293846903676}
 --- !u!1 &5620257806947187446
 GameObject:
@@ -1112,6 +1172,7 @@ Transform:
   - {fileID: 9020291266452139296}
   - {fileID: 2426865208905298533}
   - {fileID: 7090393143621124613}
+  - {fileID: 1087244987114617004}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1284,10 +1345,103 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitImmediately: 1
   _aiHelper: {fileID: 1725204988913337993}
-  _carrier: {fileID: 0}
   _movementBehaviour: {fileID: 1478696033679244692}
   _onMovementCompletedTasks:
     _taskCarrier: {fileID: 4742144596483122635}
+--- !u!1 &7784400974432894687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7833559938545905504}
+  - component: {fileID: 7945169109066805605}
+  m_Layer: 6
+  m_Name: SpeedUpgradable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7833559938545905504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784400974432894687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1087244987114617004}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7945169109066805605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784400974432894687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eee59d1228c6049a4995f4dd66ae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _upgradableType
+      Entry: 3
+      Data: 5
+    - Name: _attributeCategory
+      Entry: 3
+      Data: 2
+    - Name: OnUpgraded
+      Entry: 6
+      Data: 
+--- !u!1 &7860245414547816217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087244987114617004}
+  m_Layer: 6
+  m_Name: Upgradables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1087244987114617004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860245414547816217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7833559938545905504}
+  - {fileID: 5125866148173026428}
+  - {fileID: 2942347401161004762}
+  m_Father: {fileID: 5863190983171019724}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8081781985738648153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1553,67 @@ Transform:
   m_Father: {fileID: 5863190983171019724}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8682347489837198346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5125866148173026428}
+  - component: {fileID: 7060104527988003143}
+  m_Layer: 6
+  m_Name: CapacityUpgradable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5125866148173026428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682347489837198346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1087244987114617004}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7060104527988003143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8682347489837198346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6440ccd173f42e4a8d2322c7450084c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _upgradableType
+      Entry: 3
+      Data: 6
+    - Name: _attributeCategory
+      Entry: 3
+      Data: 2
+    - Name: OnUpgraded
+      Entry: 6
+      Data: 
 --- !u!1 &8903555025230867289
 GameObject:
   m_ObjectHideFlags: 0

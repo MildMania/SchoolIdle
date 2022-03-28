@@ -12,7 +12,6 @@ using Pathfinding;
 public class AIHelperStoreState : State<EState, ETransition>
 {
     [SerializeField] private AIHelper _aiHelper;
-    [SerializeField] private CarrierBase _carrier;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
 

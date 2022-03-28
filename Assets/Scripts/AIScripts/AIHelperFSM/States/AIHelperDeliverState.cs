@@ -10,7 +10,6 @@ using Pathfinding;
 public class AIHelperDeliverState : State<EState, ETransition>
 {
     [SerializeField] private AIHelper _aiHelper;
-    [SerializeField] private CarrierBase _carrier;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
     private IAIInteractable _currentConsumer;
