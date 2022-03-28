@@ -5,22 +5,25 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
     [SerializeField] private PaperConsumerFovController _paperConsumerFovController;
 
 
-    private void Awake()
+    protected override void OnAwakeCustomActions()
     {
+        base.OnAwakeCustomActions();
+        
         _paperConsumerFovController.OnTargetEnteredFieldOfView += OnConsumerEnteredFieldOfView;
         _paperConsumerFovController.OnTargetExitedFieldOfView += OnConsumerExitedFieldOfView;
     }
 
-
-    private void OnDestroy()
+    protected override void OnDestroyCustomActions()
     {
+        base.OnDestroyCustomActions();
+        
         _paperConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
         _paperConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
 
 
         StopAllCoroutines();
     }
-
+    
     public override void UnloadCustomActions(int index)
     {
         //Remove from self

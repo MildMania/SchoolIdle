@@ -5,21 +5,23 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
     [SerializeField] private CoinWorthCollector _coinWorthCollector;
     [SerializeField] private MoneyProducerFovController _moneyProducerFovController;
 
-    private void Awake()
+    protected override void OnAwakeCustomActions()
     {
+        base.OnAwakeCustomActions();
+        
         _moneyProducerFovController.OnTargetEnteredFieldOfView += OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView += OnProducerExitedFieldOfView;
     }
 
-
-    private void OnDestroy()
+    protected override void OnDestroyCustomActions()
     {
+        base.OnDestroyCustomActions();
+        
         _moneyProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
 
         StopAllCoroutines();
     }
-
 
     public override void LoadCustomActions(Money resource)
     {

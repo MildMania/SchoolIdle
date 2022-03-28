@@ -4,23 +4,24 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
 {
     [SerializeField] private PaperProducerFovController _paperProducerFovController;
 
-
-    private void Awake()
+    protected override void OnAwakeCustomActions()
     {
+        base.OnAwakeCustomActions();
+        
         _paperProducerFovController.OnTargetEnteredFieldOfView += OnProducerEnteredFieldOfView;
         _paperProducerFovController.OnTargetExitedFieldOfView += OnProducerExitedFieldOfView;
     }
 
-
-    private void OnDestroy()
+    protected override void OnDestroyCustomActions()
     {
+        base.OnDestroyCustomActions();
+        
         _paperProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _paperProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
 
 
         StopAllCoroutines();
     }
-
 
     public override void LoadCustomActions(Paper resource)
     {

@@ -10,6 +10,8 @@ public class MovementIdleState : State<EState, EState>
 	[SerializeField] private Seeker _seeker = null;
 	[SerializeField] private Rigidbody _rigidbody = null;
 
+	[SerializeField] private FovBasedUpgradeAreaDetector _fovBasedUpgradeAreaDetector;
+
 	private IEnumerator _checkGroundRoutine;
 	
 	public Action OnIdleStateEnter { get; set; }
@@ -18,6 +20,29 @@ public class MovementIdleState : State<EState, EState>
 	protected override EState GetStateID()
 	{
 		return EState.MovementIdle;
+	}
+
+
+	private void Awake()
+	{
+		_fovBasedUpgradeAreaDetector.OnDetected += OnUpgradeAreaDetected;
+		_fovBasedUpgradeAreaDetector.OnEnded += OnUpgradeAreaEnded;
+	}
+
+	private void OnDestroy()
+	{
+		_fovBasedUpgradeAreaDetector.OnDetected -= OnUpgradeAreaDetected;
+		_fovBasedUpgradeAreaDetector.OnEnded -= OnUpgradeAreaEnded;
+	}
+
+	private void OnUpgradeAreaDetected(UpgradeArea upgradeArea)
+	{
+		upgradeArea.ShowWidget();
+	}
+	
+	private void OnUpgradeAreaEnded(UpgradeArea upgradeArea)
+	{
+		upgradeArea.HideWidget();
 	}
 
 	public override void OnEnterCustomActions()

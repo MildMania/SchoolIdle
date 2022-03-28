@@ -20,11 +20,6 @@ public class WalkState : State<EState, EState>
 
 	private void Awake()
 	{
-		//float value = GameConfigManager.Instance.GetUpgradeAttributeValue(EUpgradeAttribute.CHARACTER, upgradableTrackData);
-		//_walkSpeed = GameConfigManager.Instance.GameConfig.WalkSpeed;
-		
-		
-		
 		_characterSpeedUpgradable.OnUpgraded += OnSpeedUpgraded;
 	}
 

@@ -3,15 +3,19 @@
 public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 {
 	[SerializeField] private FolderConsumerFovController _folderConsumerFovController;
-	private void Awake()
+	
+	protected override void OnAwakeCustomActions()
 	{
+		base.OnAwakeCustomActions();
+		
 		_folderConsumerFovController.OnTargetEnteredFieldOfView += OnConsumerEnteredFieldOfView;
 		_folderConsumerFovController.OnTargetExitedFieldOfView += OnConsumerEnteredFieldOfView;
 	}
 
-
-	private void OnDestroy()
+	protected override void OnDestroyCustomActions()
 	{
+		base.OnDestroyCustomActions();
+		
 		_folderConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
 		_folderConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerEnteredFieldOfView;
 		

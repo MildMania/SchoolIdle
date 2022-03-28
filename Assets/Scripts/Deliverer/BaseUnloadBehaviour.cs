@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehaviour
     where TBaseConsumer : BaseConsumer<TResource>
@@ -9,10 +11,41 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    [SerializeField] private float _unloadDelay = .3f;
+    [SerializeField] private Upgradable _unloadSpeedUpgradable;
+    
+    private float _unloadDelay;
 
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 
+    private void Awake()
+    {
+        _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
+        
+        OnAwakeCustomActions();
+    }
+
+    protected virtual void OnAwakeCustomActions()
+    {
+    }
+    
+    private void OnDestroy()
+    {
+        _unloadSpeedUpgradable.OnUpgraded -= OnUnloadSpeedUpgraded;
+        
+        OnDestroyCustomActions();
+    }
+    
+    protected virtual void OnDestroyCustomActions()
+    {
+    }
+
+    private void OnUnloadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
+    {
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+
+        _unloadDelay = 1 / value;
+    }
+    
     protected void OnConsumerEnteredFieldOfView(TBaseConsumer producer)
     {
         _consumers.Add(producer);

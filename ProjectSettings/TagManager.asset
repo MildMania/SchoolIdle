@@ -15,13 +15,13 @@ TagManager:
   - Collectible
   - Ground
   - PaperProducer
-  - Consumer
+  - PaperConsumer
   - Consumible
   - Producible
   - MoneyProducer
   - FolderProducer
   - FolderConsumer
-  - 
+  - UpgradeArea
   - 
   - 
   - 
