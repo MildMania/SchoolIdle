@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FolderProducer : BaseProducer<Folder>
+public class FolderProducer : BaseProducer<Folder>, IResourceProvider
 {
 	[SerializeField] private UpdatedFormationController _updatedFormationController;
 	public override Folder ProduceCustomActions(Folder resource)

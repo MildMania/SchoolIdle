@@ -11,14 +11,14 @@ using Pathfinding;
 
 public class AIHelperStoreState : State<EState, ETransition>
 {
-    [SerializeField] private Carrier_Test _carrier;
-    [SerializeField] private List<Producer_Test> _producerList;
+    [SerializeField] private AIHelper _aiHelper;
+    [SerializeField] private CarrierBase _carrier;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
 
     [SerializeField] private MMTaskExecutor _onMovementCompletedTasks;
 
-    private Producer_Test _currentProducer;
+    private IAIInteractable _currentProducer;
 
     protected override EState GetStateID()
     {
@@ -33,15 +33,15 @@ public class AIHelperStoreState : State<EState, ETransition>
         MoveToInteractionPoint(_currentProducer.GetInteractionPoint());
     }
 
-    private Producer_Test SelectProducer()
+    private IAIInteractable SelectProducer()
     {
-        Producer_Test currentProducer = default(Producer_Test);
-
         float minDist = float.MaxValue;
 
-        foreach (var producer in _producerList)
+        IAIInteractable currentProducer = default(IAIInteractable);
+
+        foreach (var producer in _aiHelper.GetProducers())
         {
-            float dist = (producer.transform.position - transform.position).magnitude;
+            float dist = (producer.GetInteractionPoint() - transform.position).magnitude;
 
             if (dist < minDist)
                 currentProducer = producer;
@@ -62,7 +62,7 @@ public class AIHelperStoreState : State<EState, ETransition>
         if (_onMovementCompletedTasks != null)
             _onMovementCompletedTasks.Execute(this);
 
-        _carrier.Store(_currentProducer); // this might be change little bit
+        //_carrier.Store(_currentProducer); // this might be change little bit
 
         FSM.SetTransition(ETransition.Deliver);
     }

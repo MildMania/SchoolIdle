@@ -256,8 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
-  _carrier: {fileID: 44307563623347620}
-  _consumerList: []
+  _aiHelper: {fileID: 1725204988913337993}
+  _carrier: {fileID: 0}
   _movementBehaviour: {fileID: 1478696033679244692}
 --- !u!1 &3934465465704668964
 GameObject:
@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 2671080599652467585}
   - component: {fileID: 44307563623347620}
   - component: {fileID: 6014897908389689835}
+  - component: {fileID: 1725204988913337993}
   m_Layer: 11
   m_Name: AIHelperBase
   m_TagString: Untagged
@@ -585,6 +586,18 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &1725204988913337993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702496306497180917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba947b21870c724780d1cef25830a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7715599796901268353
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,8 +642,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
+  _aiHelper: {fileID: 1725204988913337993}
   _carrier: {fileID: 44307563623347620}
-  _producerList: []
   _movementBehaviour: {fileID: 1478696033679244692}
   _onMovementCompletedTasks:
     _taskCarrier: {fileID: 4742144596483122635}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResource>
+public abstract class BaseConsumer<TResource> : MonoBehaviour, IAIInteractable, IConsumer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
@@ -20,4 +20,9 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResour
     }
 
     public abstract void ConsumeCustomActions(TResource resource);
+
+    public Vector3 GetInteractionPoint()
+    {
+        return transform.position;
+    }
 }

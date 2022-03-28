@@ -1,9 +1,14 @@
 using UnityEngine;
 
-public abstract class BaseProducer<TResource> : MonoBehaviour, IProducer<TResource>
+public abstract class BaseProducer<TResource> : MonoBehaviour, IAIInteractable, IProducer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
+
+    public Vector3 GetInteractionPoint()
+    {
+        return transform.position;
+    }
 
     public void Produce(TResource resource)
     {

@@ -12,6 +12,8 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 
     protected IEnumerator ProduceRoutine(TResource resource)
     {
+        ProducerProvider.Instance.AddProducer(_producer, _resource);
+
         float currentTime = 0;
 
         while (true)

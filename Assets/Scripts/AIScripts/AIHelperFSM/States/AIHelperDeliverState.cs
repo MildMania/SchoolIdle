@@ -9,39 +9,44 @@ using Pathfinding;
 
 public class AIHelperDeliverState : State<EState, ETransition>
 {
-    [SerializeField] private Carrier_Test _carrier;
-    [SerializeField] private List<Consumer_Test> _consumerList;
+    [SerializeField] private AIHelper _aiHelper;
+    [SerializeField] private CarrierBase _carrier;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
-    private Consumer_Test _currentConsumer;
+    private IAIInteractable _currentConsumer;
 
     protected override EState GetStateID()
     {
         return EState.Deliver;
     }
 
-    private Consumer_Test SelectConsumer()
+    private IAIInteractable SelectConsumer()
     {
-        Consumer_Test currentConsumer = default(Consumer_Test);
+        IAIInteractable currentConsumer = default(IAIInteractable);
 
-        float maxScore = float.MinValue;
+        //float maxScore = float.MinValue;
 
-        foreach (var consumer in _consumerList)
-        {
-            // do things here
+        //foreach (var consumer in _aiHelper.GetConsumers())
+        //{
+        //    // do things here
 
-            float dist = (consumer.transform.position - transform.position).magnitude;
-            float capacity = consumer.Capacity;
+        //    float dist = (consumer.GetInteractionPoint() - transform.position).magnitude;
 
-            float score = (1 / dist) * capacity;
+        //    //float score = (1 / dist) * capacity;
+        //    float score = (1 / dist);
 
-            if(score > maxScore)
-            {
-                maxScore = score;
-                currentConsumer = consumer;
-            }
+        //    if (score > maxScore)
+        //    {
+        //        maxScore = score;
+        //        currentConsumer = consumer;
+        //    }
 
-        }
+        //}
+
+        var list = _aiHelper.GetConsumers();
+        int indx = Random.Range(0, list.Count - 1);
+
+        currentConsumer = list[indx];
 
         return currentConsumer;
     }
@@ -63,7 +68,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
     {
         // TODO : start deliver routine
 
-        _carrier.Deliver(_currentConsumer);
+        //_carrier.Deliver(_currentConsumer);
 
         FSM.SetTransition(ETransition.Store);
     }
