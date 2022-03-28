@@ -14,13 +14,13 @@ TagManager:
   - Character
   - Collectible
   - Ground
-  - Producer
+  - PaperProducer
   - Consumer
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Consumible
+  - Producible
+  - MoneyProducer
+  - FolderProducer
+  - FolderConsumer
   - 
   - 
   - 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Producer.Old;
 using UnityEngine;
 
 public class TriggerBasedProducerDetector : BaseProducerDetector
@@ -7,7 +8,6 @@ public class TriggerBasedProducerDetector : BaseProducerDetector
     [SerializeField] private TriggerObjectHitController _producerHitController;
 
 
-    
     private void Awake()
     {
         _producerHitController.OnHitTriggerObject += OnHitTriggerObject;
@@ -16,7 +16,6 @@ public class TriggerBasedProducerDetector : BaseProducerDetector
 
     private void OnHitEndedTriggerObject(TriggerObject triggerObject)
     {
-        
         var producer = triggerObject.GetComponentInParent<ProducerBase>();
         OnEnded?.Invoke(producer);
     }
@@ -29,8 +28,6 @@ public class TriggerBasedProducerDetector : BaseProducerDetector
 
     private void OnHitTriggerObject(TriggerObject triggerObject)
     {
-        
-        
         var producer = triggerObject.GetComponentInParent<ProducerBase>();
         LastDetected = producer;
         OnDetected?.Invoke(producer);
