@@ -1309,6 +1309,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7953131129175990571}
     m_Modifications:
+    - target: {fileID: 2462119433104234386, guid: 41141dd249eea0a4fa2691cb6f721c95, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8013812582945713720, guid: 41141dd249eea0a4fa2691cb6f721c95, type: 3}
       propertyPath: m_Name
       value: Money
@@ -1323,7 +1327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8013812582945713721, guid: 41141dd249eea0a4fa2691cb6f721c95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 8013812582945713721, guid: 41141dd249eea0a4fa2691cb6f721c95, type: 3}
       propertyPath: m_LocalPosition.z
