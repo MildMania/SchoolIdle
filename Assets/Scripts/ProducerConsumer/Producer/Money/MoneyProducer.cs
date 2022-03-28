@@ -3,19 +3,20 @@ using UnityEngine;
 public class MoneyProducer : BaseProducer<Money>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
-    
-    public override Money ProduceCustomActions(Money money)
+
+    public override Money ProduceCustomActions(Money resource)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(money.transform);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
 
-        Money clonedMoneyProducible = Instantiate(money, money.transform.position, money.transform.rotation);
+        Money clonedMoneyProducible = Instantiate(resource, resource.transform.position, resource.transform.rotation);
 
-        clonedMoneyProducible.MoveProducible(targetTransform, _updatedFormationController.Container);
-        
+        clonedMoneyProducible.Move(targetTransform, _updatedFormationController.Container);
+
         return clonedMoneyProducible;
     }
 
     protected override void TryRemoveAndGetLastProducibleCustomActions()
     {
+        _updatedFormationController.RemoveAndGetLastTransform();
     }
 }

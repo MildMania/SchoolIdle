@@ -1,4 +1,4 @@
-public interface IProducer<TProducible> where TProducible : IProducible
+public interface IProducer<TResource> where TResource : IResource
 {
-    public void Produce(TProducible producible);
+    public void Produce(TResource resource);
 }

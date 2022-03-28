@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class Paper : MonoBehaviour, IProducible, IConsumable
+public class Paper : MonoBehaviour, IResource
 {
     private float _moveDuration = 0.5f;
 
@@ -10,16 +11,10 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
         StopAllCoroutines();
     }
 
-    public void MoveProducible(Transform target, Transform container)
-    {
-        StopAllCoroutines();
-        StartCoroutine(MoveRoutine(target, container));
-    }
+    public Action<IResource> OnMoveRoutineFinished { get; set; }
 
-
-    public void MoveConsumable(Transform target, Transform container)
+    public void Move(Transform target, Transform container)
     {
-        StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));
     }
 
@@ -30,8 +25,8 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
 
         var producibleTransform = transform;
         Vector3 position = producibleTransform.position;
-
-
+        producibleTransform.SetParent(container);
+        
         while (currentTime < _moveDuration)
         {
             float step = currentTime / _moveDuration;
@@ -45,6 +40,7 @@ public class Paper : MonoBehaviour, IProducible, IConsumable
         }
 
         producibleTransform.position = target.position;
-        producibleTransform.SetParent(container);
+        
+        OnMoveRoutineFinished?.Invoke(this);
     }
 }

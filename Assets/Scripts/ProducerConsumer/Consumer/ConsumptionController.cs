@@ -1,42 +1,19 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 
-public class ConsumptionController<TConsumer, TConsumable> : MonoBehaviour where TConsumer : BaseConsumer<TConsumable>
-	where TConsumable : IConsumable
+public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where TConsumer : BaseConsumer<TResource>
+    where TResource : IResource
 {
-	[SerializeField] protected TConsumer _consumer;
-	[SerializeField] protected TConsumable _consumable;
-	[SerializeField] private float _consumptionDelay;
-
-	public Action OnUnconsumed { get; set; }
-	
-	[PhaseListener(typeof(GamePhase), true)]
-	public void OnGamePhaseStarted()
-	{
-		StartCoroutine(UnconsumeRoutine());
-	}
-
-	private void OnDestroy()
-	{
-		StopAllCoroutines();
-	}
-
-	private IEnumerator UnconsumeRoutine()
-	{
-		while (true)
-		{
-			if (_consumer.Consumables.Count == 0 )
-			{
-				yield return null;
-				continue;
-			}
-			
-			yield return new WaitForSeconds(_consumptionDelay);
-			_consumer.UnconsumeLast();
-			OnUnconsumed?.Invoke();
-		}
-	}
+    [SerializeField] protected TConsumer _consumer;
+    [SerializeField] private BaseResourceProvider<TResource> _resourceProvider;
+    public void StartConsumption(int amount, Action onConsumedCallback)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            TResource resource = _resourceProvider.Resources[_resourceProvider.Resources.Count - 1];
+            //TODO: Think about if it is the best way to remove resource here!
+            _consumer.Consume(resource);
+        }
+        onConsumedCallback?.Invoke();
+    }
 }

@@ -5,7 +5,7 @@ public class PaperProductionController : ProductionController<PaperProducer, Pap
 	[PhaseListener(typeof(GamePhase), true)]
 	public void OnGamePhaseStarted()
 	{
-		StartCoroutine(ProduceRoutine(_producible));
+		StartCoroutine(ProduceRoutine(_resource));
 	}
 
 	private void OnDestroy()

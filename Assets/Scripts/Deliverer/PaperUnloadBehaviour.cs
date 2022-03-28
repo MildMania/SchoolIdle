@@ -7,36 +7,47 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 
     private void Awake()
     {
-        _paperConsumerFovController.OnTargetEnteredFieldOfView += OnPaperConsumerEnteredFieldOfView;
-        _paperConsumerFovController.OnTargetExitedFieldOfView += OnPaperConsumerExitedFieldOfView;
+        _paperConsumerFovController.OnTargetEnteredFieldOfView += OnConsumerEnteredFieldOfView;
+        _paperConsumerFovController.OnTargetExitedFieldOfView += OnConsumerExitedFieldOfView;
     }
 
 
     private void OnDestroy()
     {
-        _paperConsumerFovController.OnTargetEnteredFieldOfView -= OnPaperConsumerEnteredFieldOfView;
-        _paperConsumerFovController.OnTargetExitedFieldOfView -= OnPaperConsumerExitedFieldOfView;
+        _paperConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
+        _paperConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
 
 
         StopAllCoroutines();
     }
 
-    private void OnPaperConsumerEnteredFieldOfView(PaperConsumer paperConsumer)
-    {
-        _consumers.Add(paperConsumer);
-    }
-
-    private void OnPaperConsumerExitedFieldOfView(PaperConsumer paperConsumer)
-    {
-        _consumers.Remove(paperConsumer);
-    }
-
-
     public override void UnloadCustomActions(int index)
     {
-        Paper paper = _deliverer.Papers[_deliverer.Papers.Count - 1];
-        _deliverer.Papers.Remove(paper);
-        _updatedFormationController.RemoveAndGetLastTransform();
-        _consumers[index].Consume(paper);
+        //Remove from self
+        int lastResourceIndex = _deliverer.GetLastResourceIndex<Paper>();
+
+        if (lastResourceIndex == -1)
+        {
+            return;
+        }
+        Paper paper = (Paper) _deliverer.Resources[lastResourceIndex];
+        _deliverer.Resources.Remove(paper);
+        _updatedFormationController.RemoveCustomResourceTransform(lastResourceIndex);
+        
+        //Add To Consumer
+        PaperConsumer paperConsumer = _consumers[index];
+        UpdatedFormationController consumerFormationController =
+            paperConsumer.GetComponentInChildren<UpdatedFormationController>();
+        Transform targetTransform = consumerFormationController.GetLastTargetTransform(paper.transform);
+        paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
+        paper.Move(targetTransform, consumerFormationController.Container);
+        paperConsumer.ResourceProvider.Resources.Add(paper);
     }
+
+    private void OnMoveRoutineFinished(IResource paper)
+    {
+        paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        _updatedFormationController.UpdateResourcesPosition();
+    }
+    
 }

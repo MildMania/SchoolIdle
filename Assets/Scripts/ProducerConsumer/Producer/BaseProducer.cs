@@ -1,28 +1,27 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseProducer<TProducible> : MonoBehaviour, IProducer<TProducible>
-    where TProducible : IProducible
+public abstract class BaseProducer<TResource> : MonoBehaviour, IProducer<TResource>
+    where TResource : IResource
 {
-    protected List<TProducible> _producibles = new List<TProducible>();
+    [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
 
-    public void Produce(TProducible producible)
+    public void Produce(TResource resource)
     {
-        _producibles.Add(ProduceCustomActions(producible));
+        _baseResourceProvider.Resources.Add(ProduceCustomActions(resource));
     }
 
-    public abstract TProducible ProduceCustomActions(TProducible producible);
+    public abstract TResource ProduceCustomActions(TResource resource);
 
 
-    public bool TryRemoveAndGetLastProducible(ref TProducible lastProducible)
+    public bool TryRemoveAndGetLastResource(ref TResource lastResource)
     {
-        if (_producibles.Count == 0)
+        if (_baseResourceProvider.Resources.Count == 0)
         {
             return false;
         }
 
-        lastProducible = _producibles[_producibles.Count - 1];
-        _producibles.Remove(lastProducible);
+        lastResource = _baseResourceProvider.Resources[_baseResourceProvider.Resources.Count - 1];
+        _baseResourceProvider.Resources.Remove(lastResource);
         TryRemoveAndGetLastProducibleCustomActions();
         return true;
     }
