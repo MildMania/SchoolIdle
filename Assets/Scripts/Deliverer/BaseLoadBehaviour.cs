@@ -1,18 +1,78 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : MonoBehaviour
+public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMonoBehaviour
     where TBaseProducer : BaseProducer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    [SerializeField] private float _loadDelay = .3f;
+
+    [SerializeField] private bool _canLoadUnlimited;
+
+    [HideIf("_canLoadUnlimited")]
+    [SerializeField] private Upgradable _loadCapacityUpgradable;
+    
+    [SerializeField] private Upgradable _loadSpeedUpgradable;
+
+    private int _loadCapacity;
+    
+    private float _loadDelay;
 
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 
+    private void Awake()
+    {
+
+        if (!_canLoadUnlimited)
+        {
+            _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
+        }
+
+        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
+        
+        OnAwakeCustomActions();
+
+    }
+
+    protected virtual void OnAwakeCustomActions()
+    {
+    }
+
+    private void OnLoadCapacityUpgraded(UpgradableTrackData upgradableTrackData)
+    {
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+
+        _loadCapacity = (int)value;
+    }
+
+    private void OnDestroy()
+    {
+        if (!_canLoadUnlimited)
+        {
+            _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
+        }
+        
+        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
+        
+        OnDestroyCustomActions();
+    }
+
+    private void OnLoadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
+    {
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+
+        _loadDelay = 1 / value;
+    }
+
+    protected virtual void OnDestroyCustomActions()
+    {
+    }
 
     protected void OnProducerEnteredFieldOfView(TBaseProducer producer)
     {
@@ -30,6 +90,16 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : MonoBehaviou
         StartCoroutine(LoadRoutine());
     }
 
+    private bool CanLoad()
+    {
+        if (_canLoadUnlimited)
+        {
+            return true;
+        }
+
+        return _updatedFormationController.Container.childCount < _loadCapacity;
+    }
+
     private IEnumerator LoadRoutine()
     {
         float currentTime = 0;
@@ -40,7 +110,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : MonoBehaviou
 
             if (currentTime > _loadDelay)
             {
-                if (_producers.Count > 0)
+                if (_producers.Count > 0 && CanLoad())
                 {
                     int index = (int) Random.Range(0, _producers.Count - 0.1f);
 

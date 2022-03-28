@@ -10,4 +10,5 @@ public enum ETriggerObject
     Gate = 7,
     Producer = 8,
     Consumer = 9,
+    UpgradeArea = 10,
 }
