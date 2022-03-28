@@ -19,7 +19,7 @@ public class TriggerBasedCharacterDetector : BaseCharacterDetector
 
     private void OnHitTriggerObject(TriggerObject triggerObject)
     {
-        Character character = triggerObject.GetComponentInParent<Character>();
+        Character character = triggerObject.GetComponent<Character>();
 
         LastDetected = character;
         OnDetected?.Invoke(character);
@@ -27,7 +27,7 @@ public class TriggerBasedCharacterDetector : BaseCharacterDetector
     
     private void OnHitEndedTriggerObject(TriggerObject triggerObject)
     {
-        Character character = triggerObject.GetComponentInParent<Character>();
+        Character character = triggerObject.GetComponent<Character>();
 
         LastDetected = character;
         OnEnded?.Invoke(character);
