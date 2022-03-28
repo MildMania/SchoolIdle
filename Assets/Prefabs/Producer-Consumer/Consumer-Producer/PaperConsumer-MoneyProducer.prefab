@@ -158,6 +158,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5556875150434469563}
     m_Modifications:
+    - target: {fileID: 7678804736241443359, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678804736241443359, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678804736241443359, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.72
+      objectReference: {fileID: 0}
     - target: {fileID: 7678804737101695217, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: m_Name
       value: MoneyProducer
@@ -218,7 +230,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1677562452085916946, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
 --- !u!4 &5319408836750441060 stripped
 Transform:
@@ -255,6 +268,18 @@ PrefabInstance:
     - target: {fileID: 3334096972234175981, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334096972918569910, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334096972918569910, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334096972918569910, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3334096973481969542, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
       propertyPath: m_Mesh

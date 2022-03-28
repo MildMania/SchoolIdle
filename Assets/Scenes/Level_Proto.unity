@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-515144
+  m_Name: pb_Mesh-609376
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1077,7 +1077,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-515132
+  m_Name: pb_Mesh-609364
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3500,7 +3500,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-515120
+  m_Name: pb_Mesh-609352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3664,7 +3664,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-515156
+  m_Name: pb_Mesh-609388
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3829,30 +3829,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1620598069}
     m_Modifications:
-    - target: {fileID: 5556875148435121386, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875148435121386, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875148435121386, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875149253654864, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875149253654864, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875149253654864, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.72
-      objectReference: {fileID: 0}
     - target: {fileID: 5556875149356493489, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3904,10 +3880,6 @@ PrefabInstance:
     - target: {fileID: 5556875150434469560, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
       propertyPath: m_Name
       value: PaperConsumer-MoneyProducer
-      objectReference: {fileID: 0}
-    - target: {fileID: 5556875150434469560, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5556875150434469563, guid: 3db21c64d5166a54ca7a2590243268d3, type: 3}
       propertyPath: m_RootOrder
@@ -4464,6 +4436,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1176234672, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
+      propertyPath: _produceCapacity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 128542863006408636, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
       propertyPath: m_Mesh
       value: 
