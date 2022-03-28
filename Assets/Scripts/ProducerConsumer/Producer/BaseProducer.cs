@@ -4,10 +4,11 @@ public abstract class BaseProducer<TResource> : MonoBehaviour, IAIInteractable, 
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
+    [SerializeField] protected Transform _interactionPoint;
 
     public Vector3 GetInteractionPoint()
     {
-        return transform.position;
+        return _interactionPoint.position;
     }
 
     public void Produce(TResource resource)

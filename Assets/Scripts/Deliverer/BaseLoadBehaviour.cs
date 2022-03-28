@@ -31,10 +31,12 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
         if (!_canLoadUnlimited)
         {
-            _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
+            if (_loadCapacityUpgradable != null)
+                _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
 
-        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
+        if(_loadSpeedUpgradable != null)
+            _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
         
         OnAwakeCustomActions();
 
@@ -55,10 +57,11 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
     {
         if (!_canLoadUnlimited)
         {
-            _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
+            if (_loadCapacityUpgradable != null)
+                _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
         }
-        
-        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
+        if (_loadSpeedUpgradable != null)
+            _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
         
         OnDestroyCustomActions();
     }

@@ -19,7 +19,8 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
 
     private void Awake()
     {
-        _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
+        if (_unloadSpeedUpgradable != null)
+            _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
         
         OnAwakeCustomActions();
     }
@@ -30,7 +31,8 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
     
     private void OnDestroy()
     {
-        _unloadSpeedUpgradable.OnUpgraded -= OnUnloadSpeedUpgraded;
+        if (_unloadSpeedUpgradable != null)
+            _unloadSpeedUpgradable.OnUpgraded -= OnUnloadSpeedUpgraded;
         
         OnDestroyCustomActions();
     }

@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using MMFramework.Tasks.Examples;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
-public class AIHelper : MonoBehaviour
+public class AIHelper : SerializedMonoBehaviour
 {
-    [MMSerializedInterface(typeof(IResource))] private IResource _resource;
+    [OdinSerialize] private IResource _resource;
+
+    private void Awake()
+    {
+        
+    }
 
     public List<IAIInteractable> GetConsumers()
     {
