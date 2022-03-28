@@ -9044,10 +9044,6 @@ PrefabInstance:
       propertyPath: _coinController
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 1860212071443604636, guid: d02892223ba417046b2c16319184912b, type: 3}
-      propertyPath: _currencyObserver
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2226157582301914556, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_Layer
       value: 6

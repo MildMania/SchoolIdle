@@ -249,6 +249,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec95ffee341864b84886b10c08a7e92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &594591410486694632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 66040308119477117, guid: 72ce665dee45e464d9d53aa31eff4b18, type: 3}
+  m_PrefabInstance: {fileID: 624583024614263189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74531599f2fdcd4bb915c64c02e7880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3201599501160956201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,6 +339,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3872691941851162037, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}
+      propertyPath: _currencyObserver
+      value: 
+      objectReference: {fileID: 594591410486694632}
     - target: {fileID: 4307299665957266432, guid: d29b2e28fe6d8734cb8b36db566b974d, type: 3}
       propertyPath: m_Camera
       value: 
