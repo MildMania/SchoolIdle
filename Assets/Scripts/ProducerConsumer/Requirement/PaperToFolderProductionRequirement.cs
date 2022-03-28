@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class PaperToFolderProductionRequirement : BaseProductionRequirement
 {
-	[SerializeField] private int _amountNeeded;
-	[SerializeField] private PaperProvider _paperProvider;
-	[SerializeField] private PaperConsumptionController _paperConsumptionController;
+    [SerializeField] private int _amountNeeded;
+    [SerializeField] private PaperProvider _paperProvider;
+    [SerializeField] private PaperConsumptionController _paperConsumptionController;
 
-	public override bool IsProductionRequirementMet()
-	{
-		List<Paper> papers = _paperProvider.Resources;
-		if (papers == null || papers.Count < _amountNeeded)
-		{
-			return false;
-		}
+    public override bool IsProductionRequirementMet()
+    {
+        List<Paper> papers = _paperProvider.Resources;
+        if (!_paperConsumptionController.IsAvailable || papers == null || papers.Count < _amountNeeded)
+        {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	public override void ConsumeRequirements(Action onConsumedCallback)
-	{
-		_paperConsumptionController.StartConsumption(_amountNeeded,onConsumedCallback);
-	}
+    public override void ConsumeRequirements(Action onConsumedCallback)
+    {
+        _paperConsumptionController.StartConsumption(_amountNeeded, onConsumedCallback);
+    }
 }

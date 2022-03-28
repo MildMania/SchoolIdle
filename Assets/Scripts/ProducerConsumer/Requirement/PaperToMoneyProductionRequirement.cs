@@ -11,7 +11,7 @@ public class PaperToMoneyProductionRequirement : BaseProductionRequirement
     public override bool IsProductionRequirementMet()
     {
         List<Paper> papers = _paperProvider.Resources;
-        if (papers == null || papers.Count < _amountNeeded)
+        if (!_paperConsumptionController.IsAvailable || papers == null || papers.Count < _amountNeeded)
         {
             return false;
         }
@@ -21,6 +21,6 @@ public class PaperToMoneyProductionRequirement : BaseProductionRequirement
 
     public override void ConsumeRequirements(Action onConsumedCallback)
     {
-        _paperConsumptionController.StartConsumption(_amountNeeded,onConsumedCallback);
+        _paperConsumptionController.StartConsumption(_amountNeeded, onConsumedCallback);
     }
 }

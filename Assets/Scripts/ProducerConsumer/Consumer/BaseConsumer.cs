@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResource>
@@ -5,6 +7,8 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IConsumer<TResour
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
+
+    public Action<BaseConsumer<TResource>, TResource> OnConsumeFinished;
 
     public BaseResourceProvider<TResource> ResourceProvider
     {
