@@ -68,7 +68,14 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: OnCapacityFull
+      Entry: 6
+      Data: 
+    - Name: OnCapacityEmpty
+      Entry: 6
+      Data: 
+  _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
@@ -906,7 +913,14 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: OnCapacityFull
+      Entry: 6
+      Data: 
+    - Name: OnCapacityEmpty
+      Entry: 6
+      Data: 
+  _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
@@ -1880,7 +1894,14 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: OnCapacityFull
+      Entry: 6
+      Data: 
+    - Name: OnCapacityEmpty
+      Entry: 6
+      Data: 
+  _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 1

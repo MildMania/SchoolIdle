@@ -5,6 +5,7 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IAIInteractable, 
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
+    [SerializeField] protected Transform _interactionPoint;
 
     public BaseResourceProvider<TResource> ResourceProvider
     {
@@ -23,6 +24,6 @@ public abstract class BaseConsumer<TResource> : MonoBehaviour, IAIInteractable, 
 
     public Vector3 GetInteractionPoint()
     {
-        return transform.position;
+        return _interactionPoint.position;
     }
 }

@@ -307,11 +307,18 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: OnCapacityFull
+      Entry: 6
+      Data: 
+    - Name: OnCapacityEmpty
+      Entry: 6
+      Data: 
+  _attributeCategory: 2
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
-  _canLoadUnlimited: 1
-  _loadCapacityUpgradable: {fileID: 0}
+  _canLoadUnlimited: 0
+  _loadCapacityUpgradable: {fileID: 7060104527988003143}
   _loadSpeedUpgradable: {fileID: 3773539565202976494}
   _paperProducerFovController: {fileID: 2123356473613521122}
 --- !u!114 &306734313923819103
@@ -620,7 +627,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
-  _aiHelper: {fileID: 1725204988913337993}
   _movementBehaviour: {fileID: 1478696033679244692}
 --- !u!1 &3822104627037461146
 GameObject:
@@ -794,7 +800,14 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: OnCapacityFull
+      Entry: 6
+      Data: 
+    - Name: OnCapacityEmpty
+      Entry: 6
+      Data: 
+  _attributeCategory: 2
   _updatedFormationController: {fileID: 1834685014375704253}
   _deliverer: {fileID: 1238056733170469330}
   _canLoadUnlimited: 0
@@ -1143,8 +1156,8 @@ GameObject:
   - component: {fileID: 8010847261354275440}
   - component: {fileID: 2671080599652467585}
   - component: {fileID: 6014897908389689835}
-  - component: {fileID: 1725204988913337993}
   - component: {fileID: 1238056733170469330}
+  - component: {fileID: 5399773172567852665}
   m_Layer: 17
   m_Name: AIHelperBase
   m_TagString: Untagged
@@ -1262,31 +1275,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &1725204988913337993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7702496306497180917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba947b21870c724780d1cef25830a51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 3140204337168035734}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _resource
-      Entry: 10
-      Data: 0
 --- !u!114 &1238056733170469330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,6 +1288,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 1834685014375704253}
+--- !u!114 &5399773172567852665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702496306497180917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49b36fc37924c2ea4d87ec2918b2b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 3140204337168035734}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _tResource
+      Entry: 10
+      Data: 0
+  PaperLoadBehaviour: {fileID: 8579628720904801671}
+  PaperUnloadBehaviour: {fileID: 306734313923819103}
 --- !u!1 &7715599796901268353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2800823376243283469}
-  - component: {fileID: 858863801147057414}
+  - component: {fileID: 5784846889600107782}
   m_Layer: 17
   m_Name: Store
   m_TagString: Untagged
@@ -1331,7 +1346,7 @@ Transform:
   m_Father: {fileID: 6684450146465439794}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &858863801147057414
+--- !u!114 &5784846889600107782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1340,14 +1355,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7715599796901268353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976e443b14ef5d54bb93f410d298f63e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dbc6e10005868040a89e1c4b827c8ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
-  _aiHelper: {fileID: 1725204988913337993}
   _movementBehaviour: {fileID: 1478696033679244692}
   _onMovementCompletedTasks:
     _taskCarrier: {fileID: 4742144596483122635}
+  _paperDelivererAiHelper: {fileID: 5399773172567852665}
 --- !u!1 &7784400974432894687
 GameObject:
   m_ObjectHideFlags: 0

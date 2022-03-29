@@ -17,10 +17,10 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
 
     }
 
-    public void AddProducer(IAIInteractable consumer, IResource resourceType)
+    public void AddConsumer(IAIInteractable consumer, System.Type resourceType)
     {
         List<IAIInteractable> list;
-        System.Type resType = resourceType.GetType();
+        System.Type resType = resourceType;
 
         _consumersByResource.TryGetValue(resType, out list);
 
@@ -35,10 +35,10 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
         }
     }
 
-    public List<IAIInteractable> GetConsumers(IResource resourceType)
+    public List<IAIInteractable> GetConsumers(System.Type resourceType)
     {
         List<IAIInteractable> list;
-        _consumersByResource.TryGetValue(resourceType.GetType(), out list);
+        _consumersByResource.TryGetValue(resourceType, out list);
 
         return list;
     }

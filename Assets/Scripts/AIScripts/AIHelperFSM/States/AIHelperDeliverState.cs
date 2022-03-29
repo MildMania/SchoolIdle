@@ -23,6 +23,8 @@ public class AIHelperDeliverState : State<EState, ETransition>
     {
         IAIInteractable currentConsumer = default(IAIInteractable);
 
+
+
         //float maxScore = float.MinValue;
 
         //foreach (var consumer in _aiHelper.GetConsumers())
@@ -42,10 +44,10 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
         //}
 
-        // var list = _aiHelper.GetConsumers();
-        // int indx = Random.Range(0, list.Count - 1);
-        //
-        // currentConsumer = list[indx];
+        var list = ConsumerProvider.Instance.GetConsumers(typeof(Paper));
+        int indx = Random.Range(0, list.Count - 1);
+
+        currentConsumer = list[indx];
 
         return currentConsumer;
     }

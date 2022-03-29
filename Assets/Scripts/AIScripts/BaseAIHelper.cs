@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 
 public abstract class
@@ -13,4 +15,5 @@ public abstract class
     where TBaseProducer : BaseProducer<TResource>
     where TResource : IResource
 {
+    [OdinSerialize] protected TResource _tResource;
 }

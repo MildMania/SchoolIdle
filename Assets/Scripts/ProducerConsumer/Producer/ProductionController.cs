@@ -12,7 +12,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 
     protected IEnumerator ProduceRoutine(TResource resource)
     {
-        ProducerProvider.Instance.AddProducer(_producer, _resource);
+        ProducerProvider.Instance.AddProducer(_producer, _resource.GetType());
 
         float currentTime = 0;
 
