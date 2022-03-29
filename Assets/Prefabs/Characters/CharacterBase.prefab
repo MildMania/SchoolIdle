@@ -47,6 +47,7 @@ MonoBehaviour:
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _unloadSpeedUpgradable: {fileID: 7784939741352380009}
+  _attributeCategory: 1
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
 MonoBehaviour:
@@ -942,6 +943,7 @@ MonoBehaviour:
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _unloadSpeedUpgradable: {fileID: 7784939741352380009}
+  _attributeCategory: 1
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3759674038300368354
 GameObject:

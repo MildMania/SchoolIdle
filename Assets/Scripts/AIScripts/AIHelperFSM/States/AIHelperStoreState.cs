@@ -11,7 +11,6 @@ public abstract class AIHelperStoreState : State<EState, ETransition>
     // [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
-
     [SerializeField] protected MMTaskExecutor _onMovementCompletedTasks;
 
     protected IAIInteractable _currentProducer;

@@ -12,6 +12,8 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
     [SerializeField] private Upgradable _unloadSpeedUpgradable;
+
+    [SerializeField] private EAttributeCategory _attributeCategory;
     
     private float _unloadDelay;
 
@@ -43,7 +45,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
 
     private void OnUnloadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
         _unloadDelay = 1 / value;
     }
