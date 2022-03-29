@@ -10,6 +10,8 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
     where TBaseProducer : BaseProducer<TResource>
     where TResource : IResource
 {
+    [SerializeField] protected EAttributeCategory _attributeCategory;
+
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
 
@@ -25,6 +27,9 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
     private float _loadDelay;
 
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
+
+    public Action OnCapacityFull;
+    public Action OnCapacityEmpty;
 
     private void Awake()
     {
@@ -48,7 +53,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
     private void OnLoadCapacityUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
         _loadCapacity = (int)value;
     }
@@ -68,7 +73,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
     private void OnLoadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
         _loadDelay = 1 / value;
     }
@@ -100,7 +105,9 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
             return true;
         }
 
-        return _updatedFormationController.Container.childCount < _loadCapacity;
+        bool result = _updatedFormationController.Container.childCount < _loadCapacity;
+
+        return result;
     }
 
     private IEnumerator LoadRoutine()
@@ -113,6 +120,11 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
             if (currentTime > _loadDelay)
             {
+                if (_updatedFormationController.Container.childCount == 0)
+                    OnCapacityEmpty?.Invoke();
+                else if (_updatedFormationController.Container.childCount == _loadCapacity)
+                    OnCapacityFull?.Invoke();
+
                 if (_producers.Count > 0 && CanLoad())
                 {
                     int index = (int) Random.Range(0, _producers.Count - 0.1f);
