@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using MMFramework.TasksV2;
-
 using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
-
 using Pathfinding;
 
 public class AIHelperStoreState : State<EState, ETransition>
 {
-    [SerializeField] private AIHelper _aiHelper;
+    // [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
 
@@ -38,13 +35,13 @@ public class AIHelperStoreState : State<EState, ETransition>
 
         IAIInteractable currentProducer = default(IAIInteractable);
 
-        foreach (var producer in _aiHelper.GetProducers())
-        {
-            float dist = (producer.GetInteractionPoint() - transform.position).magnitude;
-
-            if (dist < minDist)
-                currentProducer = producer;
-        }
+        // foreach (var producer in _aiHelper.GetProducers())
+        // {
+        //     float dist = (producer.GetInteractionPoint() - transform.position).magnitude;
+        //
+        //     if (dist < minDist)
+        //         currentProducer = producer;
+        // }
 
         return currentProducer;
     }

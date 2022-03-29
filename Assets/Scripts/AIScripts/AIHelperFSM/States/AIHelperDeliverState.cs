@@ -9,7 +9,7 @@ using Pathfinding;
 
 public class AIHelperDeliverState : State<EState, ETransition>
 {
-    [SerializeField] private AIHelper _aiHelper;
+    // [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
     private IAIInteractable _currentConsumer;
@@ -42,10 +42,10 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
         //}
 
-        var list = _aiHelper.GetConsumers();
-        int indx = Random.Range(0, list.Count - 1);
-
-        currentConsumer = list[indx];
+        // var list = _aiHelper.GetConsumers();
+        // int indx = Random.Range(0, list.Count - 1);
+        //
+        // currentConsumer = list[indx];
 
         return currentConsumer;
     }
