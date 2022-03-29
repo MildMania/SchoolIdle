@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: {x: 0, y: 0.2, z: 0}
+  _distance: {x: 0, y: 0.1, z: 0}
   _currentFormationGroupType: 4
 --- !u!1 &637037924593790560
 GameObject:
@@ -1165,7 +1165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5004994985374312861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.3}
+  m_LocalPosition: {x: 0, y: 1, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5982121688373314684}
@@ -1836,6 +1836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d4c23c9ee1498bae2f214e62b15868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinController: {fileID: 6636662945677912223}
 --- !u!114 &5830140167704118968
 MonoBehaviour:
   m_ObjectHideFlags: 0

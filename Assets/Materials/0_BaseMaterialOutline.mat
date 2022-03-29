@@ -137,7 +137,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 1
-    - _OutlineWidth: 10000
+    - _OutlineWidth: 4
     - _OverrideLightmapDir: 0
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -157,7 +157,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 0
+    - _TextureImpact: 1
     - _UnityShadowMode: 0
     - _UnityShadowPower: 0
     - _UnityShadowSharpness: 9
@@ -176,7 +176,7 @@ Material:
     - _FlatRimColor: {r: 0.5583406, g: 0.57758063, b: 0.5149178, a: 1}
     - _FlatSpecularColor: {r: 0.55709803, g: 0.5754717, b: 0.5076095, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _OutlineColor: {r: 1, g: 0.0141509175, b: 0.0141509175, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UnityShadowColor: {r: 0.18867922, g: 0.18778922, b: 0.18778922, a: 1}
   m_BuildTextureStacks: []

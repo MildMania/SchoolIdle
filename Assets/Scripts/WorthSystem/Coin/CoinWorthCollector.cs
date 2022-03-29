@@ -5,12 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(IUserProvider))]
 public class CoinWorthCollector : WorthCollector<CoinWorth>
 {
-    private CoinController _coinController;
-
-    private void Awake()
-    {
-        _coinController = GetComponent<CoinController>();
-    }
+    [SerializeField]  private CoinController _coinController;
 
     private IUserProvider _userProvider;
     public IUserProvider UserProvider
