@@ -3097,6 +3097,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _unlockableGO: {fileID: 1802277204}
+  _closedGO: {fileID: 0}
   _baseCharacterDetector: {fileID: 780530737}
 --- !u!4 &1475885009
 Transform:
@@ -3459,6 +3460,15 @@ MonoBehaviour:
     - Name: _attributeCategory
       Entry: 3
       Data: 0
+    - Name: _onUpgradedTasks
+      Entry: 7
+      Data: 0|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
+    - Name: _taskCarrier
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: OnUpgraded
       Entry: 6
       Data: 
@@ -4555,19 +4565,19 @@ PrefabInstance:
       objectReference: {fileID: 1478224922295848615, guid: d02892223ba417046b2c16319184912b, type: 3}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.150635
+      value: 22.17767
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.5000005
+      value: 1.322331
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8660254
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 1510434928606234310, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 1521634689340133670, guid: d02892223ba417046b2c16319184912b, type: 3}
       propertyPath: _canLoadUnlimited
