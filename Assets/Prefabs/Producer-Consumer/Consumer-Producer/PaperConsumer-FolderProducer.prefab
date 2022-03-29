@@ -1708,6 +1708,10 @@ PrefabInstance:
       value: FolderProducer
       objectReference: {fileID: 0}
     - target: {fileID: 3234277590739869622, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+      propertyPath: _resourceProvider
+      value: 
+      objectReference: {fileID: 7200621567302033796}
+    - target: {fileID: 3234277590739869622, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
       propertyPath: _baseResourceProvider
       value: 
       objectReference: {fileID: 7200621567302033796}

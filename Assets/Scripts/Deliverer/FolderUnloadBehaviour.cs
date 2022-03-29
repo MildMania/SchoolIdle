@@ -9,7 +9,7 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		base.OnAwakeCustomActions();
 		
 		_folderConsumerFovController.OnTargetEnteredFieldOfView += OnConsumerEnteredFieldOfView;
-		_folderConsumerFovController.OnTargetExitedFieldOfView += OnConsumerEnteredFieldOfView;
+		_folderConsumerFovController.OnTargetExitedFieldOfView += OnConsumerExitedFieldOfView;
 	}
 
 	protected override void OnDestroyCustomActions()
@@ -17,13 +17,20 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		base.OnDestroyCustomActions();
 		
 		_folderConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
-		_folderConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerEnteredFieldOfView;
+		_folderConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
 		
 		StopAllCoroutines();
 	}
 
 	public override void UnloadCustomActions(int index)
 	{
+		int lastResourceIndex = _deliverer.GetLastResourceIndex<Folder>();
+
+		if (lastResourceIndex == -1)
+		{
+			return;
+		}
+		
 		//Remove from self
 		Folder folder = (Folder)_deliverer.Resources[_deliverer.Resources.Count - 1];
 		_deliverer.Resources.Remove(folder);
