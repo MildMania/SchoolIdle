@@ -7,7 +7,7 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
     protected override void OnAwakeCustomActions()
     {
         base.OnAwakeCustomActions();
-        
+
         _paperProducerFovController.OnTargetEnteredFieldOfView += OnProducerEnteredFieldOfView;
         _paperProducerFovController.OnTargetExitedFieldOfView += OnProducerExitedFieldOfView;
     }
@@ -15,7 +15,7 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
     protected override void OnDestroyCustomActions()
     {
         base.OnDestroyCustomActions();
-        
+
         _paperProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _paperProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
 
@@ -26,7 +26,7 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
     public override void LoadCustomActions(Paper resource)
     {
         Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
-        resource.Move(targetTransform, _updatedFormationController.Container);
+        resource.Move(targetTransform, _deliverer.Container);
         _deliverer.Resources.Add(resource);
     }
 }

@@ -1,19 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProduceCapacityRequirement : BaseProductionRequirement
 {
     [SerializeField] private int _produceCapacity;
-    [SerializeField] private UpdatedFormationController _updatedFormationController;
-
+    [SerializeField] private Transform _container;
     private int _producedCount;
-    
+
     public override bool IsProductionRequirementMet()
     {
-        _producedCount = _updatedFormationController.Container.childCount;
-        
+        _producedCount = _container.GetComponentsInChildren<IResource>().Length;
+
         return _producedCount < _produceCapacity;
     }
 

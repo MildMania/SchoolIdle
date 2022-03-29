@@ -12,32 +12,29 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-
     [SerializeField] private bool _canLoadUnlimited;
 
-    [HideIf("_canLoadUnlimited")]
-    [SerializeField] private Upgradable _loadCapacityUpgradable;
-    
+    [HideIf("_canLoadUnlimited")] [SerializeField]
+    private Upgradable _loadCapacityUpgradable;
+
     [SerializeField] private Upgradable _loadSpeedUpgradable;
 
     private int _loadCapacity;
-    
+
     private float _loadDelay;
 
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 
     private void Awake()
     {
-
         if (!_canLoadUnlimited)
         {
             _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
 
         _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
-        
-        OnAwakeCustomActions();
 
+        OnAwakeCustomActions();
     }
 
     protected virtual void OnAwakeCustomActions()
@@ -46,9 +43,10 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
     private void OnLoadCapacityUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+        float value =
+            GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
 
-        _loadCapacity = (int)value;
+        _loadCapacity = (int) value;
     }
 
     private void OnDestroy()
@@ -57,15 +55,16 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
         {
             _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
         }
-        
+
         _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
-        
+
         OnDestroyCustomActions();
     }
 
     private void OnLoadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
+        float value =
+            GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CHARACTER, upgradableTrackData);
 
         _loadDelay = 1 / value;
     }
@@ -97,7 +96,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
             return true;
         }
 
-        return _updatedFormationController.Container.childCount < _loadCapacity;
+        return _deliverer.Container.childCount < _loadCapacity;
     }
 
     private IEnumerator LoadRoutine()

@@ -4,15 +4,15 @@ public class MoneyProducer : BaseProducer<Money>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
 
-    public override Money ProduceCustomActions(Money resource)
+    public override Money ProduceCustomActions(Money folder)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
 
-        Money clonedMoneyProducible = Instantiate(resource, resource.transform.position, resource.transform.rotation);
+        Money clonedMoney = Instantiate(folder, folder.transform.position, folder.transform.rotation);
 
-        clonedMoneyProducible.Move(targetTransform, _updatedFormationController.Container);
+        clonedMoney.Move(targetTransform, _resourceProvider.ResourceContainer);
 
-        return clonedMoneyProducible;
+        return clonedMoney;
     }
 
     protected override void TryRemoveAndGetLastProducibleCustomActions()

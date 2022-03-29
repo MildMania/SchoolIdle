@@ -30,11 +30,11 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		_updatedFormationController.RemoveAndGetLastTransform();
 
 		//Add To Consumer
-		FolderConsumer paperConsumer = _consumers[index];
+		FolderConsumer folderConsumer = _consumers[index];
 		UpdatedFormationController consumerFormationController =
-			paperConsumer.GetComponentInChildren<UpdatedFormationController>();
+			folderConsumer.GetComponentInChildren<UpdatedFormationController>();
 		Transform targetTransform = consumerFormationController.GetLastTargetTransform(folder.transform);
-		folder.Move(targetTransform, consumerFormationController.Container);
-		paperConsumer.ResourceProvider.Resources.Add(folder);
+		folder.Move(targetTransform, folderConsumer.ResourceProvider.ResourceContainer);
+		folderConsumer.ResourceProvider.Resources.Add(folder);
 	}
 }
