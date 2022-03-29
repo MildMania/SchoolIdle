@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: {x: 0, y: 0.1, z: 0}
+  _distance: {x: 0, y: 0.15, z: 0}
   _currentFormationGroupType: 4
 --- !u!1 &637037924593790560
 GameObject:

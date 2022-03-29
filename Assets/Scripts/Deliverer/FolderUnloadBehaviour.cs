@@ -32,16 +32,23 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		}
 		
 		//Remove from self
-		Folder folder = (Folder)_deliverer.Resources[_deliverer.Resources.Count - 1];
+		Folder folder = (Folder)_deliverer.Resources[lastResourceIndex];
 		_deliverer.Resources.Remove(folder);
-		_updatedFormationController.RemoveAndGetLastTransform();
-
+		_updatedFormationController.RemoveCustomResourceTransform(lastResourceIndex);
+		
 		//Add To Consumer
 		FolderConsumer folderConsumer = _consumers[index];
 		UpdatedFormationController consumerFormationController =
 			folderConsumer.GetComponentInChildren<UpdatedFormationController>();
 		Transform targetTransform = consumerFormationController.GetLastTargetTransform(folder.transform);
+		folder.OnMoveRoutineFinished += OnMoveRoutineFinished;
 		folder.Move(targetTransform, folderConsumer.ResourceProvider.ResourceContainer);
 		folderConsumer.ResourceProvider.Resources.Add(folder);
+	}
+
+	private void OnMoveRoutineFinished(IResource folder)
+	{
+		folder.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+		_updatedFormationController.UpdateResourcesPosition(_deliverer.Container);
 	}
 }
