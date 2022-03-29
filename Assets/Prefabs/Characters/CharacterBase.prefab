@@ -625,7 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDebugEnabled: 1
   _shapeType: 0
-  _fovRadius: 3
+  _fovRadius: 0.5
   _fovHeight: 0
   _fovAngle: 360
   _targetMask:
