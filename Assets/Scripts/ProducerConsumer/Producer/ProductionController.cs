@@ -28,7 +28,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
                     //Consider waiting all resources to be consumed by listening onConsumed Event!
                     void onConsumedCallback()
                     {
-                        if (++callbackCount == _productionRequirements.Length)
+                        if (++callbackCount >= _productionRequirements.Length)
                         {
                             _producer.Produce(resource);
                         }
