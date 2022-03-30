@@ -23,7 +23,7 @@ public class ClassroomController : SerializedMonoBehaviour
             classroomUpgradeHandler.UpgradeByLevel(upgradableTrackData.Level);
         }
         
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(EAttributeCategory.CLASSROOM_1, upgradableTrackData);
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue( _classroomUpgradable.AttributeCategory, upgradableTrackData);
 
         var productionControllers = GetComponentsInChildren<ProductionController<MoneyProducer, Money>>();
 
