@@ -9,7 +9,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
     [SerializeField] protected TResource _resource;
     [SerializeField] private BaseProductionRequirement[] _productionRequirements;
     
-    private float _productionDelay;
+    [SerializeField] private float _productionDelay;
 
     public void UpdateProductionDelay(float value)
     {

@@ -1120,9 +1120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _producer: {fileID: 128542863719392401}
   _resource: {fileID: 2779858808375289585}
-  _productionDelay: 0.3
   _productionRequirements:
   - {fileID: 1176234672}
+  _productionDelay: 1
 --- !u!1 &128542863875085275
 GameObject:
   m_ObjectHideFlags: 0
