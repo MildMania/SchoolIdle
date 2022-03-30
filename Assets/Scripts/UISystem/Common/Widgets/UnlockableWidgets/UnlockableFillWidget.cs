@@ -20,7 +20,7 @@ public class UnlockableFillWidget : FillBarWidget
 		base.AwakeCustomActions();
 	}
 
-	private void OnTryUnlock(UnlockableTrackData unlockableTrackData)
+	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData)
 	{
 		float requirementCoin = _unlockableObject.Unlockable.GetRequirementCoin();
 		float unlockCount = unlockableTrackData.CurrentCount;
@@ -43,7 +43,7 @@ public class UnlockableFillWidget : FillBarWidget
 
 	private bool TryUpdateBar(float normVal)
 	{
-		DOTween.To(() => _image.fillAmount, x => _image.fillAmount = x, normVal, 0.2f);
+		DOTween.To(() => _image.fillAmount, x => _image.fillAmount = x, normVal, 1f);
 		
 		return true;
 	}

@@ -1,4 +1,5 @@
-﻿using MMFramework.MMUI;
+﻿using DG.Tweening;
+using MMFramework.MMUI;
 using TMPro;
 using UnityEngine;
 using UnityWeld.Binding;
@@ -27,12 +28,29 @@ public class UnlockableTextWidget : WidgetBase
 		base.OnDestroyCustomActions();
 	}
 
-	private void OnTryUnlock(UnlockableTrackData unlockableTrackData)
+	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData)
 	{
 		int totalRequirement = _unlockableObject.Unlockable.GetRequirementCoin();
-		_targetText.text = _preFix + (totalRequirement - unlockableTrackData.CurrentCount);
+		TryUpdateText(oldValue, unlockableTrackData.CurrentCount,totalRequirement);
 	}
 
+	private bool TryUpdateText(int oldValue, int currentValue,int totalRequirement)
+	{
+		int target = totalRequirement - currentValue;
+		if (oldValue == target)
+		{
+			return false;
+		}
+
+		DOTween.To(() => oldValue, x => oldValue = x, target, 1f)
+			.OnUpdate(() =>
+			{
+				_targetText.text = _preFix + oldValue;
+			});
+		
+		return true;
+	}
+	
 	private void OnUnlockableInit(UnlockableTrackData unlockableTrackData)
 	{
 		int totalRequirement = _unlockableObject.Unlockable.GetRequirementCoin();
