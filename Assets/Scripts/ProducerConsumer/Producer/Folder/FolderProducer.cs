@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class FolderProducer : BaseProducer<Folder>, IResourceProvider
+public class FolderProducer : BaseProducer<Folder>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
 

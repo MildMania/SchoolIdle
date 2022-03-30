@@ -1,26 +1,18 @@
 using UnityEngine;
 
-<<<<<<< HEAD
-public abstract class BaseProducer<TResource> : MonoBehaviour, IAIInteractable, IProducer<TResource>
-    where TResource : IResource
+public abstract class BaseProducer : MonoBehaviour, IAIInteractable
 {
-    [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
     [SerializeField] protected Transform _interactionPoint;
 
     public Vector3 GetInteractionPoint()
     {
         return _interactionPoint.position;
     }
-=======
-public abstract class BaseProducer : MonoBehaviour
-{
-    
 }
 public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _resourceProvider;
->>>>>>> develop
 
     public void Produce(TResource resource)
     {

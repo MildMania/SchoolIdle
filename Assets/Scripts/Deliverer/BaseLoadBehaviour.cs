@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -8,12 +9,14 @@ using Random = UnityEngine.Random;
 public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 {
     [SerializeField] protected EAttributeCategory _attributeCategory;
-
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
     [SerializeField] protected bool _canLoadUnlimited;
 
-    [HideIf("_canLoadUnlimited")] [SerializeField]
+    [SerializeField] protected Transform _container;
+
+    [HideIf("_canLoadUnlimited")]
+    [SerializeField]
     protected Upgradable _loadCapacityUpgradable;
 
     [SerializeField] protected Upgradable _loadSpeedUpgradable;
@@ -21,6 +24,9 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     protected int _loadCapacity;
 
     protected float _loadDelay;
+
+    public Action OnCapacityEmpty;
+    public Action OnCapacityFull;
 }
 
 public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
@@ -29,20 +35,15 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 {
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 
-    public Action OnCapacityFull;
-    public Action OnCapacityEmpty;
-
     private void Awake()
     {
         if (!_canLoadUnlimited)
         {
-            if (_loadCapacityUpgradable != null)
-                _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
+            _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
 
-        if(_loadSpeedUpgradable != null)
-            _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
-        
+        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
+
         OnAwakeCustomActions();
     }
 
@@ -52,27 +53,28 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private void OnLoadCapacityUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
+        float value =
+            GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
-        _loadCapacity = (int) value;
+        _loadCapacity = (int)value;
     }
 
     private void OnDestroy()
     {
         if (!_canLoadUnlimited)
         {
-            if (_loadCapacityUpgradable != null)
-                _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
+            _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
         }
-        if (_loadSpeedUpgradable != null)
-            _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
-        
+
+        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
+
         OnDestroyCustomActions();
     }
 
     private void OnLoadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
+        float value =
+            GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
         _loadDelay = 1 / value;
     }
@@ -104,9 +106,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
             return true;
         }
 
-        bool result = _updatedFormationController.Container.childCount < _loadCapacity;
-
-        return result;
+        return _deliverer.Container.childCount < _loadCapacity;
     }
 
     private IEnumerator LoadRoutine()
@@ -119,14 +119,14 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
             if (currentTime > _loadDelay)
             {
-                if (_updatedFormationController.Container.childCount == 0)
+                if (_container.childCount == 0)
                     OnCapacityEmpty?.Invoke();
-                else if (_updatedFormationController.Container.childCount == _loadCapacity)
+                else if (_container.childCount == _loadCapacity)
                     OnCapacityFull?.Invoke();
 
                 if (_producers.Count > 0 && CanLoad())
                 {
-                    int index = (int) Random.Range(0, _producers.Count - 0.1f);
+                    int index = (int)Random.Range(0, _producers.Count - 0.1f);
 
                     TResource resource = default(TResource);
                     if (_producers[index].TryRemoveAndGetLastResource(ref resource))

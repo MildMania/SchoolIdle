@@ -274,16 +274,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: OnCapacityFull
+    - Name: OnCapacityEmpty
       Entry: 6
       Data: 
-    - Name: OnCapacityEmpty
+    - Name: OnCapacityFull
       Entry: 6
       Data: 
   _attributeCategory: 2
   _updatedFormationController: {fileID: 4630251203491965705}
   _deliverer: {fileID: 5195358094372504678}
   _canLoadUnlimited: 0
+  _container: {fileID: 4274420019230216113}
   _loadCapacityUpgradable: {fileID: 4093049728104930547}
   _loadSpeedUpgradable: {fileID: 7884015824009175898}
   _folderProducerFovController: {fileID: 3419851049315108552}
@@ -375,6 +376,9 @@ MonoBehaviour:
     - Name: _attributeCategory
       Entry: 3
       Data: 2
+    - Name: _onUpgradedTasks
+      Entry: 6
+      Data: 
     - Name: OnUpgraded
       Entry: 6
       Data: 
@@ -844,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 4630251203491965705}
+  Container: {fileID: 4274420019230216113}
 --- !u!1 &3756806021573374637
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +940,15 @@ MonoBehaviour:
     - Name: _attributeCategory
       Entry: 3
       Data: 2
+    - Name: _onUpgradedTasks
+      Entry: 7
+      Data: 0|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
+    - Name: _taskCarrier
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: OnUpgraded
       Entry: 6
       Data: 
@@ -1417,6 +1431,9 @@ MonoBehaviour:
     - Name: _attributeCategory
       Entry: 3
       Data: 2
+    - Name: _onUpgradedTasks
+      Entry: 6
+      Data: 
     - Name: OnUpgraded
       Entry: 6
       Data: 
@@ -1571,7 +1588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 4274420019230216113}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 4
 --- !u!1 &8976248295666152637
@@ -1627,16 +1643,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: OnCapacityFull
+    - Name: OnCapacityEmpty
       Entry: 6
       Data: 
-    - Name: OnCapacityEmpty
+    - Name: OnCapacityFull
       Entry: 6
       Data: 
   _attributeCategory: 2
   _updatedFormationController: {fileID: 4630251203491965705}
   _deliverer: {fileID: 5195358094372504678}
   _canLoadUnlimited: 0
+  _container: {fileID: 4274420019230216113}
   _loadCapacityUpgradable: {fileID: 4093049728104930547}
   _loadSpeedUpgradable: {fileID: 7884015824009175898}
   _paperProducerFovController: {fileID: 4918007575379483990}

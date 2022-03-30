@@ -2,9 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class BaseConsumer : MonoBehaviour
+public abstract class BaseConsumer : MonoBehaviour, IAIInteractable
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
+    [SerializeField] protected Transform _interactionPoint;
+
+    public Vector3 GetInteractionPoint()
+    {
+        return _interactionPoint.position;
+    }
 }
 
 public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResource>
@@ -29,8 +35,5 @@ public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResourc
 
     public abstract void ConsumeCustomActions(TResource resource);
 
-    public Vector3 GetInteractionPoint()
-    {
-        return _interactionPoint.position;
-    }
+
 }

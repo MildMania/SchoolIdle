@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MMFramework.Tasks.Examples;
 using UnityEngine;
 
@@ -7,14 +7,11 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
 {
     [SerializeField] protected TConsumer _consumer;
     [SerializeField] private BaseResourceProvider<TResource> _resourceProvider;
-<<<<<<< HEAD
-=======
     public bool IsAvailable { get; set; } = true;
 
     private int _consumptionCount;
     private Action _onConsumptionFinished;
 
->>>>>>> develop
 
     public void StartConsumption(int amount, Action onConsumedCallback)
     {

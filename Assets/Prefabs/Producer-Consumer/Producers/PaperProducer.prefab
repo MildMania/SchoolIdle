@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _produceCapacity: 10
-  _updatedFormationController: {fileID: 128542864502475836}
+  _resourceProviders:
+  - {fileID: 128542862997628849}
 --- !u!1 &128542862884116566
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84248d9ba4d94e3faea1a0be15b6d483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ResourceContainer: {fileID: 0}
 --- !u!1 &128542863006408609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,8 +1103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df4ac712264454d8b29e774d76cf8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseResourceProvider: {fileID: 128542862997628849}
   _interactionPoint: {fileID: 625187678390357069}
+  _resourceProvider: {fileID: 128542862997628849}
   _updatedFormationController: {fileID: 128542864502475836}
 --- !u!114 &128542863719392402
 MonoBehaviour:
@@ -1344,7 +1346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 128542863875085274}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 3
 --- !u!1 &128542864853180946

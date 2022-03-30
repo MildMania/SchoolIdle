@@ -70,16 +70,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: OnCapacityFull
+    - Name: OnCapacityEmpty
       Entry: 6
       Data: 
-    - Name: OnCapacityEmpty
+    - Name: OnCapacityFull
       Entry: 6
       Data: 
   _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
+  _container: {fileID: 1360490276735447177}
   _loadCapacityUpgradable: {fileID: 2029227116864571186}
   _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _folderProducerFovController: {fileID: 1043138689413498247}
@@ -933,16 +934,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: OnCapacityFull
+    - Name: OnCapacityEmpty
       Entry: 6
       Data: 
-    - Name: OnCapacityEmpty
+    - Name: OnCapacityFull
       Entry: 6
       Data: 
   _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
+  _container: {fileID: 1360490276735447177}
   _loadCapacityUpgradable: {fileID: 2029227116864571186}
   _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _paperProducerFovController: {fileID: 3542385565636418112}
@@ -2051,16 +2053,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: OnCapacityFull
+    - Name: OnCapacityEmpty
       Entry: 6
       Data: 
-    - Name: OnCapacityEmpty
+    - Name: OnCapacityFull
       Entry: 6
       Data: 
   _attributeCategory: 1
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 1
+  _container: {fileID: 1360490276735447177}
   _loadCapacityUpgradable: {fileID: 0}
   _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _coinWorthCollector: {fileID: 2634399202852726416}
