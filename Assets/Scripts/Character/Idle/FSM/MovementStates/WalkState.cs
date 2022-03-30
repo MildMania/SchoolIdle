@@ -18,6 +18,9 @@ public class WalkState : State<EState, EState>
 	private float _walkSpeed;
 	public IMovementExecutor MovementExecutor => _movementExecutor as IMovementExecutor;
 
+	[SerializeField] private CharacterAnimationController _characterAnimationController;
+
+
 	private void Awake()
 	{
 		_characterSpeedUpgradable.OnUpgraded += OnSpeedUpgraded;
@@ -32,6 +35,8 @@ public class WalkState : State<EState, EState>
 	{
 		RegisterToMovementCommander();
 		base.OnEnterCustomActions();
+		
+		_characterAnimationController.PlayAnimation(ECharacterAnimation.Walk);
 	}
 
 	protected override void OnExitCustomActions()

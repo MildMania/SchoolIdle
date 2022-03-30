@@ -18,6 +18,8 @@ public abstract class BaseAnimationController<TAnimation> : MonoBehaviour where 
     [SerializeField] private List<AnimationInfo> _animationInfo = null;
     [HideInInspector] private TAnimation CurrentAnimationType { get; set; }
 
+    public Animator Animator => _animator;
+
 
     public void PlayAnimation(TAnimation animationType, float transitionDuration = 0.1f,
         float normalizedAnimTime = 0, float fixedTimeOffset = 0)

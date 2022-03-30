@@ -12,6 +12,9 @@ public class MovementIdleState : State<EState, EState>
 
 	[SerializeField] private FovBasedUpgradeAreaDetector _fovBasedUpgradeAreaDetector;
 
+	[SerializeField] private CharacterAnimationController _characterAnimationController;
+	[SerializeField] private Deliverer _deliverer;
+
 	private IEnumerator _checkGroundRoutine;
 	
 	public Action OnIdleStateEnter { get; set; }
@@ -23,16 +26,27 @@ public class MovementIdleState : State<EState, EState>
 	}
 
 
+
+
 	private void Awake()
 	{
 		_fovBasedUpgradeAreaDetector.OnDetected += OnUpgradeAreaDetected;
 		_fovBasedUpgradeAreaDetector.OnEnded += OnUpgradeAreaEnded;
+
+		_deliverer.OnContainerEmpty += OnContainerEmpty;
+	}
+
+	private void OnContainerEmpty(bool isContainerEmpty)
+	{
+		_characterAnimationController.Animator.SetLayerWeight(1, isContainerEmpty ? 0f : 1f);
 	}
 
 	private void OnDestroy()
 	{
 		_fovBasedUpgradeAreaDetector.OnDetected -= OnUpgradeAreaDetected;
 		_fovBasedUpgradeAreaDetector.OnEnded -= OnUpgradeAreaEnded;
+		
+		_deliverer.OnContainerEmpty -= OnContainerEmpty;
 	}
 
 	private void OnUpgradeAreaDetected(UpgradeArea upgradeArea)
@@ -52,10 +66,10 @@ public class MovementIdleState : State<EState, EState>
 		
 		_checkGroundRoutine = CheckGroundProgress();
 		StartCoroutine(_checkGroundRoutine);
-		
-		
 
 		base.OnEnterCustomActions();
+		
+		_characterAnimationController.PlayAnimation(ECharacterAnimation.Idle);
 	}
 
 	protected override void OnExitCustomActions()

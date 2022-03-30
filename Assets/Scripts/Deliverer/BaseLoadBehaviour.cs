@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -19,6 +20,7 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     protected int _loadCapacity;
 
     protected float _loadDelay;
+    
 }
 
 public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
@@ -26,7 +28,8 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
     where TResource : IResource
 {
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
-
+    
+    
     private void Awake()
     {
         if (!_canLoadUnlimited)
@@ -119,6 +122,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
                     if (_producers[index].TryRemoveAndGetLastResource(ref resource))
                     {
                         LoadCustomActions(resource);
+                        _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
                 }
 

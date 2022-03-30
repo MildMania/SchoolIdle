@@ -81,6 +81,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
                     if (_deliverer.Resources.Count > 0)
                     {
                         UnloadCustomActions(index);
+                        _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
                 }
 
