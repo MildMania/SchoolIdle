@@ -1,14 +1,11 @@
 using UnityEngine;
 
-public abstract class BaseProducer : MonoBehaviour, IAIInteractable
+public abstract class BaseProducer : MonoBehaviour
 {
-    [SerializeField] protected Transform _interactionPoint;
-
-    public Vector3 GetInteractionPoint()
-    {
-        return _interactionPoint.position;
-    }
+    [SerializeField] protected AIInteraction _aiInteraction;
+    public AIInteraction AiInteraction => _aiInteraction;
 }
+
 public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResource>
     where TResource : IResource
 {
@@ -37,4 +34,9 @@ public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResourc
 
 
     protected abstract void TryRemoveAndGetLastProducibleCustomActions();
+
+    public bool IsAiInteractible()
+    {
+        return _aiInteraction != null;
+    }
 }

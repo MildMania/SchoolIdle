@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 6561441855916908140}
   - component: {fileID: 3234277590739869622}
   - component: {fileID: 3234277590739869621}
+  - component: {fileID: 2348122272726328631}
   m_Layer: 14
   m_Name: FolderProducer
   m_TagString: Untagged
@@ -265,8 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46892c8072b4c838cc2e2b1fe9cf60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseResourceProvider: {fileID: 0}
-  _interactionPoint: {fileID: 740543538124632216}
+  _aiInteraction: {fileID: 2348122272726328631}
+  _resourceProvider: {fileID: 0}
   _updatedFormationController: {fileID: 8284780697747411043}
 --- !u!114 &3234277590739869621
 MonoBehaviour:
@@ -285,6 +286,19 @@ MonoBehaviour:
   _productionDelay: 1
   _productionRequirements:
   - {fileID: 2596791438187707643}
+--- !u!114 &2348122272726328631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234277590739869620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 740543538124632216}
 --- !u!1 &3234277591191653148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,7 +1137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ae9c15f9164140afd0608c1be2fa75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 8284780697770554628}
   _distance: {x: 0, y: 0.2, z: 0}
   _currentFormationGroupType: 3
 --- !u!1 &7614755441356187648

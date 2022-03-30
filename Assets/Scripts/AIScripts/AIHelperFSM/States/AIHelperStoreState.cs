@@ -13,7 +13,7 @@ public class AIHelperStoreState : State<EState, ETransition>
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
     [SerializeField] protected MMTaskExecutor _onMovementCompletedTasks;
 
-    protected IAIInteractable _currentProducer;
+    protected BaseProducer _currentProducer;
 
     protected override EState GetStateID()
     {
@@ -25,7 +25,7 @@ public class AIHelperStoreState : State<EState, ETransition>
         base.OnEnterCustomActions();
 
         _currentProducer = SelectProducer();
-        MoveToInteractionPoint(_currentProducer.GetInteractionPoint());
+        MoveToInteractionPoint(_currentProducer.AiInteraction.GetInteractionPoint());
 
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull += OnCapacityFull;
     }
@@ -37,16 +37,16 @@ public class AIHelperStoreState : State<EState, ETransition>
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull -= OnCapacityFull;
     }
 
-    private IAIInteractable SelectProducer()
+    private BaseProducer SelectProducer()
     {
         float minDist = float.MaxValue;
 
-        IAIInteractable currentProducer = default(IAIInteractable);
-        List<IAIInteractable> allProducers = GetProducers();
+        BaseProducer currentProducer = default(BaseProducer);
+        List<BaseProducer> allProducers = GetProducers();
 
         foreach (var producer in allProducers)
         {
-            float dist = (producer.GetInteractionPoint() - transform.position).magnitude;
+            float dist = (producer.AiInteraction.GetInteractionPoint() - transform.position).magnitude;
 
             if (dist < minDist)
                 currentProducer = producer;
@@ -55,7 +55,7 @@ public class AIHelperStoreState : State<EState, ETransition>
         return currentProducer;
     }
 
-    protected List<IAIInteractable> GetProducers()
+    protected List<BaseProducer> GetProducers()
     {
         return ProducerProvider.Instance.GetProducers(_aiHelper.Resource.GetType());
     }

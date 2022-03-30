@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ProducerProvider : Singleton<ProducerProvider>
 {
-    Dictionary<System.Type, List<IAIInteractable>> _producersByResource =
-        new Dictionary<System.Type, List<IAIInteractable>>();
+    Dictionary<System.Type, List<BaseProducer>> _producersByResource =
+        new Dictionary<System.Type, List<BaseProducer>>();
 
     private void Awake()
     {
@@ -17,9 +17,9 @@ public class ProducerProvider : Singleton<ProducerProvider>
 
     }
 
-    public void AddProducer(IAIInteractable producer, System.Type resourceType)
+    public void AddProducer(BaseProducer producer, System.Type resourceType)
     {
-        List<IAIInteractable> list;
+        List<BaseProducer> list;
         System.Type resType = resourceType;
 
         _producersByResource.TryGetValue(resType, out list);
@@ -30,16 +30,16 @@ public class ProducerProvider : Singleton<ProducerProvider>
         }
         else
         {
-            _producersByResource[resType] = new List<IAIInteractable>();
+            _producersByResource[resType] = new List<BaseProducer>();
             _producersByResource[resType].Add(producer);
         }
 
     }
 
 
-    public List<IAIInteractable> GetProducers(System.Type resourceType)
+    public List<BaseProducer> GetProducers(System.Type resourceType)
     {
-        List<IAIInteractable> list;
+        List<BaseProducer> list;
         _producersByResource.TryGetValue(resourceType, out list);
 
         return list;

@@ -2,6 +2,9 @@
 {
     void Awake()
     {
-        ConsumerProvider.Instance.AddConsumer(_consumer, typeof(Paper));
+        if (_consumer.IsAiInteractible())
+        {
+            ConsumerProvider.Instance.AddConsumer(_consumer, typeof(Paper));
+        }
     }
 }

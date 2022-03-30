@@ -4,7 +4,7 @@ using UnityEngine;
 
 using MMFramework.Utilities;
 
-public class Consumer_Test : MonoBehaviour, IAIInteractable
+public class Consumer_Test : MonoBehaviour
 {
     [SerializeField] private float _consumeRate;
     [SerializeField] private int _consumeAmount;

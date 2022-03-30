@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ConsumerProvider : Singleton<ConsumerProvider>
 {
-    Dictionary<System.Type, List<IAIInteractable>> _consumersByResource =
-        new Dictionary<System.Type, List<IAIInteractable>>();
+    Dictionary<System.Type, List<BaseConsumer>> _consumersByResource =
+        new Dictionary<System.Type, List<BaseConsumer>>();
 
     private void Awake()
     {
@@ -17,9 +17,9 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
 
     }
 
-    public void AddConsumer(IAIInteractable consumer, System.Type resourceType)
+    public void AddConsumer(BaseConsumer consumer, System.Type resourceType)
     {
-        List<IAIInteractable> list;
+        List<BaseConsumer> list;
         System.Type resType = resourceType;
 
         _consumersByResource.TryGetValue(resType, out list);
@@ -30,14 +30,14 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
         }
         else
         {
-            _consumersByResource[resType] = new List<IAIInteractable>();
+            _consumersByResource[resType] = new List<BaseConsumer>();
             _consumersByResource[resType].Add(consumer);
         }
     }
 
-    public List<IAIInteractable> GetConsumers(System.Type resourceType)
+    public List<BaseConsumer> GetConsumers(System.Type resourceType)
     {
-        List<IAIInteractable> list;
+        List<BaseConsumer> list;
         _consumersByResource.TryGetValue(resourceType, out list);
 
         return list;

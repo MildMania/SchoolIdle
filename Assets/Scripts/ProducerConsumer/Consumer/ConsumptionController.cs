@@ -2,6 +2,11 @@ using System;
 using MMFramework.Tasks.Examples;
 using UnityEngine;
 
+//public class ConsumptionController : MonoBehaviour
+//{
+
+//}
+
 public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where TConsumer : BaseConsumer<TResource>
     where TResource : IResource
 {

@@ -750,6 +750,7 @@ GameObject:
   - component: {fileID: 7200621567833872713}
   - component: {fileID: 7200621567328538184}
   - component: {fileID: 7200621567833872712}
+  - component: {fileID: 2134797717107222006}
   m_Layer: 10
   m_Name: PaperConsumer
   m_TagString: Untagged
@@ -800,9 +801,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f011f026b444fb05f4ac9f0fc17ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseResourceProvider: {fileID: 7200621566613189951}
   _updatedFormationController: {fileID: 7200621567421375389}
-  _interactionPoint: {fileID: 3553723653269701831}
+  _aiInteraction: {fileID: 2134797717107222006}
+  _baseResourceProvider: {fileID: 7200621566613189951}
 --- !u!114 &7200621567328538184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +831,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.69, y: 1.75, z: 2.1372776}
   m_Center: {x: 0, y: 0, z: -1.0036688}
+--- !u!114 &2134797717107222006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200621567833872714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 3553723653269701831}
 --- !u!1 &7200621567856299144
 GameObject:
   m_ObjectHideFlags: 0

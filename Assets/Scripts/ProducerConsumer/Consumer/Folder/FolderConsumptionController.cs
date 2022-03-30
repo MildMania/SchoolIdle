@@ -2,6 +2,9 @@
 {
     void Awake()
     {
-        ConsumerProvider.Instance.AddConsumer(_consumer, typeof(Folder));
+        if (_consumer.IsAiInteractible())
+        {
+            ConsumerProvider.Instance.AddConsumer(_consumer, typeof(Folder));
+        }
     }
 }

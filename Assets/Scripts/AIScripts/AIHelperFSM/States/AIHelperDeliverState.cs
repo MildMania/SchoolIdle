@@ -12,16 +12,16 @@ public class AIHelperDeliverState : State<EState, ETransition>
     [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
-    private IAIInteractable _currentConsumer;
+    private BaseConsumer _currentConsumer;
 
     protected override EState GetStateID()
     {
         return EState.Deliver;
     }
 
-    private IAIInteractable SelectConsumer()
+    private BaseConsumer SelectConsumer()
     {
-        IAIInteractable currentConsumer = default(IAIInteractable);
+        BaseConsumer currentConsumer = default(BaseConsumer);
 
         var list = GetConsumers();
         int indx = Random.Range(0, list.Count - 1);
@@ -31,7 +31,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
         return currentConsumer;
     }
 
-    protected List<IAIInteractable> GetConsumers()
+    protected List<BaseConsumer> GetConsumers()
     {
         return ConsumerProvider.Instance.GetConsumers(_aiHelper.Resource.GetType());
     }
@@ -41,7 +41,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
         base.OnEnterCustomActions();
 
         _currentConsumer = SelectConsumer();
-        MoveToInteractionPoint(_currentConsumer.GetInteractionPoint());
+        MoveToInteractionPoint(_currentConsumer.AiInteraction.GetInteractionPoint());
 
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty += OnCapacityEmpty;
     }

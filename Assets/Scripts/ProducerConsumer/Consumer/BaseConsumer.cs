@@ -2,15 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public abstract class BaseConsumer : MonoBehaviour, IAIInteractable
+public abstract class BaseConsumer : MonoBehaviour
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
-    [SerializeField] protected Transform _interactionPoint;
 
-    public Vector3 GetInteractionPoint()
-    {
-        return _interactionPoint.position;
-    }
+    [SerializeField] protected AIInteraction _aiInteraction;
+    public AIInteraction AiInteraction => _aiInteraction;
 }
 
 public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResource>
@@ -35,5 +32,8 @@ public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResourc
 
     public abstract void ConsumeCustomActions(TResource resource);
 
-
+    public bool IsAiInteractible()
+    {
+        return _aiInteraction != null;
+    }
 }

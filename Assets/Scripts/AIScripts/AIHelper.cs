@@ -32,12 +32,12 @@ public class AIHelper : SerializedMonoBehaviour
         }
     }
 
-    public List<IAIInteractable> GetConsumers()
+    public List<BaseConsumer> GetConsumers()
     {
         return ConsumerProvider.Instance.GetConsumers(_resource.GetType());
     }
 
-    public List<IAIInteractable> GetProducers()
+    public List<BaseProducer> GetProducers()
     {
         return ProducerProvider.Instance.GetProducers(_resource.GetType());
     }

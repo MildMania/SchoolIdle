@@ -1037,6 +1037,7 @@ GameObject:
   - component: {fileID: 128542863719392400}
   - component: {fileID: 128542863719392401}
   - component: {fileID: 128542863719392402}
+  - component: {fileID: 4652880170874033480}
   m_Layer: 9
   m_Name: PaperProducer
   m_TagString: Untagged
@@ -1103,7 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df4ac712264454d8b29e774d76cf8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionPoint: {fileID: 625187678390357069}
+  _aiInteraction: {fileID: 4652880170874033480}
   _resourceProvider: {fileID: 128542862997628849}
   _updatedFormationController: {fileID: 128542864502475836}
 --- !u!114 &128542863719392402
@@ -1123,6 +1124,19 @@ MonoBehaviour:
   _productionDelay: 0.3
   _productionRequirements:
   - {fileID: 1176234672}
+--- !u!114 &4652880170874033480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128542863719392403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionPoint: {fileID: 625187678390357069}
 --- !u!1 &128542863875085275
 GameObject:
   m_ObjectHideFlags: 0

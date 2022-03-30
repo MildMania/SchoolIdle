@@ -4,7 +4,7 @@ using UnityEngine;
 
 using MMFramework.Utilities;
 
-public class Producer_Test : MonoBehaviour, IAIInteractable
+public class Producer_Test : MonoBehaviour
 {
     [SerializeField] private float _productionRate;
     [SerializeField] private int _productionAmount;
