@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MMFramework.TasksV2;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -8,6 +9,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 {
 	[OdinSerialize] protected EUpgradable _upgradableType;
 	[OdinSerialize] private EAttributeCategory _attributeCategory;
+	[OdinSerialize] private MMTaskExecutor _onUpgradedTasks;
 
 	protected IRequirement[] RequirementData
 		= Array.Empty<IRequirement>();
@@ -98,6 +100,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 			Debug.Log("UPGRADE YAPILDI.");
 				
 			OnUpgraded?.Invoke(_upgradableTrackData);
+			_onUpgradedTasks?.Execute(this);
 		}
 	}
 

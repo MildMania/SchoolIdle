@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -6,26 +5,28 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMonoBehaviour
-    where TBaseProducer : BaseProducer<TResource>
-    where TResource : IResource
+public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 {
     [SerializeField] protected EAttributeCategory _attributeCategory;
 
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
+    [SerializeField] protected bool _canLoadUnlimited;
 
-    [SerializeField] private bool _canLoadUnlimited;
+    [HideIf("_canLoadUnlimited")] [SerializeField]
+    protected Upgradable _loadCapacityUpgradable;
 
-    [HideIf("_canLoadUnlimited")]
-    [SerializeField] private Upgradable _loadCapacityUpgradable;
-    
-    [SerializeField] private Upgradable _loadSpeedUpgradable;
+    [SerializeField] protected Upgradable _loadSpeedUpgradable;
 
-    private int _loadCapacity;
-    
-    private float _loadDelay;
+    protected int _loadCapacity;
 
+    protected float _loadDelay;
+}
+
+public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
+    where TBaseProducer : BaseProducer<TResource>
+    where TResource : IResource
+{
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 
     public Action OnCapacityFull;
@@ -33,7 +34,6 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
 
     private void Awake()
     {
-
         if (!_canLoadUnlimited)
         {
             if (_loadCapacityUpgradable != null)
@@ -44,7 +44,6 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
             _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
         
         OnAwakeCustomActions();
-
     }
 
     protected virtual void OnAwakeCustomActions()
@@ -55,7 +54,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMo
     {
         float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
-        _loadCapacity = (int)value;
+        _loadCapacity = (int) value;
     }
 
     private void OnDestroy()

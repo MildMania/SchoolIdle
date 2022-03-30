@@ -8,7 +8,7 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
     protected override void OnAwakeCustomActions()
     {
         base.OnAwakeCustomActions();
-        
+
         _paperConsumerFovController.OnTargetEnteredFieldOfView += OnConsumerEnteredFieldOfView;
         _paperConsumerFovController.OnTargetExitedFieldOfView += OnConsumerExitedFieldOfView;
     }
@@ -16,14 +16,14 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
     protected override void OnDestroyCustomActions()
     {
         base.OnDestroyCustomActions();
-        
+
         _paperConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
         _paperConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
 
 
         StopAllCoroutines();
     }
-    
+
     public override void UnloadCustomActions(int index)
     {
         //Remove from self
@@ -33,24 +33,24 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         {
             return;
         }
+
         Paper paper = (Paper) _deliverer.Resources[lastResourceIndex];
         _deliverer.Resources.Remove(paper);
         _updatedFormationController.RemoveCustomResourceTransform(lastResourceIndex);
-        
+
         //Add To Consumer
         PaperConsumer paperConsumer = _consumers[index];
         UpdatedFormationController consumerFormationController =
             paperConsumer.GetComponentInChildren<UpdatedFormationController>();
         Transform targetTransform = consumerFormationController.GetLastTargetTransform(paper.transform);
         paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        paper.Move(targetTransform, consumerFormationController.Container);
+        paper.Move(targetTransform, paperConsumer.ResourceProvider.ResourceContainer);
         paperConsumer.ResourceProvider.Resources.Add(paper);
     }
 
     private void OnMoveRoutineFinished(IResource paper)
     {
         paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
-        _updatedFormationController.UpdateResourcesPosition();
+        _updatedFormationController.UpdateResourcesPosition(_deliverer.Container);
     }
-    
 }

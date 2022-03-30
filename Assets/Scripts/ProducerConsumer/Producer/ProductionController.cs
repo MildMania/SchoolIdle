@@ -24,12 +24,16 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
             {
                 if (IsAllRequirementsMet())
                 {
+                    int callbackCount = 0;
                     ConsumeAllRequirements(onConsumedCallback);
-                    
-                    // TODO: Consider waiting all resources to be consumed by listening onConsumed Event!
+
+                    //Consider waiting all resources to be consumed by listening onConsumed Event!
                     void onConsumedCallback()
                     {
-                        _producer.Produce(resource);
+                        if (++callbackCount >= _productionRequirements.Length)
+                        {
+                            _producer.Produce(resource);
+                        }
                     }
                 }
 
@@ -60,6 +64,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
         {
             onConsumedCallback?.Invoke();
         }
+
         foreach (var productionRequirement in _productionRequirements)
         {
             productionRequirement.ConsumeRequirements(onConsumedCallback);

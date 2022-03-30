@@ -10,6 +10,8 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	[SerializeField] private Guid _guid;
 		
 	[SerializeField] private GameObject _unlockableGO;
+	
+	[SerializeField] private GameObject _lockObjects;
 
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
 
@@ -40,6 +42,10 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		Unlockable.Init(_unlockableTrackData);
 		OnUnlockableInit?.Invoke(_unlockableTrackData);
 		_unlockableGO.SetActive(_unlockableTrackData.IsUnlock);
+		if (_lockObjects != null)
+		{
+			_lockObjects.SetActive(!_unlockableTrackData.IsUnlock);
+		}
 		gameObject.SetActive(!_unlockableTrackData.IsUnlock);
 		
 	}
@@ -58,7 +64,10 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 			_unlockableGO.SetActive(true);
 			gameObject.SetActive(false);
-			
+			if (_lockObjects != null)
+			{
+				_lockObjects.SetActive(false);
+			}
 		}
 		OnTryUnlock?.Invoke(_unlockableTrackData);
 

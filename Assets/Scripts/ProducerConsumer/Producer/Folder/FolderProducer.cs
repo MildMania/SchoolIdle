@@ -2,19 +2,20 @@
 
 public class FolderProducer : BaseProducer<Folder>, IResourceProvider
 {
-	[SerializeField] private UpdatedFormationController _updatedFormationController;
-	public override Folder ProduceCustomActions(Folder resource)
-	{
-		Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
+    [SerializeField] private UpdatedFormationController _updatedFormationController;
 
-		Folder clonedFolderProducible = Instantiate(resource, resource.transform.position, resource.transform.rotation);
+    public override Folder ProduceCustomActions(Folder folder)
+    {
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
 
-		clonedFolderProducible.Move(targetTransform, _updatedFormationController.Container);
-		return clonedFolderProducible;
-	}
+        Folder clonedFolder = Instantiate(folder, folder.transform.position, folder.transform.rotation);
 
-	protected override void TryRemoveAndGetLastProducibleCustomActions()
-	{
-		_updatedFormationController.RemoveAndGetLastTransform();
-	}
+        clonedFolder.Move(targetTransform, _resourceProvider.ResourceContainer);
+        return clonedFolder;
+    }
+
+    protected override void TryRemoveAndGetLastProducibleCustomActions()
+    {
+        _updatedFormationController.RemoveAndGetLastTransform();
+    }
 }

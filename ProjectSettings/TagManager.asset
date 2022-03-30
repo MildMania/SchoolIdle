@@ -22,7 +22,11 @@ TagManager:
   - FolderProducer
   - FolderConsumer
   - UpgradeArea
+<<<<<<< HEAD
   - AIAgent
+=======
+  - Wall
+>>>>>>> develop
   - 
   - 
   - 

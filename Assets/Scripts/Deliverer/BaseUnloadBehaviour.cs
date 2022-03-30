@@ -1,22 +1,24 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehaviour
-    where TBaseConsumer : BaseConsumer<TResource>
-    where TResource : IResource
+public abstract class BaseUnloadBehaviour : MonoBehaviour
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    [SerializeField] private Upgradable _unloadSpeedUpgradable;
+    [SerializeField] protected Upgradable _unloadSpeedUpgradable;
 
-    [SerializeField] private EAttributeCategory _attributeCategory;
-    
-    private float _unloadDelay;
+    [SerializeField] protected EAttributeCategory _attributeCategory;
 
+    protected float _unloadDelay;
+}
+
+public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnloadBehaviour
+    where TBaseConsumer : BaseConsumer<TResource>
+    where TResource : IResource
+{
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 
     private void Awake()
@@ -30,7 +32,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
     protected virtual void OnAwakeCustomActions()
     {
     }
-    
+
     private void OnDestroy()
     {
         if (_unloadSpeedUpgradable != null)
@@ -38,7 +40,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
         
         OnDestroyCustomActions();
     }
-    
+
     protected virtual void OnDestroyCustomActions()
     {
     }
@@ -49,7 +51,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : MonoBehavi
 
         _unloadDelay = 1 / value;
     }
-    
+
     protected void OnConsumerEnteredFieldOfView(TBaseConsumer producer)
     {
         _consumers.Add(producer);

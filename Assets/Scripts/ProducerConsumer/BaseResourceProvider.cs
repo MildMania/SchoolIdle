@@ -1,7 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseResourceProvider<TResource> : MonoBehaviour, IResourceProvider where TResource : IResource
+public abstract class BaseResourceProvider : MonoBehaviour
 {
-    public List<TResource> Resources { get; set; } = new List<TResource>();
+    [SerializeField] public Transform ResourceContainer;
+
+    public abstract int GetResourceCount();
+}
+
+public abstract class BaseResourceProvider<TResource> : BaseResourceProvider where TResource : IResource
+{
+    public List<TResource> Resources { get; } = new List<TResource>();
+
+    public override int GetResourceCount()
+    {
+        return Resources.Count;
+    }
 }

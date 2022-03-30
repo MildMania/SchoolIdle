@@ -1,11 +1,18 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
-public abstract class BaseConsumer<TResource> : MonoBehaviour, IAIInteractable, IConsumer<TResource>
+public abstract class BaseConsumer : MonoBehaviour
+{
+    [SerializeField] protected UpdatedFormationController _updatedFormationController;
+}
+
+public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
-    [SerializeField] protected UpdatedFormationController _updatedFormationController;
-    [SerializeField] protected Transform _interactionPoint;
+
+    public Action<BaseConsumer<TResource>, TResource> OnConsumeFinished;
 
     public BaseResourceProvider<TResource> ResourceProvider
     {
