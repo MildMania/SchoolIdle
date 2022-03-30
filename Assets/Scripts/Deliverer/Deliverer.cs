@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class Deliverer : MonoBehaviour
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
     [SerializeField] public Transform Container;
+
+    public Action<bool> OnContainerEmpty; 
 
     public UpdatedFormationController FormationController
     {

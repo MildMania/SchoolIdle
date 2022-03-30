@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Reflection;
 using System.Collections.Generic;
-using MMFramework.Tasks.Examples;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
-using UnityEngine;
 
 public class AIHelper : SerializedMonoBehaviour
 {
@@ -17,14 +13,14 @@ public class AIHelper : SerializedMonoBehaviour
     public BaseLoadBehaviour CurrentLoadBehaviour => _currentLoadBehaviour;
 
 
-    private void Awake()
+    private void Start()
     {
         foreach (var item in _resourceToLoadBehaviour)
         {
-            GameObject obj = item.Value.gameObject;
-
             if (!item.Key.Equals(_resource))
-                obj.SetActive(false);
+            {
+                item.Value.StopLoading();
+            }
             else
             {
                 _currentLoadBehaviour = item.Value;

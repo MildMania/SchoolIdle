@@ -13,6 +13,14 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
     [SerializeField] protected EAttributeCategory _attributeCategory;
 
     protected float _unloadDelay;
+
+
+    public void StopUnloading()
+    {
+        StopUnloadingCustomActions();
+    }
+
+    public abstract void StopUnloadingCustomActions();
 }
 
 public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnloadBehaviour
@@ -25,7 +33,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
     {
         if (_unloadSpeedUpgradable != null)
             _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
-        
+
         OnAwakeCustomActions();
     }
 
@@ -35,10 +43,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
     private void OnDestroy()
     {
-        if (_unloadSpeedUpgradable != null)
-            _unloadSpeedUpgradable.OnUpgraded -= OnUnloadSpeedUpgraded;
-        
-        OnDestroyCustomActions();
+        StopUnloading();
     }
 
     protected virtual void OnDestroyCustomActions()
@@ -84,6 +89,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
                     if (_deliverer.Resources.Count > 0)
                     {
                         UnloadCustomActions(index);
+                        _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
                 }
 
@@ -94,6 +100,14 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
         }
     }
 
+
+    public override void StopUnloadingCustomActions()
+    {
+        if (_unloadSpeedUpgradable != null)
+            _unloadSpeedUpgradable.OnUpgraded -= OnUnloadSpeedUpgraded;
+
+        OnDestroyCustomActions();
+    }
 
     public abstract void UnloadCustomActions(int index);
 }

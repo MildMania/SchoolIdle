@@ -15,8 +15,7 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 
     [SerializeField] protected Transform _container;
 
-    [HideIf("_canLoadUnlimited")]
-    [SerializeField]
+    [HideIf("_canLoadUnlimited")] [SerializeField]
     protected Upgradable _loadCapacityUpgradable;
 
     [SerializeField] protected Upgradable _loadSpeedUpgradable;
@@ -27,6 +26,12 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 
     public Action OnCapacityEmpty;
     public Action OnCapacityFull;
+
+    public virtual void StopLoading()
+    {
+    }
+
+    //TODO: Consider controlling loading/unloading using start/stop loading methods!
 }
 
 public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
@@ -34,6 +39,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
     where TResource : IResource
 {
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
+
 
     private void Awake()
     {
@@ -56,19 +62,12 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         float value =
             GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
 
-        _loadCapacity = (int)value;
+        _loadCapacity = (int) value;
     }
 
     private void OnDestroy()
     {
-        if (!_canLoadUnlimited)
-        {
-            _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
-        }
-
-        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
-
-        OnDestroyCustomActions();
+        StopLoading();
     }
 
     private void OnLoadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
@@ -106,6 +105,8 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
             return true;
         }
 
+        Debug.Log("Load Capacity: " + _loadCapacity);
+
         return _deliverer.Container.childCount < _loadCapacity;
     }
 
@@ -126,12 +127,13 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
                 if (_producers.Count > 0 && CanLoad())
                 {
-                    int index = (int)Random.Range(0, _producers.Count - 0.1f);
+                    int index = (int) Random.Range(0, _producers.Count - 0.1f);
 
                     TResource resource = default(TResource);
                     if (_producers[index].TryRemoveAndGetLastResource(ref resource))
                     {
                         LoadCustomActions(resource);
+                        _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
                 }
 
@@ -142,6 +144,19 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         }
     }
 
+
+    public override void StopLoading()
+    {
+        base.StopLoading();
+        if (!_canLoadUnlimited)
+        {
+            _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
+        }
+
+        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
+
+        OnDestroyCustomActions();
+    }
 
     public abstract void LoadCustomActions(TResource resource);
 }

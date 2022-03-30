@@ -7,9 +7,16 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 {
     [SerializeField] protected TProducer _producer;
     [SerializeField] protected TResource _resource;
-    [SerializeField] private float _productionDelay = 0.2f;
     [SerializeField] private BaseProductionRequirement[] _productionRequirements;
+    
+    [SerializeField] private float _productionDelay;
 
+    public void UpdateProductionDelay(float value)
+    {
+        _productionDelay = 1 / value;
+    }
+    
+    
     protected IEnumerator ProduceRoutine(TResource resource)
     {
         if (_producer.IsAiInteractible())

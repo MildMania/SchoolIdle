@@ -1,4 +1,5 @@
 ﻿using System;
+using MMFramework.Utilities;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private UnlockableTrackData _unlockableTrackData;
 	public Action<UnlockableTrackData> OnUnlockableInit;
-	public Action<UnlockableTrackData> OnTryUnlock;
+	public Action<int,UnlockableTrackData> OnTryUnlock;
 	private void Awake()
 	{
 		_baseCharacterDetector.OnDetected += OnDetected;
@@ -57,19 +58,21 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private void OnDetected(Character character)
 	{
-		
+		int oldValue = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
 			Debug.Log("Unlockable Object Unlock");
-
-			_unlockableGO.SetActive(true);
-			gameObject.SetActive(false);
-			if (_lockObjects != null)
+			CoroutineRunner.Instance.WaitForSeconds(1f, () =>
 			{
-				_lockObjects.SetActive(false);
-			}
+				_unlockableGO.SetActive(true);
+				gameObject.SetActive(false);
+				if (_lockObjects != null)
+				{
+					_lockObjects.SetActive(false);
+				}
+			});
 		}
-		OnTryUnlock?.Invoke(_unlockableTrackData);
+		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData);
 
 		var coinController = character.GetComponentInChildren<CoinController>();
 		coinController.UpdateCoinCount();
