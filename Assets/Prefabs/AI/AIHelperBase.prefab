@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6016151200521579371
 Transform:
   m_ObjectHideFlags: 0
@@ -684,6 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9217019772774472633}
+  - component: {fileID: 5348666576826637856}
   m_Layer: 17
   m_Name: Store
   m_TagString: Untagged
@@ -705,6 +706,23 @@ Transform:
   m_Father: {fileID: 428975961100217734}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5348666576826637856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613216768300828213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976e443b14ef5d54bb93f410d298f63e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exitImmediately: 1
+  _aiHelper: {fileID: 4706862737783256158}
+  _movementBehaviour: {fileID: 5598689665677062176}
+  _onMovementCompletedTasks:
+    _taskCarrier: {fileID: 1799350510462183551}
 --- !u!1 &3734376035419674945
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +736,7 @@ GameObject:
   - component: {fileID: 8945975167911661109}
   - component: {fileID: 742774413176386655}
   - component: {fileID: 5195358094372504678}
+  - component: {fileID: 4706862737783256158}
   m_Layer: 17
   m_Name: AIHelperBase
   m_TagString: Untagged
@@ -849,6 +868,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 4630251203491965705}
   Container: {fileID: 4274420019230216113}
+--- !u!114 &4706862737783256158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734376035419674945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556d3c59d597cf1439267ed7b6007be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 8260683181702029858}
+    - {fileID: 3325660377796771891}
+    - {fileID: 850410296380798066}
+    - {fileID: 1286604798718278388}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _resource
+      Entry: 10
+      Data: 0
+    - Name: _resourceToLoadBehaviour
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IResource, Assembly-CSharp],[BaseLoadBehaviour,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IResource, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!1 &3756806021573374637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7920891637468806593}
+  - component: {fileID: 697393121264901793}
   m_Layer: 17
   m_Name: Deliver
   m_TagString: Untagged
@@ -1342,6 +1434,21 @@ Transform:
   m_Father: {fileID: 428975961100217734}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697393121264901793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917240882973991437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec09e7cb263b90c4480aa09631912a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exitImmediately: 1
+  _aiHelper: {fileID: 4706862737783256158}
+  _movementBehaviour: {fileID: 5598689665677062176}
 --- !u!1 &8047351845409018512
 GameObject:
   m_ObjectHideFlags: 0

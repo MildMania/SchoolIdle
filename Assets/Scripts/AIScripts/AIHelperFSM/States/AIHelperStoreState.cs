@@ -6,9 +6,9 @@ using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 using Pathfinding;
 
-public abstract class AIHelperStoreState : State<EState, ETransition>
+public class AIHelperStoreState : State<EState, ETransition>
 {
-    // [SerializeField] private AIHelper _aiHelper;
+    [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
     [SerializeField] protected MMTaskExecutor _onMovementCompletedTasks;
@@ -27,10 +27,15 @@ public abstract class AIHelperStoreState : State<EState, ETransition>
         _currentProducer = SelectProducer();
         MoveToInteractionPoint(_currentProducer.GetInteractionPoint());
 
-        OnStoreStateCustomActions();
+        _aiHelper.CurrentLoadBehaviour.OnCapacityFull += OnCapacityFull;
     }
 
-    protected abstract void OnStoreStateCustomActions();
+    protected override void OnExitCustomActions()
+    {
+        base.OnExitCustomActions();
+
+        _aiHelper.CurrentLoadBehaviour.OnCapacityFull -= OnCapacityFull;
+    }
 
     private IAIInteractable SelectProducer()
     {
@@ -50,7 +55,10 @@ public abstract class AIHelperStoreState : State<EState, ETransition>
         return currentProducer;
     }
 
-    protected abstract List<IAIInteractable> GetProducers();
+    protected List<IAIInteractable> GetProducers()
+    {
+        return ProducerProvider.Instance.GetProducers(_aiHelper.Resource.GetType());
+    }
 
     private void MoveToInteractionPoint(Vector3 pos)
     {
@@ -63,5 +71,10 @@ public abstract class AIHelperStoreState : State<EState, ETransition>
 
         if (_onMovementCompletedTasks != null)
             _onMovementCompletedTasks.Execute(this);
+    }
+
+    private void OnCapacityFull()
+    {
+        FSM.SetTransition(ETransition.Deliver);
     }
 }

@@ -9,44 +9,36 @@ using UnityEngine;
 public class AIHelper : SerializedMonoBehaviour
 {
     [OdinSerialize] private IResource _resource;
+    public IResource Resource => _resource;
 
-    [OdinSerialize] private Dictionary<IResource, GameObject> _behaviourCarrierObjects;
+    [OdinSerialize] private Dictionary<IResource, BaseLoadBehaviour> _resourceToLoadBehaviour;
 
-    [OdinSerialize] private Dictionary<IResource, string> _loadBehaviourTypes;
+    private BaseLoadBehaviour _currentLoadBehaviour;
+    public BaseLoadBehaviour CurrentLoadBehaviour => _currentLoadBehaviour;
 
-    private BaseLoadBehaviour<BaseProducer<IResource>, IResource> _currentLoadBehaviour;
-    private BaseUnloadBehaviour<BaseConsumer<IResource>, IResource> _currentUnloadBehaviour;
 
     private void Awake()
     {
-        foreach (var item in _behaviourCarrierObjects)
+        foreach (var item in _resourceToLoadBehaviour)
         {
-            GameObject obj = item.Value;
+            GameObject obj = item.Value.gameObject;
 
             if (!item.Key.Equals(_resource))
                 obj.SetActive(false);
             else
             {
-                string compName = _loadBehaviourTypes[_resource];
-
-                //Component component = obj.GetComponent()
-                //PaperLoadBehaviour beh = (PaperLoadBehaviour)component;
-
-                System.Type tp;
-
-                _currentLoadBehaviour = obj.GetComponent<BaseLoadBehaviour<BaseProducer<IResource>, IResource>>();
-                _currentUnloadBehaviour = obj.GetComponent<BaseUnloadBehaviour<BaseConsumer<IResource>, IResource>>();
+                _currentLoadBehaviour = item.Value;
             }
         }
     }
 
-    //public List<IAIInteractable> GetConsumers()
-    //{
-    //    return ConsumerProvider.Instance.GetConsumers(_resource);
-    //}
+    public List<IAIInteractable> GetConsumers()
+    {
+        return ConsumerProvider.Instance.GetConsumers(_resource.GetType());
+    }
 
-    //public List<IAIInteractable> GetProducers()
-    //{
-    //    return ProducerProvider.Instance.GetProducers(_resource);
-    //}
+    public List<IAIInteractable> GetProducers()
+    {
+        return ProducerProvider.Instance.GetProducers(_resource.GetType());
+    }
 }

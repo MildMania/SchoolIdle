@@ -7,8 +7,9 @@ using ETransition = AIHelperFSMController.ETransition;
 
 using Pathfinding;
 
-public abstract class AIHelperDeliverState : State<EState, ETransition>
+public class AIHelperDeliverState : State<EState, ETransition>
 {
+    [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
     private IAIInteractable _currentConsumer;
@@ -30,9 +31,10 @@ public abstract class AIHelperDeliverState : State<EState, ETransition>
         return currentConsumer;
     }
 
-    protected abstract List<IAIInteractable> GetConsumers();
-
-    protected abstract void OnDeliverStateCustomActions();
+    protected List<IAIInteractable> GetConsumers()
+    {
+        return ConsumerProvider.Instance.GetConsumers(_aiHelper.Resource.GetType());
+    }
 
     public override void OnEnterCustomActions()
     {
@@ -41,7 +43,12 @@ public abstract class AIHelperDeliverState : State<EState, ETransition>
         _currentConsumer = SelectConsumer();
         MoveToInteractionPoint(_currentConsumer.GetInteractionPoint());
 
-        OnDeliverStateCustomActions();
+        _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty += OnCapacityEmpty;
+    }
+
+    protected override void OnExitCustomActions()
+    {
+        _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty -= OnCapacityEmpty;
     }
 
     private void MoveToInteractionPoint(Vector3 pos)
@@ -52,5 +59,10 @@ public abstract class AIHelperDeliverState : State<EState, ETransition>
     private void OnPathCompleted()
     {
         
+    }
+
+    private void OnCapacityEmpty()
+    {
+        FSM.SetTransition(AIHelperFSMController.ETransition.Store);
     }
 }
