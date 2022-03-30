@@ -5,26 +5,26 @@ using UnityEngine;
 using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 
-public class AIHelperPaperStoreState : AIHelperStoreState
+public class AIHelperFolderStoreState : AIHelperStoreState
 {
-    [SerializeField] private PaperDelivererAIHelper _paperDelivererAiHelper;
+    [SerializeField] private FolderDelivererAIHelper _folderDelivererAiHelper;
 
     // Do I need to create a new list every time this method is called?
     protected override List<IAIInteractable> GetProducers()
     {
-        return ProducerProvider.Instance.GetProducers(typeof(Paper));
+        return ProducerProvider.Instance.GetProducers(typeof(Folder));
     }
 
     protected override void OnStoreStateCustomActions()
     {
-        _paperDelivererAiHelper.PaperLoadBehaviour.OnCapacityFull += OnCapacityFull;
+        _folderDelivererAiHelper.FolderLoadBehaviour.OnCapacityFull += OnCapacityFull;
     }
 
     protected override void OnExitCustomActions()
     {
         base.OnExitCustomActions();
 
-        _paperDelivererAiHelper.PaperLoadBehaviour.OnCapacityFull -= OnCapacityFull;
+        _folderDelivererAiHelper.FolderLoadBehaviour.OnCapacityFull -= OnCapacityFull;
     }
 
     private void OnCapacityFull()

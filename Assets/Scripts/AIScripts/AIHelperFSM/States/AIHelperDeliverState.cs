@@ -18,7 +18,20 @@ public abstract class AIHelperDeliverState : State<EState, ETransition>
         return EState.Deliver;
     }
 
-    protected abstract IAIInteractable SelectConsumer();
+    private IAIInteractable SelectConsumer()
+    {
+        IAIInteractable currentConsumer = default(IAIInteractable);
+
+        var list = GetConsumers();
+        int indx = Random.Range(0, list.Count - 1);
+
+        currentConsumer = list[indx];
+
+        return currentConsumer;
+    }
+
+    protected abstract List<IAIInteractable> GetConsumers();
+
     protected abstract void OnDeliverStateCustomActions();
 
     public override void OnEnterCustomActions()

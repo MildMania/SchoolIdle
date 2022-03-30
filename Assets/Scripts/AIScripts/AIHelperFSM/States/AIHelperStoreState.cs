@@ -32,7 +32,25 @@ public abstract class AIHelperStoreState : State<EState, ETransition>
 
     protected abstract void OnStoreStateCustomActions();
 
-    protected abstract IAIInteractable SelectProducer();
+    private IAIInteractable SelectProducer()
+    {
+        float minDist = float.MaxValue;
+
+        IAIInteractable currentProducer = default(IAIInteractable);
+        List<IAIInteractable> allProducers = GetProducers();
+
+        foreach (var producer in allProducers)
+        {
+            float dist = (producer.GetInteractionPoint() - transform.position).magnitude;
+
+            if (dist < minDist)
+                currentProducer = producer;
+        }
+
+        return currentProducer;
+    }
+
+    protected abstract List<IAIInteractable> GetProducers();
 
     private void MoveToInteractionPoint(Vector3 pos)
     {
