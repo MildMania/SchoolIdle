@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -6,23 +5,26 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : SerializedMonoBehaviour
-    where TBaseProducer : BaseProducer<TResource>
-    where TResource : IResource
+public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    [SerializeField] private bool _canLoadUnlimited;
+    [SerializeField] protected bool _canLoadUnlimited;
 
     [HideIf("_canLoadUnlimited")] [SerializeField]
-    private Upgradable _loadCapacityUpgradable;
+    protected Upgradable _loadCapacityUpgradable;
 
-    [SerializeField] private Upgradable _loadSpeedUpgradable;
+    [SerializeField] protected Upgradable _loadSpeedUpgradable;
 
-    private int _loadCapacity;
+    protected int _loadCapacity;
 
-    private float _loadDelay;
+    protected float _loadDelay;
+}
 
+public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
+    where TBaseProducer : BaseProducer<TResource>
+    where TResource : IResource
+{
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 
     private void Awake()

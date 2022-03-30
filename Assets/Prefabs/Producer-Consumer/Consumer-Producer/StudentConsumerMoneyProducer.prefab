@@ -2642,6 +2642,14 @@ PrefabInstance:
       propertyPath: _container
       value: 
       objectReference: {fileID: 922030458835983817}
+    - target: {fileID: 5736521275406482851, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: _resourceProviders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736521275406482851, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: _resourceProviders.Array.data[0]
+      value: 
+      objectReference: {fileID: 5479148619222704921}
     - target: {fileID: 6335065435268811858, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: m_IsActive
       value: 1

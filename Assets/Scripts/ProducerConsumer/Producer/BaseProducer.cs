@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public abstract class BaseProducer<TResource> : MonoBehaviour, IProducer<TResource>
+public abstract class BaseProducer : MonoBehaviour
+{
+    
+}
+public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResource>
     where TResource : IResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _resourceProvider;

@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _produceCapacity: 10
-  _container: {fileID: 128542863653508143}
+  _resourceProviders:
+  - {fileID: 128542862997628849}
 --- !u!1 &128542862884116566
 GameObject:
   m_ObjectHideFlags: 0
