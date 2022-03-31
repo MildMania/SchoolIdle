@@ -1,6 +1,6 @@
 ﻿public class FolderConsumptionController : ConsumptionController<FolderConsumer,Folder>
 {
-    void Awake()
+    void OnEnable()
     {
         if (_consumer.IsAiInteractible())
         {

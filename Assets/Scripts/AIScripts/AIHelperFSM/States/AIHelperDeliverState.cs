@@ -13,7 +13,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
     private BaseConsumer _currentConsumer;
-
+    [SerializeField] private HelperAnimationController _helperAnimationController;
     protected override EState GetStateID()
     {
         return EState.Deliver;
@@ -42,7 +42,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
         _currentConsumer = SelectConsumer();
         MoveToInteractionPoint(_currentConsumer.AiInteraction.GetInteractionPoint());
-
+        _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty += OnCapacityEmpty;
     }
 

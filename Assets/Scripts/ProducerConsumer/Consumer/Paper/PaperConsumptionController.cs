@@ -1,6 +1,6 @@
 ﻿public class PaperConsumptionController : ConsumptionController<PaperConsumer, Paper>
 {
-    void Awake()
+    void OnEnable()
     {
         if (_consumer.IsAiInteractible())
         {

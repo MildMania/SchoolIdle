@@ -12,7 +12,7 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
     [SerializeField] protected MMTaskExecutor _onMovementCompletedTasks;
-
+    [SerializeField] private HelperAnimationController _helperAnimationController;
     protected BaseProducer _currentProducer;
 
     protected override EState GetStateID()
@@ -26,7 +26,7 @@ public class AIHelperStoreState : State<EState, ETransition>
 
         _currentProducer = SelectProducer();
         MoveToInteractionPoint(_currentProducer.AiInteraction.GetInteractionPoint());
-
+        _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull += OnCapacityFull;
     }
 
@@ -44,13 +44,19 @@ public class AIHelperStoreState : State<EState, ETransition>
         BaseProducer currentProducer = default(BaseProducer);
         List<BaseProducer> allProducers = GetProducers();
 
-        foreach (var producer in allProducers)
-        {
-            float dist = (producer.AiInteraction.GetInteractionPoint() - transform.position).magnitude;
+        int index = Random.Range(0, allProducers.Count - 1);
+        currentProducer = allProducers[index];
 
-            if (dist < minDist)
-                currentProducer = producer;
-        }
+        // foreach (var producer in allProducers)
+        // {
+        //     float dist = (producer.AiInteraction.GetInteractionPoint() - transform.position).magnitude;
+        //
+        //     if (dist < minDist)
+        //     {
+        //         currentProducer = producer;
+        //         minDist = dist;
+        //     }
+        // }
 
         return currentProducer;
     }

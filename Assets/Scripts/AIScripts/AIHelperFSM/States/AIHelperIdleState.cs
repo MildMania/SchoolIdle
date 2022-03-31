@@ -8,6 +8,7 @@ using UnityEngine;
 public class AIHelperIdleState : State<EState, ETransition>
 {
     [SerializeField] private float _delay;
+    [SerializeField] private HelperAnimationController _helperAnimationController;
     protected override EState GetStateID()
     {
         return EState.Idle;
@@ -17,7 +18,7 @@ public class AIHelperIdleState : State<EState, ETransition>
     {
         base.OnEnterCustomActions();
 
-
+        _helperAnimationController.PlayAnimation(EHelperAnimation.Idle);
     }
 
     private void Awake()
