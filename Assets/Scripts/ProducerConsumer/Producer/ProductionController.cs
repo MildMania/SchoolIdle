@@ -10,7 +10,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
     [SerializeField] private BaseProductionRequirement[] _productionRequirements;
     
     [SerializeField] private float _productionDelay;
-
+    protected bool IsAllRequirementMet;
     public void UpdateProductionDelay(float value)
     {
         _productionDelay = 1 / value;
@@ -32,7 +32,8 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 
             if (currentTime > _productionDelay)
             {
-                if (IsAllRequirementsMet())
+                IsAllRequirementMet = IsAllRequirementsMet();
+                if (IsAllRequirementMet)
                 {
                     int callbackCount = 0;
                     ConsumeAllRequirements(onConsumedCallback);
