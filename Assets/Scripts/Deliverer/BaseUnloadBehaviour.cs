@@ -38,11 +38,13 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
     private void Start()
     {
-        _unloadSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _unloadSpeedUpgradableType);
+        _unloadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _unloadSpeedUpgradableType);
 
         _unloadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _unloadSpeedUpgradable.UpgradableTrackData);
         
         _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
+        
+        StartCoroutine(UnloadRoutine());
     }
     
     protected virtual void OnAwakeCustomActions()
@@ -74,12 +76,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
     {
         _consumers.Remove(producer);
     }
-
-    [PhaseListener(typeof(GamePhase), true)]
-    public void OnGamePhaseStarted()
-    {
-        StartCoroutine(UnloadRoutine());
-    }
+    
 
     private IEnumerator UnloadRoutine()
     {

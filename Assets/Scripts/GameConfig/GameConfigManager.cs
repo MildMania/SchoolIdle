@@ -68,6 +68,37 @@ public class GameConfigManager : Singleton<GameConfigManager>
 
         return attributeValue;
     }
+    
+    public float GetAttributeUpgradeTotalValue(EAttributeCategory attributeCategoryType, UpgradableTrackData upgradableTrackData)
+    {
+        float attributeTotalValue = 0f;
+        
+        Dictionary<EUpgradable, AttributeInfo[]> attributes = GetAttributes(attributeCategoryType);
+
+        if (attributes.Count == 0)
+        {
+            return attributeTotalValue;
+        }
+
+        if (!attributes.ContainsKey(upgradableTrackData.TrackID))
+        {
+            return attributeTotalValue;
+        }
+        
+        AttributeInfo[] attributeInfos = attributes[upgradableTrackData.TrackID];
+        
+        foreach (var attributeInfo in attributeInfos)
+        {
+            if (attributeInfo.Level > upgradableTrackData.Level)
+            {
+                break;
+            }
+            
+            attributeTotalValue += attributeInfo.Value;
+        }
+
+        return attributeTotalValue;
+    }
 
     public RequirementInfo GetNextRequirementInfo(EAttributeCategory attributeCategoryType, UpgradableTrackData upgradableTrackData)
     {

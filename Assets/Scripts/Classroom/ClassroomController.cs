@@ -15,7 +15,7 @@ public class ClassroomController : MonoBehaviour
 
     private void Start()
     {
-        _classroomUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+        _classroomUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
         
         UpgradeClassroom(_classroomUpgradable.UpgradableTrackData);
         

@@ -27,7 +27,7 @@ public class WalkState : State<EState, EState>
 
 	private void Start()
 	{
-		_characterSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+		_characterSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
 
 		_walkSpeed = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _characterSpeedUpgradable.UpgradableTrackData);
 

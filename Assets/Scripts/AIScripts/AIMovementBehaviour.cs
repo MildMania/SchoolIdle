@@ -29,7 +29,7 @@ public class AIMovementBehaviour : MonoBehaviour
 
     private void Start()
     {
-        _helperSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+        _helperSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
 
         _movementSpeed = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _helperSpeedUpgradable.UpgradableTrackData);
         _aIPath.maxSpeed = _movementSpeed;

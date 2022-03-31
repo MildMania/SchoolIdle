@@ -53,22 +53,23 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private void Start()
     {
-        _loadSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
+        _loadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
         _loadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _loadSpeedUpgradable.UpgradableTrackData);
         _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
-
         
         
         if (!_canLoadUnlimited)
         {
             _loadCapacityUpgradable =
-                HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadCapacityUpgradeType);
+                UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadCapacityUpgradeType);
             
             _loadCapacity = (int) GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory,
                 _loadCapacityUpgradable.UpgradableTrackData);
             
             _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
+        
+        StartCoroutine(LoadRoutine());
         
     }
 
@@ -112,11 +113,6 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         _producers.Remove(producer);
     }
 
-    [PhaseListener(typeof(GamePhase), true)]
-    public void OnGamePhaseStarted()
-    {
-        StartCoroutine(LoadRoutine());
-    }
 
     private bool CanLoad()
     {
@@ -168,13 +164,16 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
     public override void StopLoading()
     {
         base.StopLoading();
+        
         if (!_canLoadUnlimited)
         {
             _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
+            
         }
-
+        
         _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
-
+        
+        
         OnDestroyCustomActions();
     }
 
