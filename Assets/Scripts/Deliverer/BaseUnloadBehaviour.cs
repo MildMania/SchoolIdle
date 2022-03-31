@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -8,12 +9,12 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    [SerializeField] protected Upgradable _unloadSpeedUpgradable;
+    protected Upgradable _unloadSpeedUpgradable;
 
     [SerializeField] protected EAttributeCategory _attributeCategory;
+    [SerializeField] protected EUpgradable _unloadSpeedUpgradableType;
 
     protected float _unloadDelay;
-
 
     public void StopUnloading()
     {
@@ -29,14 +30,21 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 {
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 
+
     private void Awake()
     {
-        if (_unloadSpeedUpgradable != null)
-            _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
-
         OnAwakeCustomActions();
     }
 
+    private void Start()
+    {
+        _unloadSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _unloadSpeedUpgradableType);
+
+        _unloadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _unloadSpeedUpgradable.UpgradableTrackData);
+        
+        _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
+    }
+    
     protected virtual void OnAwakeCustomActions()
     {
     }

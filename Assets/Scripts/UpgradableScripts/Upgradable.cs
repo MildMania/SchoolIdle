@@ -21,6 +21,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 	public UpgradableTrackData UpgradableTrackData => _upgradableTrackData;
 
 	public EAttributeCategory AttributeCategory => _attributeCategory;
+	public EUpgradable UpgradableType => _upgradableType;
 	
 
 	private void Awake()
@@ -32,6 +33,22 @@ public abstract class Upgradable : SerializedMonoBehaviour
 			return;
 		}
 		RequirementData = reqList.ToArray();
+		
+		UpgradableTrackable upgradableTrackable;
+
+		if (UserManager.Instance.LocalUser.GetUserData<UserUpgradableData>().Tracker
+			.TryGetSingle(_upgradableType, out upgradableTrackable))
+		{
+			_upgradableTrackData = upgradableTrackable.TrackData;
+		}
+		else
+		{
+			_upgradableTrackData = new UpgradableTrackData(_upgradableType, 0);
+			upgradableTrackable = new UpgradableTrackable(_upgradableTrackData);
+			UserManager.Instance.LocalUser.GetUserData<UserUpgradableData>().Tracker.TryCreate(upgradableTrackable);
+		} 
+		
+		OnUpgraded?.Invoke(_upgradableTrackData);
 	}
 
 	private void Start()

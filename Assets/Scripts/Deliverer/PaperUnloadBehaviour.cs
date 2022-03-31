@@ -3,7 +3,7 @@ using UnityEngine;
 public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 {
     [SerializeField] private PaperConsumerFovController _paperConsumerFovController;
-
+    
 
     protected override void OnAwakeCustomActions()
     {

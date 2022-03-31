@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +11,43 @@ public class AIMovementBehaviour : MonoBehaviour
 
     [SerializeField] private Seeker _seeker;
     [SerializeField] private AIHelperAIPath _aIPath;
+    
+    [SerializeField] private EAttributeCategory _attributeCategory;
+    [SerializeField] private EUpgradable _speedUpgradableType;
 
-    private float _movementSpeed = 1;
-    public float MovementSpeed => _movementSpeed;
+    private float _movementSpeed;
 
     private System.Action _currentPathCompletedCallback;
 
+    private Upgradable _helperSpeedUpgradable;
+    
     private void Awake()
     {
         _aIPath.OnPathCompleted += OnPathCompleted;
+        
+    }
+
+    private void Start()
+    {
+        _helperSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+
+        _movementSpeed = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _helperSpeedUpgradable.UpgradableTrackData);
+        _aIPath.maxSpeed = _movementSpeed;
+        
+        _helperSpeedUpgradable.OnUpgraded += OnUpgradableUpgraded;
+    }
+
+    private void OnDestroy()
+    {
+        _helperSpeedUpgradable.OnUpgraded -= OnUpgradableUpgraded;
+    }
+
+    private void OnUpgradableUpgraded(UpgradableTrackData upgradableTrackData)
+    {
+        float value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
+
+        _movementSpeed = value;
+        _aIPath.maxSpeed = _movementSpeed;
     }
 
     private IEnumerator MoveRoutine(Vector3 targetPos)

@@ -9,16 +9,20 @@ using Random = UnityEngine.Random;
 public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 {
     [SerializeField] protected EAttributeCategory _attributeCategory;
+    
+    [SerializeField] protected EUpgradable _loadSpeedUpgradeType;
+    [SerializeField] protected EUpgradable _loadCapacityUpgradeType;
+    
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
     [SerializeField] protected bool _canLoadUnlimited;
 
     [SerializeField] protected Transform _container;
-
-    [HideIf("_canLoadUnlimited")] [SerializeField]
+    
+    
     protected Upgradable _loadCapacityUpgradable;
 
-    [SerializeField] protected Upgradable _loadSpeedUpgradable;
+    protected Upgradable _loadSpeedUpgradable;
 
     protected int _loadCapacity;
 
@@ -43,15 +47,31 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private void Awake()
     {
-        if (!_canLoadUnlimited)
-        {
-            _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
-        }
-
-        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
-
+        
         OnAwakeCustomActions();
     }
+
+    private void Start()
+    {
+        _loadSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
+        _loadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _loadSpeedUpgradable.UpgradableTrackData);
+        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
+
+        
+        
+        if (!_canLoadUnlimited)
+        {
+            _loadCapacityUpgradable =
+                HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadCapacityUpgradeType);
+            
+            _loadCapacity = (int) GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory,
+                _loadCapacityUpgradable.UpgradableTrackData);
+            
+            _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
+        }
+        
+    }
+
 
     protected virtual void OnAwakeCustomActions()
     {

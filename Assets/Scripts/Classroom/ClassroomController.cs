@@ -5,16 +5,24 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-public class ClassroomController : SerializedMonoBehaviour
+public class ClassroomController : MonoBehaviour
 {
-    [OdinSerialize] private Upgradable _classroomUpgradable;
+    [SerializeField] private EAttributeCategory _attributeCategory;
+    [SerializeField] private EUpgradable _speedUpgradableType;
+    
+    private Upgradable _classroomUpgradable;
+    
 
-    private void Awake()
+    private void Start()
     {
+        _classroomUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+        
+        UpgradeClassroom(_classroomUpgradable.UpgradableTrackData);
+        
         _classroomUpgradable.OnUpgraded += OnClassroomUpgraded;
     }
 
-    private void OnClassroomUpgraded(UpgradableTrackData upgradableTrackData)
+    private void UpgradeClassroom(UpgradableTrackData upgradableTrackData)
     {
         var classroomUpgradeHandlers = GetComponentsInChildren<ClassroomUpgradeHandler>();
 
@@ -31,7 +39,13 @@ public class ClassroomController : SerializedMonoBehaviour
         {
             productionController.UpdateProductionDelay(value);
         }
-        
+
+
+    }
+
+    private void OnClassroomUpgraded(UpgradableTrackData upgradableTrackData)
+    {
+       UpgradeClassroom(upgradableTrackData);
     }
 
     private void OnDestroy()

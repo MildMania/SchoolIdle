@@ -1,3 +1,4 @@
+using System;
 using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 using MMFramework_2._0.PhaseSystem.Core.EventListener;
@@ -19,13 +20,16 @@ public class AIHelperIdleState : State<EState, ETransition>
 
     }
 
-    [PhaseListener(typeof(GamePhase), true)]
-    public void OnGamePhaseStarted()
+    private void Awake()
+    {
+        InitAiHelper();
+    }
+
+    private void InitAiHelper()
     {
         CoroutineRunner.Instance.WaitForSeconds(_delay, () =>
         {
             FSM.SetTransition(ETransition.Store);
         });
     }
-
 }

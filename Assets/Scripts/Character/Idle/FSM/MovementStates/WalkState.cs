@@ -9,7 +9,10 @@ public class WalkState : State<EState, EState>
 	[MMSerializedInterface(typeof(IMovementCommander))] [SerializeField]
 	private Component _movementCommander = null;
 
-	[SerializeField] private Upgradable _characterSpeedUpgradable;
+	[SerializeField] private EAttributeCategory _attributeCategory;
+	[SerializeField] private EUpgradable _speedUpgradableType;
+	
+	private Upgradable _characterSpeedUpgradable;
 	public IMovementCommander MovementCommander => _movementCommander as IMovementCommander;
 
 	[MMSerializedInterface(typeof(IMovementExecutor))] [SerializeField]
@@ -20,9 +23,14 @@ public class WalkState : State<EState, EState>
 
 	[SerializeField] private CharacterAnimationController _characterAnimationController;
 
+	
 
-	private void Awake()
+	private void Start()
 	{
+		_characterSpeedUpgradable = HelperUpgradableManager.Instance.GetUpgradable(_attributeCategory, _speedUpgradableType);
+
+		_walkSpeed = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _characterSpeedUpgradable.UpgradableTrackData);
+
 		_characterSpeedUpgradable.OnUpgraded += OnSpeedUpgraded;
 	}
 

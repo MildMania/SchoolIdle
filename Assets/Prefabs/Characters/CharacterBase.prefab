@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
-  _unloadSpeedUpgradable: {fileID: 7784939741352380009}
   _attributeCategory: 1
+  _unloadSpeedUpgradableType: 3
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
 MonoBehaviour:
@@ -77,12 +77,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _attributeCategory: 1
+  _loadSpeedUpgradeType: 3
+  _loadCapacityUpgradeType: 2
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
-  _loadCapacityUpgradable: {fileID: 2029227116864571186}
-  _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _folderProducerFovController: {fileID: 1043138689413498247}
 --- !u!1 &248085572542776962
 GameObject:
@@ -383,7 +383,6 @@ Transform:
   - {fileID: 6760551213740444188}
   - {fileID: 5459586929772629732}
   - {fileID: 1475942441291434664}
-  - {fileID: 1441930555820486589}
   - {fileID: 1360490276735447177}
   - {fileID: 4720287474921096593}
   m_Father: {fileID: 0}
@@ -403,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onCollidedTasks:
     _taskCarrier: {fileID: 0}
+  _prefab: {fileID: 0}
   Collider: {fileID: 2750138833502224228}
 --- !u!114 &6380609688555925931
 MonoBehaviour:
@@ -735,7 +735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9173010147610378951}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1958598383839673077
 GameObject:
@@ -849,39 +849,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2634609895521266579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1441930555820486589}
-  m_Layer: 6
-  m_Name: Upgradables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1441930555820486589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634609895521266579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4401579067594594063}
-  - {fileID: 2287140468828457388}
-  - {fileID: 7302527384386975352}
-  m_Father: {fileID: 9173010147610378951}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3258392608546888463
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,12 +909,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _attributeCategory: 1
+  _loadSpeedUpgradeType: 1
+  _loadCapacityUpgradeType: 2
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
-  _loadCapacityUpgradable: {fileID: 2029227116864571186}
-  _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _paperProducerFovController: {fileID: 3542385565636418112}
 --- !u!114 &8859736292155214051
 MonoBehaviour:
@@ -963,8 +930,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
-  _unloadSpeedUpgradable: {fileID: 7784939741352380009}
   _attributeCategory: 1
+  _unloadSpeedUpgradableType: 3
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3340411455920048298
 GameObject:
@@ -1158,7 +1125,7 @@ Transform:
   m_Children:
   - {fileID: 2418754791814967824}
   m_Father: {fileID: 9173010147610378951}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5004994985374312861
 GameObject:
@@ -1423,148 +1390,6 @@ Transform:
   m_Father: {fileID: 9173010147610378951}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5647307934275007566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4401579067594594063}
-  - component: {fileID: 5947932527506609541}
-  m_Layer: 6
-  m_Name: CharacterSpeedUpgradable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4401579067594594063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647307934275007566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1441930555820486589}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5947932527506609541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5647307934275007566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2c3995fd589ef4f83f342877977081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 2418754791814967824}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _upgradableType
-      Entry: 3
-      Data: 1
-    - Name: _attributeCategory
-      Entry: 3
-      Data: 1
-    - Name: _onUpgradedTasks
-      Entry: 7
-      Data: 0|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
-    - Name: _taskCarrier
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnUpgraded
-      Entry: 6
-      Data: 
---- !u!1 &5688831579107018741
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7302527384386975352}
-  - component: {fileID: 7784939741352380009}
-  m_Layer: 6
-  m_Name: CharacterStoreSpeedUpgradable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7302527384386975352
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5688831579107018741}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1441930555820486589}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7784939741352380009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5688831579107018741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecea69e7ed14ffd48a46e0f09f4d66fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 2418754791814967824}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _upgradableType
-      Entry: 3
-      Data: 3
-    - Name: _attributeCategory
-      Entry: 3
-      Data: 1
-    - Name: _onUpgradedTasks
-      Entry: 7
-      Data: 0|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
-    - Name: _taskCarrier
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnUpgraded
-      Entry: 6
-      Data: 
 --- !u!1 &5711993118391570682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,77 +1616,6 @@ MonoBehaviour:
   EFormationGroupType: 4
   LeadingTransforms:
   - {fileID: 8558944412720319950}
---- !u!1 &6586385977916703338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2287140468828457388}
-  - component: {fileID: 2029227116864571186}
-  m_Layer: 6
-  m_Name: CharacterCapacityUpgradable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2287140468828457388
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586385977916703338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1441930555820486589}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2029227116864571186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586385977916703338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d73c22b1428c1f4d9deaf53629c50d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 2418754791814967824}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: _upgradableType
-      Entry: 3
-      Data: 2
-    - Name: _attributeCategory
-      Entry: 3
-      Data: 1
-    - Name: _onUpgradedTasks
-      Entry: 7
-      Data: 0|MMFramework.TasksV2.MMTaskExecutor, Assembly-CSharp
-    - Name: _taskCarrier
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnUpgraded
-      Entry: 6
-      Data: 
 --- !u!1 &6650778041570611588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,12 +1866,12 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _attributeCategory: 1
+  _loadSpeedUpgradeType: 0
+  _loadCapacityUpgradeType: 0
   _updatedFormationController: {fileID: 2155057775360085672}
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 1
   _container: {fileID: 1360490276735447177}
-  _loadCapacityUpgradable: {fileID: 0}
-  _loadSpeedUpgradable: {fileID: 7784939741352380009}
   _coinWorthCollector: {fileID: 2634399202852726416}
   _moneyProducerFovController: {fileID: 7793651401536557702}
 --- !u!1 &7785287994133234272
@@ -2496,7 +2250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitImmediately: 1
   _movementCommander: {fileID: 221509717171969841}
-  _characterSpeedUpgradable: {fileID: 5947932527506609541}
+  _characterSpeedUpgradable: {fileID: 0}
   _movementExecutor: {fileID: 7026170102763302549}
   _characterAnimationController: {fileID: 2561681505369681978}
 --- !u!1001 &8122009645132194852
