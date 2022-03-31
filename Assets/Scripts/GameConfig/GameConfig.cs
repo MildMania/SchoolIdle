@@ -54,7 +54,7 @@ public enum EAttributeCategory
 {
     NONE = 0,
     CHARACTER = 1,
-    HELPER = 2,
+    HELPER_1 = 2,
     CLASSROOM_1 = 3,
     CLASSROOM_2 = 4,
 }
