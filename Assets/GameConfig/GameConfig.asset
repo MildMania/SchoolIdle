@@ -389,7 +389,7 @@ MonoBehaviour:
       Data: 10|AttributeInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: AttributeInfo, Assembly-CSharp
@@ -410,7 +410,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 4
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -422,7 +422,19 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 500
+      Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 4
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -446,7 +458,7 @@ MonoBehaviour:
       Data: 11|AttributeInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 4
     - Name: 
       Entry: 7
       Data: AttributeInfo, Assembly-CSharp
@@ -456,6 +468,42 @@ MonoBehaviour:
     - Name: Value
       Entry: 4
       Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
+    - Name: Value
+      Entry: 4
+      Data: 15
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 4
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -479,7 +527,7 @@ MonoBehaviour:
       Data: 12|AttributeInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 4
     - Name: 
       Entry: 7
       Data: AttributeInfo, Assembly-CSharp
@@ -489,6 +537,42 @@ MonoBehaviour:
     - Name: Value
       Entry: 4
       Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
+    - Name: Value
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 4
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -522,7 +606,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: AttributeRequirement, Assembly-CSharp
@@ -868,6 +952,212 @@ MonoBehaviour:
     - Name: Value
       Entry: 3
       Data: 60
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeRequirement, Assembly-CSharp
+    - Name: _attributeCategoryType
+      Entry: 3
+      Data: 2
+    - Name: Requirements
+      Entry: 7
+      Data: 25|System.Collections.Generic.Dictionary`2[[EUpgradable, Assembly-CSharp],[RequirementInfo[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 26|System.Collections.Generic.EnumEqualityComparer`1[[EUpgradable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 7
+      Data: 27|RequirementInfo[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
+    - Name: Value
+      Entry: 3
+      Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 6
+    - Name: $v
+      Entry: 7
+      Data: 28|RequirementInfo[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 3
+      Data: 15
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
+    - Name: Value
+      Entry: 3
+      Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 3
+      Data: 45
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 7
+    - Name: $v
+      Entry: 7
+      Data: 29|RequirementInfo[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 3
+      Data: 22
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
+    - Name: Value
+      Entry: 3
+      Data: 32
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Value
+      Entry: 3
+      Data: 42
     - Name: 
       Entry: 8
       Data: 
