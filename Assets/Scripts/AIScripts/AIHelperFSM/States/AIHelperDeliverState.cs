@@ -1,33 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
-
-using Pathfinding;
+using Random = UnityEngine.Random;
 
 public class AIHelperDeliverState : State<EState, ETransition>
 {
     [SerializeField] private AIHelper _aiHelper;
-
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
-    private BaseConsumer _currentConsumer;
     [SerializeField] private HelperAnimationController _helperAnimationController;
+    [SerializeField] private float _pollDelay = 5;
+
+    private BaseConsumer _currentConsumer;
+    private WaitForSeconds _pollWfs;
+
+    private void Awake()
+    {
+        _pollWfs = new WaitForSeconds(_pollDelay);
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     protected override EState GetStateID()
     {
         return EState.Deliver;
     }
 
+
     private BaseConsumer SelectConsumer()
     {
-        BaseConsumer currentConsumer = default(BaseConsumer);
-
         var list = GetConsumers();
-        int indx = Random.Range(0, list.Count - 1);
+        if (list == null || list.Count == 0)
+        {
+            return null;
+        }
 
-        currentConsumer = list[indx];
-
+        int index = Random.Range(0, list.Count - 1);
+        var currentConsumer = list[index];
         return currentConsumer;
     }
 
@@ -38,9 +51,24 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     public override void OnEnterCustomActions()
     {
-        base.OnEnterCustomActions();
+        StartCoroutine(SelectConsumerRoutine());
+    }
 
+    private IEnumerator SelectConsumerRoutine()
+    {
         _currentConsumer = SelectConsumer();
+
+        while (_currentConsumer == null)
+        {
+            yield return _pollWfs;
+            _currentConsumer = SelectConsumer();
+        }
+
+        MoveToDeliveryPoint();
+    }
+
+    private void MoveToDeliveryPoint()
+    {
         MoveToInteractionPoint(_currentConsumer.AiInteraction.GetInteractionPoint());
         _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty += OnCapacityEmpty;
@@ -58,7 +86,6 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private void OnPathCompleted()
     {
-        
     }
 
     private void OnCapacityEmpty()
