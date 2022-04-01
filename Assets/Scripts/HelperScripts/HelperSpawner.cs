@@ -12,6 +12,8 @@ public class HelperSpawner : MonoBehaviour
     [SerializeField] private Upgradable _helperHireUpgradable;
     [SerializeField] private EAttributeCategory _attributeCategory;
 
+    private bool _isGameStarted = true;
+
 
     private void Start()
     {
@@ -20,7 +22,18 @@ public class HelperSpawner : MonoBehaviour
 
     private void OnHelperHireUpgraded(UpgradableTrackData upgradableTrackData)
     {
-        float value = GameConfigManager.Instance.GetAttributeUpgradeTotalValue(_attributeCategory, upgradableTrackData);
+        float value;
+        
+        if (_isGameStarted)
+        {
+            value = GameConfigManager.Instance.GetAttributeUpgradeTotalValue(_attributeCategory, upgradableTrackData);
+            _isGameStarted = false;
+        }
+        else
+        {
+            value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
+        }
+
 
         StartCoroutine(SpawnHelpersRoutine((int) value));
     }

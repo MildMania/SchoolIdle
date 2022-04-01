@@ -709,7 +709,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -721,7 +721,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -733,7 +733,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -745,7 +745,7 @@ MonoBehaviour:
       Data: 4
     - Name: Value
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
