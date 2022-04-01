@@ -49,7 +49,7 @@ MonoBehaviour:
   _shapeType: 0
   _fovRadius: 1.5
   _fovHeight: 0
-  _fovAngle: 360
+  _fovAngle: 226
   _targetMask:
     serializedVersion: 2
     m_Bits: 32768
@@ -167,7 +167,7 @@ MonoBehaviour:
   _shapeType: 0
   _fovRadius: 1.5
   _fovHeight: 0
-  _fovAngle: 360
+  _fovAngle: 226
   _targetMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -396,7 +396,7 @@ MonoBehaviour:
   _shapeType: 0
   _fovRadius: 1.5
   _fovHeight: 0
-  _fovAngle: 360
+  _fovAngle: 226
   _targetMask:
     serializedVersion: 2
     m_Bits: 512
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   _shapeType: 0
   _fovRadius: 1.5
   _fovHeight: 0
-  _fovAngle: 360
+  _fovAngle: 226
   _targetMask:
     serializedVersion: 2
     m_Bits: 16384

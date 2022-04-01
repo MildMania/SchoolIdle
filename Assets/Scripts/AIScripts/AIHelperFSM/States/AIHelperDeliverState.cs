@@ -5,6 +5,8 @@ using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 using Random = UnityEngine.Random;
 
+using DG.Tweening;
+
 public class AIHelperDeliverState : State<EState, ETransition>
 {
     [SerializeField] private AIHelper _aiHelper;
@@ -14,6 +16,8 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private BaseConsumer _currentConsumer;
     private WaitForSeconds _pollWfs;
+
+    private Vector3 _lastPos;
 
     private void Awake()
     {
@@ -82,12 +86,17 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private void MoveToInteractionPoint(Vector3 pos)
     {
+        _lastPos = pos;
         _movementBehaviour.MoveDestination(pos, OnPathCompleted);
     }
 
     private void OnPathCompleted()
     {
         _aiHelper.CurrentUnloadBehaviour.Activate();
+
+        Vector3 dir = (new Vector3(_aiHelper.transform.position.x, _aiHelper.transform.position.y, _lastPos.z) - _aiHelper.transform.position).normalized;
+
+        _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f);
         // TODO: we need coroutine rather than path completed event
     }
 

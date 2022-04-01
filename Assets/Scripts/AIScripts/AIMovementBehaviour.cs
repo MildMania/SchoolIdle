@@ -65,7 +65,7 @@ public class AIMovementBehaviour : MonoBehaviour
 
     public void Stop()
     {
-        _movementSpeed = 0;
+        _seeker.enabled = false;
     }
 
     private void OnPathCompleted()
