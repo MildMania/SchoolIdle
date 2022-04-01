@@ -37,8 +37,7 @@ public class HelperSpawner : MonoBehaviour
         {
             value = GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, upgradableTrackData);
         }
-
-
+        
         StartCoroutine(SpawnHelpersRoutine((int) value));
     }
 
