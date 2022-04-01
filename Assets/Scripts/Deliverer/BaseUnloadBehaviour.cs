@@ -16,6 +16,11 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
 
     [SerializeField] protected bool _isActiveOnStart = true;
 
+    [SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
+
+    protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
+
+
     protected float _unloadDelay;
 
     protected bool _isActive = true;
@@ -113,6 +118,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
                     int index = (int) Random.Range(0, _consumers.Count - 0.1f);
                     if (_deliverer.Resources.Count > 0)
                     {
+                        _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
                         UnloadCustomActions(index);
                         _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }

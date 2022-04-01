@@ -20,7 +20,12 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     [SerializeField] protected Transform _container;
 
     [SerializeField] protected bool _isActiveOnStart = true;
-    
+
+    [SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
+
+    protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
+
+
     protected Upgradable _loadCapacityUpgradable;
 
     protected Upgradable _loadSpeedUpgradable;
@@ -166,6 +171,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
                     TResource resource = default(TResource);
                     if (_producers[index].TryRemoveAndGetLastResource(ref resource))
                     {
+                        _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
                         LoadCustomActions(resource);
                         _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
