@@ -1,5 +1,5 @@
 using System;
-using MMFramework.Tasks.Examples;
+using MMFramework.TasksV2;
 using UnityEngine;
 
 //public class ConsumptionController : MonoBehaviour
@@ -17,6 +17,8 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
     private int _consumptionCount;
     private Action _onConsumptionFinished;
 
+    [SerializeField] private MMTaskExecutor _onConsumptionStartedTasks;
+    [SerializeField] private MMTaskExecutor _onConsumptionStoppedTasks;
 
     public void StartConsumption(int amount, Action onConsumedCallback)
     {
@@ -25,6 +27,10 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
             IsAvailable = false;
             _consumptionCount = amount;
             _onConsumptionFinished = onConsumedCallback;
+
+            if (_onConsumptionStartedTasks!= null && amount != 0)
+                _onConsumptionStartedTasks.Execute(this);
+
             for (int i = 0; i < amount; i++)
             {
                 TResource resource = _resourceProvider.Resources[_resourceProvider.Resources.Count - 1];
@@ -42,6 +48,10 @@ public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where T
         {
             _onConsumptionFinished?.Invoke();
             IsAvailable = true;
+
+            if (_resourceProvider.ResourceContainer.childCount == 0 && _onConsumptionStoppedTasks != null)
+                _onConsumptionStoppedTasks.Execute(this);
+
         }
     }
 }
