@@ -16,12 +16,28 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
 
     protected float _unloadDelay;
 
+    protected bool _isActive = true;
+
     public void StopUnloading()
     {
         StopUnloadingCustomActions();
     }
 
     public abstract void StopUnloadingCustomActions();
+
+    protected abstract IEnumerator UnloadRoutine();
+
+    public void Activate()
+    {
+        _isActive = true;
+        StartCoroutine(UnloadRoutine());
+    }
+
+    public void Deactivate()
+    {
+        _isActive = false;
+        StopAllCoroutines();
+    }
 }
 
 public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnloadBehaviour
@@ -43,8 +59,8 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
         _unloadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _unloadSpeedUpgradable.UpgradableTrackData);
         
         _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
-        
-        StartCoroutine(UnloadRoutine());
+
+        Activate();        
     }
     
     protected virtual void OnAwakeCustomActions()
@@ -58,6 +74,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
     protected virtual void OnDestroyCustomActions()
     {
+        Deactivate();
     }
 
     private void OnUnloadSpeedUpgraded(UpgradableTrackData upgradableTrackData)
@@ -78,7 +95,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
     }
     
 
-    private IEnumerator UnloadRoutine()
+    protected override IEnumerator UnloadRoutine()
     {
         float currentTime = 0;
 
@@ -86,7 +103,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
         {
             currentTime += Time.deltaTime;
 
-            if (currentTime > _unloadDelay)
+            if (_isActive && currentTime > _unloadDelay)
             {
                 if (_consumers.Count > 0)
                 {
