@@ -77,6 +77,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
     protected override void OnExitCustomActions()
     {
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty -= OnCapacityEmpty;
+        _aiHelper.CurrentUnloadBehaviour.Deactivate();
     }
 
     private void MoveToInteractionPoint(Vector3 pos)
@@ -86,6 +87,8 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private void OnPathCompleted()
     {
+        _aiHelper.CurrentUnloadBehaviour.Activate();
+        // TODO: we need coroutine rather than path completed event
     }
 
     private void OnCapacityEmpty()

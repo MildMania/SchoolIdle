@@ -8,9 +8,13 @@ public class AIHelper : SerializedMonoBehaviour
     public IResource Resource => _resource;
 
     [OdinSerialize] private Dictionary<IResource, BaseLoadBehaviour> _resourceToLoadBehaviour;
+    [OdinSerialize] private Dictionary<IResource, BaseUnloadBehaviour> _resourceToUnloadBehaviour;
 
     private BaseLoadBehaviour _currentLoadBehaviour;
     public BaseLoadBehaviour CurrentLoadBehaviour => _currentLoadBehaviour;
+
+    private BaseUnloadBehaviour _currentUnloadBehaviour;
+    public BaseUnloadBehaviour CurrentUnloadBehaviour => _currentUnloadBehaviour;
 
 
     private void Start()
@@ -23,7 +27,21 @@ public class AIHelper : SerializedMonoBehaviour
             }
             else
             {
+                
                 _currentLoadBehaviour = item.Value;
+            }
+        }
+
+        foreach (var item in _resourceToUnloadBehaviour)
+        {
+            if (!item.Key.Equals(_resource))
+            {
+                item.Value.StopUnloading();
+            }
+            else
+            {
+                _currentUnloadBehaviour = item.Value;
+                _currentUnloadBehaviour.Deactivate();
             }
         }
     }

@@ -18,8 +18,6 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		
 		_folderConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
 		_folderConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
-		
-		StopAllCoroutines();
 	}
 
 	public override void UnloadCustomActions(int index)

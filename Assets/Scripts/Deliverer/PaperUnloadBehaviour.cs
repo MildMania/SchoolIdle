@@ -19,9 +19,6 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 
         _paperConsumerFovController.OnTargetEnteredFieldOfView -= OnConsumerEnteredFieldOfView;
         _paperConsumerFovController.OnTargetExitedFieldOfView -= OnConsumerExitedFieldOfView;
-
-
-        StopAllCoroutines();
     }
 
     public override void UnloadCustomActions(int index)
