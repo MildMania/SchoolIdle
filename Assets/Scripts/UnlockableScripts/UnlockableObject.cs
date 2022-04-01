@@ -82,7 +82,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 				{
 					_lockObjects.SetActive(false);
 				}
-				
+				OnDetectedCustomActions();
 				
 			});
 		}
@@ -98,7 +98,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 			Debug.Log("SAVED!!!");
 		}
 		
-		OnDetectedCustomActions();
+
 
 	}
 
