@@ -21,9 +21,4 @@ public class Character : MonoBehaviour
         return true;
     }
 
-    private void Start()
-    {
-        Debug.Log(Application.persistentDataPath);
-    }
-
 }
