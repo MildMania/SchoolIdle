@@ -279,7 +279,7 @@ MonoBehaviour:
       Data: 1
     - Name: _requiredAmount
       Entry: 3
-      Data: 8
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -323,6 +323,7 @@ MonoBehaviour:
       Entry: 6
       Data: 
   _unlockableGO: {fileID: 0}
+  _lockObjects: {fileID: 0}
   _baseCharacterDetector: {fileID: 6968486723723393949}
 --- !u!65 &6968486724384274531
 BoxCollider:
