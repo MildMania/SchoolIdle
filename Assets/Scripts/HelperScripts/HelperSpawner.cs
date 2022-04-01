@@ -6,13 +6,17 @@ using UnityEngine;
 
 public class HelperSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _helperPrefab;
+    [SerializeField] private List<GameObject> _helperPrefabs;
+    
+    
     [SerializeField] private Transform _spawnTarget;
 
     [SerializeField] private Upgradable _helperHireUpgradable;
     [SerializeField] private EAttributeCategory _attributeCategory;
 
     private bool _isGameStarted = true;
+
+    private int _helperModelCounter = 0;
 
 
     private void Start()
@@ -48,9 +52,12 @@ public class HelperSpawner : MonoBehaviour
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            var helper = Instantiate(_helperPrefab);
+            var helper = Instantiate(_helperPrefabs[_helperModelCounter]);
             helper.transform.position = _spawnTarget.position;
 
+            _helperModelCounter++;
+            _helperModelCounter %= _helperPrefabs.Count;
+            
             yield return null;
         }
     }
