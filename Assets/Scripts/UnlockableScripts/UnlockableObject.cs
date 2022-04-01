@@ -74,7 +74,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
 			Debug.Log("Unlockable Object Unlock");
-			CoroutineRunner.Instance.WaitForSeconds(1f, () =>
+			CoroutineRunner.Instance.WaitForSeconds(0.3f, () =>
 			{
 				_unlockableGO.SetActive(true);
 				gameObject.SetActive(false);
