@@ -6,6 +6,8 @@ using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 using Pathfinding;
 
+using DG.Tweening;
+
 public class AIHelperStoreState : State<EState, ETransition>
 {
     [SerializeField] private AIHelper _aiHelper;
@@ -17,6 +19,8 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     private BaseProducer _currentProducer;
     private WaitForSeconds _pollWfs;
+
+    private Vector3 _lastPos;
 
     private void Awake()
     {
@@ -62,6 +66,8 @@ public class AIHelperStoreState : State<EState, ETransition>
     protected override void OnExitCustomActions()
     {
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull -= OnCapacityFull;
+
+        _aiHelper.CurrentLoadBehaviour.Deactivate();
     }
 
     private BaseProducer SelectProducer()
@@ -99,12 +105,17 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     private void MoveToInteractionPoint(Vector3 pos)
     {
+        _lastPos = pos;
         _movementBehaviour.MoveDestination(pos, OnPathCompleted);
     }
 
     private void OnPathCompleted()
     {
-        // TODO : start store routine
+        Vector3 dir = (new Vector3(_aiHelper.transform.position.x, _aiHelper.transform.position.y, _lastPos.z) - _aiHelper.transform.position).normalized;
+
+        _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f);
+
+        _aiHelper.CurrentLoadBehaviour.Activate();
 
         if (_onMovementCompletedTasks != null)
             _onMovementCompletedTasks.Execute(this);

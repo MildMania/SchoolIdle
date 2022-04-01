@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
+using MMFramework.Utilities;
+
 public class AIHelper : SerializedMonoBehaviour
 {
     [OdinSerialize] private IResource _resource;
@@ -27,8 +29,8 @@ public class AIHelper : SerializedMonoBehaviour
             }
             else
             {
-                
                 _currentLoadBehaviour = item.Value;
+                _currentLoadBehaviour.Deactivate();
             }
         }
 

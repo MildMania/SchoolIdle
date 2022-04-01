@@ -18,9 +18,6 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
 
         _paperProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _paperProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
-
-
-        StopAllCoroutines();
     }
 
     public override void LoadCustomActions(Paper resource)

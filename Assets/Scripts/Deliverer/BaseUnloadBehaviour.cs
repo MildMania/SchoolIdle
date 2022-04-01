@@ -14,6 +14,8 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
     [SerializeField] protected EAttributeCategory _attributeCategory;
     [SerializeField] protected EUpgradable _unloadSpeedUpgradableType;
 
+    [SerializeField] protected bool _isActiveOnStart = true;
+
     protected float _unloadDelay;
 
     protected bool _isActive = true;
@@ -60,7 +62,8 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
         
         _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
 
-        Activate();        
+        if(_isActiveOnStart)
+            Activate();        
     }
     
     protected virtual void OnAwakeCustomActions()

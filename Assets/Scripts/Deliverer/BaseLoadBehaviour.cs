@@ -18,7 +18,8 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     [SerializeField] protected bool _canLoadUnlimited;
 
     [SerializeField] protected Transform _container;
-    
+
+    [SerializeField] protected bool _isActiveOnStart = true;
     
     protected Upgradable _loadCapacityUpgradable;
 
@@ -31,8 +32,24 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     public Action OnCapacityEmpty;
     public Action OnCapacityFull;
 
+    protected bool _isActive = true;
+
     public virtual void StopLoading()
     {
+    }
+
+    protected abstract IEnumerator LoadRoutine();
+
+    public void Activate()
+    {
+        _isActive = true;
+        StartCoroutine(LoadRoutine());
+    }
+
+    public void Deactivate()
+    {
+        _isActive = false;
+        StopAllCoroutines();
     }
 
     //TODO: Consider controlling loading/unloading using start/stop loading methods!
@@ -68,9 +85,9 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
             
             _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
-        
-        StartCoroutine(LoadRoutine());
-        
+
+        if(_isActiveOnStart)
+            Activate();
     }
 
 
@@ -101,6 +118,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     protected virtual void OnDestroyCustomActions()
     {
+        Deactivate();
     }
 
     protected void OnProducerEnteredFieldOfView(TBaseProducer producer)
@@ -126,7 +144,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         return _deliverer.Container.childCount < _loadCapacity;
     }
 
-    private IEnumerator LoadRoutine()
+    protected override IEnumerator LoadRoutine()
     {
         float currentTime = 0;
 
@@ -134,7 +152,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         {
             currentTime += Time.deltaTime;
 
-            if (currentTime > _loadDelay)
+            if (_isActive && currentTime > _loadDelay)
             {
                 if (_container.childCount == 0)
                     OnCapacityEmpty?.Invoke();

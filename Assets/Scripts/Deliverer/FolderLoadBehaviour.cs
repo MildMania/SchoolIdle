@@ -18,9 +18,6 @@ public class FolderLoadBehaviour : BaseLoadBehaviour<FolderProducer, Folder>
 
         _folderProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _folderProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
-
-
-        StopAllCoroutines();
     }
 
     public override void LoadCustomActions(Folder resource)

@@ -19,8 +19,6 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
         
         _moneyProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
-
-        StopAllCoroutines();
     }
 
     public override void LoadCustomActions(Money resource)

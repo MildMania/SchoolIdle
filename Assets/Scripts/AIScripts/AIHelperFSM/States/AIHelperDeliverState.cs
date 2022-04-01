@@ -82,6 +82,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
     {
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty -= OnCapacityEmpty;
         _aiHelper.CurrentUnloadBehaviour.Deactivate();
+        _aiHelper.CurrentLoadBehaviour.Deactivate();
     }
 
     private void MoveToInteractionPoint(Vector3 pos)
@@ -92,11 +93,14 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private void OnPathCompleted()
     {
-        _aiHelper.CurrentUnloadBehaviour.Activate();
+        _aiHelper.CurrentLoadBehaviour.Activate();
 
         Vector3 dir = (new Vector3(_aiHelper.transform.position.x, _aiHelper.transform.position.y, _lastPos.z) - _aiHelper.transform.position).normalized;
 
-        _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f);
+        _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f).OnComplete(() =>
+        {
+            _aiHelper.CurrentUnloadBehaviour.Activate();
+        });
         // TODO: we need coroutine rather than path completed event
     }
 
