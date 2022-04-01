@@ -16,9 +16,13 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
 
-	private UnlockableTrackData _unlockableTrackData;
+	protected UnlockableTrackData _unlockableTrackData;
+	
+	
 	public Action<UnlockableTrackData> OnUnlockableInit;
 	public Action<int,UnlockableTrackData> OnTryUnlock;
+
+	
 	private void Awake()
 	{
 		_baseCharacterDetector.OnDetected += OnDetected;
@@ -41,13 +45,21 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		}
 		
 		Unlockable.Init(_unlockableTrackData);
+		
 		OnUnlockableInit?.Invoke(_unlockableTrackData);
+		
 		_unlockableGO.SetActive(_unlockableTrackData.IsUnlock);
 		if (_lockObjects != null)
 		{
 			_lockObjects.SetActive(!_unlockableTrackData.IsUnlock);
 		}
 		gameObject.SetActive(!_unlockableTrackData.IsUnlock);
+		
+		OnStartCustomActions();
+	}
+
+	protected virtual void OnStartCustomActions()
+	{
 		
 	}
 
@@ -70,6 +82,8 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 				{
 					_lockObjects.SetActive(false);
 				}
+				
+				
 			});
 		}
 		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData);
@@ -77,10 +91,19 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		var coinController = character.GetComponentInChildren<CoinController>();
 		coinController.UpdateCoinCount();
 		
+
 		UserManager.Instance.LocalUser.SaveData(onSavedCallback);
 		void onSavedCallback()
 		{
 			Debug.Log("SAVED!!!");
 		}
+		
+		OnDetectedCustomActions();
+
+	}
+
+	protected virtual void OnDetectedCustomActions()
+	{
+		
 	}
 }
