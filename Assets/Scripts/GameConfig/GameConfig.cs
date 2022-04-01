@@ -57,4 +57,5 @@ public enum EAttributeCategory
     PAPER_DELIVERER_HELPER = 2,
     CLASSROOM_1 = 3,
     CLASSROOM_2 = 4,
+    AUTOMAT_1 = 5,
 }

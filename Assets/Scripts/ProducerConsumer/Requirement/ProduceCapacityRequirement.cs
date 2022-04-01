@@ -7,8 +7,8 @@ public class ProduceCapacityRequirement : BaseProductionRequirement
     [SerializeField] private int _produceCapacity;
     [SerializeField] private BaseResourceProvider[] _resourceProviders;
     private int _producedCount;
-
-
+    
+    
     public override bool IsProductionRequirementMet()
     {
         _producedCount = 0;
