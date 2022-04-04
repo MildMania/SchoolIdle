@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Money : MonoBehaviour, IResource
 {
-    private float _moveDuration = 0.5f;
+    private float _moveDuration = 0.1f;
 
     private void OnDestroy()
     {

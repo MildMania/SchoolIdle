@@ -38,7 +38,7 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     public Action OnCapacityFull;
 
     protected bool _isActive = true;
-
+    protected bool _isUpgradableActive = true;
     public virtual void StopLoading()
     {
     }
@@ -69,17 +69,18 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private void Awake()
     {
-        
         OnAwakeCustomActions();
     }
 
     private void Start()
     {
-        _loadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
-        _loadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _loadSpeedUpgradable.UpgradableTrackData);
-        _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
-        
-        
+        if (_isUpgradableActive)
+        {
+            _loadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
+            _loadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _loadSpeedUpgradable.UpgradableTrackData);
+            _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
+        }
+
         if (!_canLoadUnlimited)
         {
             _loadCapacityUpgradable =
