@@ -6,6 +6,10 @@ using UnityEngine;
 public class UpgradableManager : Singleton<UpgradableManager>
 {
 
+    [SerializeField] private CoinController _coinController;
+
+    public CoinController CoinController => _coinController;
+    
     private Upgradable[] _upgradables;
 
     private void Awake()

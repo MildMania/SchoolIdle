@@ -10,6 +10,8 @@ public abstract class Upgradable : SerializedMonoBehaviour
 	[OdinSerialize] protected EUpgradable _upgradableType;
 	[OdinSerialize] private EAttributeCategory _attributeCategory;
 	[OdinSerialize] private MMTaskExecutor _onUpgradedTasks;
+	
+	private CoinController _coinController;
 
 	protected IRequirement[] RequirementData
 		= Array.Empty<IRequirement>();
@@ -26,6 +28,9 @@ public abstract class Upgradable : SerializedMonoBehaviour
 
 	private void Awake()
 	{
+
+
+		
 		List<IRequirement> reqList = GameConfigManager.Instance.CreateRequirementList(_attributeCategory, _upgradableType);
 
 		if (reqList == null)
@@ -49,6 +54,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 		} 
 		
 		OnUpgraded?.Invoke(_upgradableTrackData);
+		UpgradableManager.Instance.CoinController.UpdateCoinCount();
 	}
 
 	private void Start()
@@ -117,6 +123,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 			Debug.Log("UPGRADE YAPILDI.");
 				
 			OnUpgraded?.Invoke(_upgradableTrackData);
+			UpgradableManager.Instance.CoinController.UpdateCoinCount();
 			_onUpgradedTasks?.Execute(this);
 		}
 	}
