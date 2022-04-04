@@ -253,6 +253,7 @@ MonoBehaviour:
   _attributeCategory: 2
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
+  _hapticType: 2
   _folderConsumerFovController: {fileID: 5790364403680320723}
 --- !u!114 &1286604798718278388
 MonoBehaviour:
@@ -289,6 +290,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
+  _hapticType: 2
   _folderProducerFovController: {fileID: 3419851049315108552}
 --- !u!1 &1497660256541341506
 GameObject:
@@ -677,6 +679,7 @@ GameObject:
   - component: {fileID: 742774413176386655}
   - component: {fileID: 5195358094372504678}
   - component: {fileID: 4706862737783256158}
+  - component: {fileID: 7641330847075714885}
   m_Layer: 17
   m_Name: AIHelperBase
   m_TagString: Untagged
@@ -764,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 1.09
+  radius: 0.76
   height: 2
   canMove: 1
   maxSpeed: 5
@@ -925,6 +928,33 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+--- !u!114 &7641330847075714885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734376035419674945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560112f876f5746c780eca0d404e7139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radiusBackingField: 0.5
+  heightBackingField: 2
+  centerBackingField: 1
+  locked: 0
+  lockWhenNotMoving: 0
+  agentTimeHorizon: 2
+  obstacleTimeHorizon: 2
+  maxNeighbours: 10
+  layer: 1
+  collidesWith: -1
+  wallAvoidForce: 1
+  wallAvoidFalloff: 1
+  priority: 0.5
+  debug: 0
 --- !u!1 &4685753391054003624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,6 +1667,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
+  _hapticType: 2
   _paperProducerFovController: {fileID: 4918007575379483990}
 --- !u!114 &6734664406479944683
 MonoBehaviour:
@@ -1655,6 +1686,7 @@ MonoBehaviour:
   _attributeCategory: 2
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
+  _hapticType: 2
   _paperConsumerFovController: {fileID: 2100999408035901779}
 --- !u!1 &9025901034665327267
 GameObject:
