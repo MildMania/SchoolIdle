@@ -279,7 +279,7 @@ MonoBehaviour:
       Data: 1
     - Name: _requiredAmount
       Entry: 3
-      Data: 100
+      Data: 200
     - Name: 
       Entry: 8
       Data: 

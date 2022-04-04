@@ -306,7 +306,7 @@ MonoBehaviour:
       Data: 0
     - Name: Value
       Entry: 4
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -318,7 +318,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 4
+      Data: 1.5
     - Name: 
       Entry: 8
       Data: 
@@ -330,7 +330,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 6
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -398,7 +398,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 6
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -410,7 +410,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 8
+      Data: 1.5
     - Name: 
       Entry: 8
       Data: 
@@ -422,7 +422,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

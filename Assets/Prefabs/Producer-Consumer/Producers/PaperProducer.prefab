@@ -1015,7 +1015,7 @@ MonoBehaviour:
   _resource: {fileID: 2777742922524442462}
   _productionRequirements:
   - {fileID: 1176234672}
-  _productionDelay: 0.6
+  _productionDelay: 1.2
   _maxIndicatorObject: {fileID: 0}
 --- !u!114 &4652880170874033480
 MonoBehaviour:
