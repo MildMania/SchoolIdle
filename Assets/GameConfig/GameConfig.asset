@@ -395,7 +395,7 @@ MonoBehaviour:
       Data: AttributeInfo, Assembly-CSharp
     - Name: Level
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: Value
       Entry: 4
       Data: 1
@@ -407,7 +407,7 @@ MonoBehaviour:
       Data: AttributeInfo, Assembly-CSharp
     - Name: Level
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: Value
       Entry: 4
       Data: 1.5
@@ -419,7 +419,7 @@ MonoBehaviour:
       Data: AttributeInfo, Assembly-CSharp
     - Name: Level
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: Value
       Entry: 4
       Data: 2
@@ -490,7 +490,7 @@ MonoBehaviour:
       Data: 0
     - Name: Value
       Entry: 4
-      Data: 5
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -502,7 +502,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 10
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -514,7 +514,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 15
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -526,7 +526,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 20
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -1344,7 +1344,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 3
-      Data: 1000
+      Data: 900
     - Name: 
       Entry: 8
       Data: 
@@ -1356,7 +1356,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 3
-      Data: 2000
+      Data: 1500
     - Name: 
       Entry: 8
       Data: 
@@ -1389,7 +1389,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 3
-      Data: 500
+      Data: 400
     - Name: 
       Entry: 8
       Data: 
@@ -1401,7 +1401,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 3
-      Data: 1500
+      Data: 900
     - Name: 
       Entry: 8
       Data: 
@@ -1413,7 +1413,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 3
-      Data: 3000
+      Data: 1500
     - Name: 
       Entry: 8
       Data: 
@@ -1458,7 +1458,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 3
-      Data: 1000
+      Data: 900
     - Name: 
       Entry: 8
       Data: 
@@ -1470,7 +1470,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 3
-      Data: 2000
+      Data: 1500
     - Name: 
       Entry: 8
       Data: 
@@ -1515,7 +1515,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 3
-      Data: 1500
+      Data: 700
     - Name: 
       Entry: 8
       Data: 
@@ -1527,7 +1527,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 3
-      Data: 3000
+      Data: 900
     - Name: 
       Entry: 8
       Data: 
@@ -1539,7 +1539,7 @@ MonoBehaviour:
       Data: 4
     - Name: Value
       Entry: 3
-      Data: 5000
+      Data: 1100
     - Name: 
       Entry: 8
       Data: 
@@ -1551,7 +1551,7 @@ MonoBehaviour:
       Data: 5
     - Name: Value
       Entry: 3
-      Data: 6500
+      Data: 1300
     - Name: 
       Entry: 8
       Data: 
@@ -1563,7 +1563,7 @@ MonoBehaviour:
       Data: 6
     - Name: Value
       Entry: 3
-      Data: 8000
+      Data: 1500
     - Name: 
       Entry: 8
       Data: 
@@ -1575,7 +1575,7 @@ MonoBehaviour:
       Data: 7
     - Name: Value
       Entry: 3
-      Data: 10000
+      Data: 1700
     - Name: 
       Entry: 8
       Data: 
@@ -1587,7 +1587,7 @@ MonoBehaviour:
       Data: 8
     - Name: Value
       Entry: 3
-      Data: 12500
+      Data: 1900
     - Name: 
       Entry: 8
       Data: 
