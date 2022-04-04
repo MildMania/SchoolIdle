@@ -28,21 +28,21 @@ public class UnlockableTextWidget : WidgetBase
 		base.OnDestroyCustomActions();
 	}
 
-	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData)
+	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData,float delay)
 	{
 		int totalRequirement = _unlockableObject.Unlockable.GetRequirementCoin();
-		TryUpdateText(oldValue, unlockableTrackData.CurrentCount,totalRequirement);
+		TryUpdateText(oldValue, unlockableTrackData.CurrentCount,totalRequirement,delay);
 	}
 
-	private bool TryUpdateText(int oldValue, int currentValue,int totalRequirement)
+	private bool TryUpdateText(int oldValue, int currentValue,int totalRequirement,float delay)
 	{
 		int target = totalRequirement - currentValue;
 		if (oldValue == target)
 		{
 			return false;
 		}
-
-		DOTween.To(() => oldValue, x => oldValue = x, target, 1f)
+		
+		DOTween.To(() => oldValue, x => oldValue = x, target, delay)
 			.OnUpdate(() =>
 			{
 				_targetText.text = _preFix + oldValue;

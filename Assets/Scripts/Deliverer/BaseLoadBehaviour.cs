@@ -198,10 +198,13 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
             _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
             
         }
-        
-        _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
-        
-        
+
+        if (_loadSpeedUpgradable != null)
+        {
+            _loadSpeedUpgradable.OnUpgraded -= OnLoadSpeedUpgraded;
+        }
+
+
         OnDestroyCustomActions();
     }
 

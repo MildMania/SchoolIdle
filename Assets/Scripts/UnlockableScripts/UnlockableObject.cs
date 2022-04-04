@@ -17,11 +17,15 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
 
+	[SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactLight;
+
+	protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
+	
 	protected UnlockableTrackData _unlockableTrackData;
 	
-	
 	public Action<UnlockableTrackData> OnUnlockableInit;
-	public Action<int,UnlockableTrackData> OnTryUnlock;
+	
+	public Action<int,UnlockableTrackData,float> OnTryUnlock;
 
 	private Coroutine _unlockRoutine;
 
@@ -108,10 +112,17 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	private void TryToUnlock(Character character)
 	{
 		int oldValue = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
+		float coefficent = 0.002f;
+		float delay;
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
+			delay = oldValue * coefficent;
+			if (delay >= 1.5f)
+			{
+				delay = 1.5f; //max delay
+			}
 			Debug.Log("Unlockable Object Unlock");
-			CoroutineRunner.Instance.WaitForSeconds(0.3f, () =>
+			CoroutineRunner.Instance.WaitForSeconds(delay, () =>
 			{
 				_unlockableGO.SetActive(true);
 				gameObject.SetActive(false);
@@ -123,8 +134,20 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 				
 			});
 		}
-		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData);
+		else
+		{
+			delay = (oldValue - _unlockableTrackData.CurrentCount) * coefficent;
+			if (delay >= 1.5f)
+			{
+				delay = 1.5f; //max delay
+			}
+		}
 
+		
+		
+		StartCoroutine(HapticRoutine(delay));
+		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData,delay);
+		
 		var coinController = character.GetComponentInChildren<CoinController>();
 		coinController.UpdateCoinCount();
 		
@@ -136,6 +159,16 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		}
 	}
 
+	private IEnumerator HapticRoutine(float delay)
+	{
+		float currentTime = 0;
+		while (currentTime<delay)
+		{
+			_onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
+			delay += Time.deltaTime;
+			yield return null;
+		}
+	}
 	private void OnDetected(Character character)
 	{
 		_unlockRoutine = StartCoroutine(UnlockRoutine(character));
