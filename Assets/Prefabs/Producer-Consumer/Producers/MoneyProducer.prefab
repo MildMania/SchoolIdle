@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451239f2ea7e6f34aa1d501a7532192b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _produceCapacity: 30
+  _produceCapacity: 60
   _resourceProviders: []
 --- !u!1 &7678804735298749898
 GameObject:

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coin: 1
-  _count: 10
+  _count: 5
 --- !u!1001 &2462119432301108699
 PrefabInstance:
   m_ObjectHideFlags: 0
