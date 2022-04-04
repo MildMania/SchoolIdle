@@ -666,6 +666,7 @@ MonoBehaviour:
     _taskCarrier: {fileID: 1799350510462183551}
   _helperAnimationController: {fileID: 6386894955537829496}
   _pollDelay: 5
+  _animationController: {fileID: 6386894955537829496}
 --- !u!1 &3734376035419674945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1417,7 @@ MonoBehaviour:
   _movementBehaviour: {fileID: 5598689665677062176}
   _helperAnimationController: {fileID: 6386894955537829496}
   _pollDelay: 5
+  _animationController: {fileID: 6386894955537829496}
 --- !u!1 &8047351845409018512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,6 +1558,7 @@ MonoBehaviour:
   _aIPath: {fileID: 742774413176386655}
   _attributeCategory: 2
   _speedUpgradableType: 4
+  _currentStopDuration: 0
 --- !u!1 &8540485590079207289
 GameObject:
   m_ObjectHideFlags: 0

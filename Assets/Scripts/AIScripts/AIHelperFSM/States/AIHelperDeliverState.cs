@@ -19,6 +19,8 @@ public class AIHelperDeliverState : State<EState, ETransition>
     [SerializeField] private HelperAnimationController _helperAnimationController;
     [SerializeField] private float _pollDelay = 5;
 
+    [SerializeField] private HelperAnimationController _animationController;
+
     private BaseConsumer _currentConsumer;
     private WaitForSeconds _pollWfs;
 
@@ -64,6 +66,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
     public override void OnEnterCustomActions()
     {
         StartCoroutine(SelectConsumerRoutine());
+        _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
     }
 
     private IEnumerator SelectConsumerRoutine()
@@ -82,7 +85,6 @@ public class AIHelperDeliverState : State<EState, ETransition>
     private void MoveToDeliveryPoint()
     {
         MoveToInteractionPoint(_currentConsumer.AiInteraction.GetInteractionPoint());
-        _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty += OnCapacityEmpty;
     }
 
@@ -118,6 +120,8 @@ public class AIHelperDeliverState : State<EState, ETransition>
             _aiHelper.CurrentUnloadBehaviour.Activate();
         });
         // TODO: we need coroutine rather than path completed event
+
+        _helperAnimationController.PlayAnimation(EHelperAnimation.Idle);
     }
 
     private void OnCapacityEmpty()

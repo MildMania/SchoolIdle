@@ -19,6 +19,8 @@ public class AIHelperStoreState : State<EState, ETransition>
     [SerializeField] private HelperAnimationController _helperAnimationController;
     [SerializeField] private float _pollDelay = 5;
 
+    [SerializeField] private HelperAnimationController _animationController;
+
     private BaseProducer _currentProducer;
     private WaitForSeconds _pollWfs;
 
@@ -43,6 +45,7 @@ public class AIHelperStoreState : State<EState, ETransition>
     {
         base.OnEnterCustomActions();
         StartCoroutine(SelectProducerRoutine());
+        _animationController.PlayAnimation(EHelperAnimation.Walk);
     }
 
     private IEnumerator SelectProducerRoutine()
@@ -132,6 +135,8 @@ public class AIHelperStoreState : State<EState, ETransition>
 
         if (_onMovementCompletedTasks != null)
             _onMovementCompletedTasks.Execute(this);
+
+        _animationController.PlayAnimation(EHelperAnimation.Idle);
     }
 
     private void OnCapacityFull()
