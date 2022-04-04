@@ -23,6 +23,8 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	public Action<UnlockableTrackData> OnUnlockableInit;
 	public Action<int,UnlockableTrackData> OnTryUnlock;
 
+	private Coroutine x;
+
 	
 	private void Awake()
 	{
@@ -73,7 +75,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private void OnEnded(Character character)
 	{
-		StopCoroutine(UnlockRoutine(character));
+		StopCoroutine(x);
 	}
 
 	private IEnumerator UnlockRoutine(Character character)
@@ -136,7 +138,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private void OnDetected(Character character)
 	{
-		StartCoroutine(UnlockRoutine(character));
+		x = StartCoroutine(UnlockRoutine(character));
 	}
 
 	protected virtual void OnDetectedCustomActions()
