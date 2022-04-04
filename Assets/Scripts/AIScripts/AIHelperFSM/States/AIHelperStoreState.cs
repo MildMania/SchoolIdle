@@ -81,7 +81,7 @@ public class AIHelperStoreState : State<EState, ETransition>
             return null;
         }
 
-        int index = Random.Range(0, allProducers.Count - 1);
+        int index = Random.Range(0, allProducers.Count);
         var currentProducer = allProducers[index];
 
         // foreach (var producer in allProducers)

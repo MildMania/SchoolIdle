@@ -43,7 +43,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
             return null;
         }
 
-        int index = Random.Range(0, list.Count - 1);
+        int index = Random.Range(0, list.Count);
         var currentConsumer = list[index];
         return currentConsumer;
     }
