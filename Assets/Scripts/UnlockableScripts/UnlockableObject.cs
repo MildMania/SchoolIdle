@@ -136,13 +136,12 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		}
 		else
 		{
-			delay = (oldValue - _unlockableTrackData.CurrentCount) * coefficent;
+			delay = (oldValue - (Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount)) * coefficent;
 			if (delay >= 1.5f)
 			{
 				delay = 1.5f; //max delay
 			}
 		}
-
 		
 		
 		StartCoroutine(HapticRoutine(delay));
@@ -165,7 +164,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		while (currentTime<delay)
 		{
 			_onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
-			delay += Time.deltaTime;
+			currentTime += Time.deltaTime;
 			yield return null;
 		}
 	}
