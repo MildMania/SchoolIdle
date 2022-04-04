@@ -146,7 +146,11 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     private void OnPathStucked()
     {
+        Debug.Log("STOPPED AT STORE");
+
         _movementBehaviour.Stop();
+
+        OnExitCustomActions();
 
         StartCoroutine(SelectProducerRoutine());
     }

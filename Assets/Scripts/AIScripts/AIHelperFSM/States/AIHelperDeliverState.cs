@@ -130,9 +130,13 @@ public class AIHelperDeliverState : State<EState, ETransition>
     }
     private void OnPathStucked()
     {
+        Debug.Log("STOPPED AT DELIVER");
+
         _movementBehaviour.Stop();
 
-        StartCoroutine(SelectConsumerRoutine());
+        OnExitCustomActions();
+
+        MoveToDeliveryPoint();
     }
 
 }

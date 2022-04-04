@@ -25,9 +25,12 @@ public class AIMovementBehaviour : MonoBehaviour
     private bool _isMovementStarted;
 
     private float _minVelocity = 0.5f;
-    private float _minStopDuration = 5f;
+    private float _maxStopDuration = 5f;
+    private float _maxPathDuration = 10f;
 
     public float _currentStopDuration = 0;
+
+    public float _totalPathDuration = 0;
     
     private void Awake()
     {
@@ -68,6 +71,8 @@ public class AIMovementBehaviour : MonoBehaviour
     public void MoveDestination(Vector3 targetPos, System.Action onPathCompletedCallback = null,
         System.Action onPathStuckedCallback = null)
     {
+        _aIPath.isStopped = false;
+
         _isMovementStarted = true;
 
         _currentPathCompletedCallback = onPathCompletedCallback;
@@ -94,26 +99,34 @@ public class AIMovementBehaviour : MonoBehaviour
     {
         if (_isMovementStarted)
         {
-            if(_currentStopDuration > _minStopDuration)
+            if(_totalPathDuration > _maxPathDuration || _currentStopDuration > _maxStopDuration)
             {
-                _currentPathStuckedCallback();
+                _isMovementStarted = false;
+
                 _currentStopDuration = 0;
+                _totalPathDuration = 0;
+
+                if(_currentPathStuckedCallback != null)
+                    _currentPathStuckedCallback();
             }
 
-            if(_aIPath.velocity.magnitude < _minVelocity)
+            if (_aIPath.velocity.magnitude < _minVelocity)
             {
                 _currentStopDuration += Time.deltaTime;
 
-                //Debug.Log(_currentStopDuration);
+                Debug.Log(_totalPathDuration);
             }
             else
             {
                 _currentStopDuration = 0;
             }
+
+            _totalPathDuration += Time.deltaTime;
         }
         else
         {
             _currentStopDuration = 0;
+            _totalPathDuration = 0;
         }
     }
 
