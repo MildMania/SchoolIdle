@@ -25,7 +25,10 @@ public class MovementIdleState : State<EState, EState>
 		return EState.MovementIdle;
 	}
 
-
+	public bool IsOnIdleState()
+	{
+		return FSM.GetCurStateID() == EState.MovementIdle;
+	}
 
 
 	private void Awake()
@@ -34,6 +37,7 @@ public class MovementIdleState : State<EState, EState>
 		_fovBasedUpgradeAreaDetector.OnEnded += OnUpgradeAreaEnded;
 
 		_deliverer.OnContainerEmpty += OnContainerEmpty;
+		
 	}
 
 	private void OnContainerEmpty(bool isContainerEmpty)

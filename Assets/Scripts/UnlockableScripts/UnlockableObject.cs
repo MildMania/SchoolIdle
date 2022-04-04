@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using MMFramework.Utilities;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -26,6 +27,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	private void Awake()
 	{
 		_baseCharacterDetector.OnDetected += OnDetected;
+		_baseCharacterDetector.OnEnded += OnEnded;
 	}
 
 	private void Start()
@@ -66,9 +68,42 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	private void OnDestroy()
 	{
 		_baseCharacterDetector.OnDetected -= OnDetected;
+		_baseCharacterDetector.OnEnded -= OnEnded;
 	}
 
-	private void OnDetected(Character character)
+	private void OnEnded(Character character)
+	{
+		StopCoroutine(UnlockRoutine(character));
+	}
+
+	private IEnumerator UnlockRoutine(Character character)
+	{
+
+		while (true)
+		{
+			var movementIdleState = character.GetComponentInChildren<MovementIdleState>();
+
+			if (movementIdleState == null)
+			{
+				yield return null;
+				continue;
+			}
+
+			if (!movementIdleState.IsOnIdleState())
+			{
+				yield return null;
+				continue;
+			}
+		
+			TryToUnlock(character);
+
+			yield break;
+
+		}
+		
+	}
+
+	private void TryToUnlock(Character character)
 	{
 		int oldValue = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
@@ -97,9 +132,11 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		{
 			Debug.Log("SAVED!!!");
 		}
-		
+	}
 
-
+	private void OnDetected(Character character)
+	{
+		StartCoroutine(UnlockRoutine(character));
 	}
 
 	protected virtual void OnDetectedCustomActions()
