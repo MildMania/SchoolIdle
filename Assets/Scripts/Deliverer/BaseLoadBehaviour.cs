@@ -171,7 +171,10 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
                     TResource resource = default(TResource);
                     if (_producers[index].TryRemoveAndGetLastResource(ref resource))
                     {
-                        _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
+                        if (_isActiveOnStart)
+                        {
+                            _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
+                        }
                         LoadCustomActions(resource);
                         _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
