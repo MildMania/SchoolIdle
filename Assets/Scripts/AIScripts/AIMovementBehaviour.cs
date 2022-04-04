@@ -18,8 +18,16 @@ public class AIMovementBehaviour : MonoBehaviour
     private float _movementSpeed;
 
     private System.Action _currentPathCompletedCallback;
+    private System.Action _currentPathStuckedCallback;
 
     private Upgradable _helperSpeedUpgradable;
+
+    private bool _isMovementStarted;
+
+    private float _minVelocity = 0.5f;
+    private float _minStopDuration = 5f;
+
+    public float _currentStopDuration = 0;
     
     private void Awake()
     {
@@ -57,20 +65,57 @@ public class AIMovementBehaviour : MonoBehaviour
         _aIPath.SetPath(path);
     }
 
-    public void MoveDestination(Vector3 targetPos, System.Action onPathCompletedCallback = null)
+    public void MoveDestination(Vector3 targetPos, System.Action onPathCompletedCallback = null,
+        System.Action onPathStuckedCallback = null)
     {
+        _isMovementStarted = true;
+
         _currentPathCompletedCallback = onPathCompletedCallback;
+        _currentPathStuckedCallback = onPathStuckedCallback;
+
         StartCoroutine(MoveRoutine(targetPos));
     }
 
     public void Stop()
     {
-        _seeker.enabled = false;
+        StopAllCoroutines();
+        _aIPath.isStopped = true;
     }
 
     private void OnPathCompleted()
     {
         if(_currentPathCompletedCallback != null)
             _currentPathCompletedCallback();
+
+        _isMovementStarted = false;
     }
+
+    private void Update()
+    {
+        if (_isMovementStarted)
+        {
+            if(_currentStopDuration > _minStopDuration)
+            {
+                _currentPathStuckedCallback();
+                _currentStopDuration = 0;
+            }
+
+            if(_aIPath.velocity.magnitude < _minVelocity)
+            {
+                _currentStopDuration += Time.deltaTime;
+
+                //Debug.Log(_currentStopDuration);
+            }
+            else
+            {
+                _currentStopDuration = 0;
+            }
+        }
+        else
+        {
+            _currentStopDuration = 0;
+        }
+    }
+
+
 }

@@ -400,7 +400,7 @@ MonoBehaviour:
   _shapeType: 0
   _fovRadius: 1.5
   _fovHeight: 0
-  _fovAngle: 226
+  _fovAngle: 360
   _targetMask:
     serializedVersion: 2
     m_Bits: 512
@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
+  _rvoController: {fileID: 7641330847075714885}
   _aiHelper: {fileID: 4706862737783256158}
   _movementBehaviour: {fileID: 5598689665677062176}
   _onMovementCompletedTasks:
@@ -767,7 +768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.76
+  radius: 0.55
   height: 2
   canMove: 1
   maxSpeed: 5
@@ -946,7 +947,7 @@ MonoBehaviour:
   centerBackingField: 1
   locked: 0
   lockWhenNotMoving: 0
-  agentTimeHorizon: 2
+  agentTimeHorizon: 1
   obstacleTimeHorizon: 2
   maxNeighbours: 10
   layer: 1
@@ -1410,6 +1411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
+  _rvoController: {fileID: 7641330847075714885}
   _aiHelper: {fileID: 4706862737783256158}
   _movementBehaviour: {fileID: 5598689665677062176}
   _helperAnimationController: {fileID: 6386894955537829496}

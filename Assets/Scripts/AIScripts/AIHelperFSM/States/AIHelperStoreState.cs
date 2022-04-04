@@ -5,11 +5,13 @@ using MMFramework.TasksV2;
 using EState = AIHelperFSMController.EState;
 using ETransition = AIHelperFSMController.ETransition;
 using Pathfinding;
+using Pathfinding.RVO;
 
 using DG.Tweening;
 
 public class AIHelperStoreState : State<EState, ETransition>
 {
+    [SerializeField] private RVOController _rvoController;
     [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
@@ -67,7 +69,11 @@ public class AIHelperStoreState : State<EState, ETransition>
     {
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull -= OnCapacityFull;
 
+        _rvoController.locked = false;
+
         _aiHelper.CurrentLoadBehaviour.Deactivate();
+
+        _aiHelper.ReleaseProducer(_currentProducer);
     }
 
     private BaseProducer SelectProducer()
@@ -83,6 +89,8 @@ public class AIHelperStoreState : State<EState, ETransition>
 
         int index = Random.Range(0, allProducers.Count);
         var currentProducer = allProducers[index];
+
+        _aiHelper.ReserveProducer(currentProducer);
 
         // foreach (var producer in allProducers)
         // {
@@ -106,12 +114,17 @@ public class AIHelperStoreState : State<EState, ETransition>
     private void MoveToInteractionPoint(Vector3 pos)
     {
         _lastPos = pos;
-        _movementBehaviour.MoveDestination(pos, OnPathCompleted);
+
+        _movementBehaviour.MoveDestination(pos, OnPathCompleted, OnPathStucked);
     }
 
     private void OnPathCompleted()
     {
-        Vector3 dir = (new Vector3(_aiHelper.transform.position.x, _aiHelper.transform.position.y, _lastPos.z) - _aiHelper.transform.position).normalized;
+        _rvoController.locked = true;
+
+        Vector3 rotTarget = _currentProducer.AiInteraction.RotationTarget.position;
+
+        Vector3 dir = (new Vector3(rotTarget.x, _aiHelper.transform.position.y, rotTarget.z) - _aiHelper.transform.position).normalized;
 
         _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f);
 
@@ -124,5 +137,12 @@ public class AIHelperStoreState : State<EState, ETransition>
     private void OnCapacityFull()
     {
         FSM.SetTransition(ETransition.Deliver);
+    }
+
+    private void OnPathStucked()
+    {
+        _movementBehaviour.Stop();
+
+        StartCoroutine(SelectProducerRoutine());
     }
 }

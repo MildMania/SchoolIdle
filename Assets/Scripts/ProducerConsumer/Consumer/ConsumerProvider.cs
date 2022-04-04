@@ -6,6 +6,8 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
 {
     Dictionary<System.Type, List<BaseConsumer>> _consumersByResource =
         new Dictionary<System.Type, List<BaseConsumer>>();
+    Dictionary<System.Type, List<BaseConsumer>> _consumersByRecentlyUsedResource =
+        new Dictionary<System.Type, List<BaseConsumer>>();
 
     private void Awake()
     {
@@ -32,6 +34,8 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
         {
             _consumersByResource[resType] = new List<BaseConsumer>();
             _consumersByResource[resType].Add(consumer);
+
+            _consumersByRecentlyUsedResource[resType] = new List<BaseConsumer>();
         }
     }
 
@@ -43,5 +47,15 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
         return list;
     }
 
-}
+    public void ReserveConsumer(System.Type type, BaseConsumer consumer)
+    {
+        _consumersByRecentlyUsedResource[type].Add(consumer);
+        _consumersByResource[type].Remove(consumer);
+    }
 
+    public void ReleaseConsumer(System.Type type, BaseConsumer consumer)
+    {
+        _consumersByResource[type].Add(consumer);
+        _consumersByRecentlyUsedResource[type].Remove(consumer);
+    }
+}

@@ -57,4 +57,24 @@ public class AIHelper : SerializedMonoBehaviour
     {
         return ProducerProvider.Instance.GetProducers(_resource.GetType());
     }
+
+    public void ReserveProducer(BaseProducer producer)
+    {
+        ProducerProvider.Instance.ReserveProducer(_resource.GetType(), producer);
+    }
+
+    public void ReleaseProducer(BaseProducer producer)
+    {
+        ProducerProvider.Instance.ReleaseProducer(_resource.GetType(), producer);
+    }
+
+    public void ReserveConsumer(BaseConsumer consumer)
+    {
+        ConsumerProvider.Instance.ReserveConsumer(_resource.GetType(), consumer); 
+    }
+
+    public void ReleaseConsumer(BaseConsumer consumer)
+    {
+        ConsumerProvider.Instance.ReleaseConsumer(_resource.GetType(), consumer);
+    }
 }
