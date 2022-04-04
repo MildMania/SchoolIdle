@@ -48,6 +48,8 @@ MonoBehaviour:
   _deliverer: {fileID: 8616761567808843895}
   _attributeCategory: 1
   _unloadSpeedUpgradableType: 3
+  _isActiveOnStart: 1
+  _hapticType: 2
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
 MonoBehaviour:
@@ -83,6 +85,8 @@ MonoBehaviour:
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
+  _isActiveOnStart: 1
+  _hapticType: 2
   _folderProducerFovController: {fileID: 1043138689413498247}
 --- !u!1 &248085572542776962
 GameObject:
@@ -246,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDebugEnabled: 1
   _shapeType: 0
-  _fovRadius: 2
+  _fovRadius: 0.5
   _fovHeight: 0
   _fovAngle: 360
   _targetMask:
@@ -402,7 +406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onCollidedTasks:
     _taskCarrier: {fileID: 0}
-  _prefab: {fileID: 0}
   Collider: {fileID: 2750138833502224228}
 --- !u!114 &6380609688555925931
 MonoBehaviour:
@@ -915,6 +918,8 @@ MonoBehaviour:
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
+  _isActiveOnStart: 1
+  _hapticType: 2
   _paperProducerFovController: {fileID: 3542385565636418112}
 --- !u!114 &8859736292155214051
 MonoBehaviour:
@@ -932,6 +937,8 @@ MonoBehaviour:
   _deliverer: {fileID: 8616761567808843895}
   _attributeCategory: 1
   _unloadSpeedUpgradableType: 3
+  _isActiveOnStart: 1
+  _hapticType: 2
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3340411455920048298
 GameObject:
@@ -1872,6 +1879,8 @@ MonoBehaviour:
   _deliverer: {fileID: 8616761567808843895}
   _canLoadUnlimited: 1
   _container: {fileID: 1360490276735447177}
+  _isActiveOnStart: 1
+  _hapticType: 2
   _coinWorthCollector: {fileID: 2634399202852726416}
   _moneyProducerFovController: {fileID: 7793651401536557702}
 --- !u!1 &7785287994133234272
@@ -2250,7 +2259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _exitImmediately: 1
   _movementCommander: {fileID: 221509717171969841}
-  _characterSpeedUpgradable: {fileID: 0}
+  _attributeCategory: 0
+  _speedUpgradableType: 0
   _movementExecutor: {fileID: 7026170102763302549}
   _characterAnimationController: {fileID: 2561681505369681978}
 --- !u!1001 &8122009645132194852
