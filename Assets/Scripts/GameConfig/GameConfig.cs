@@ -58,4 +58,5 @@ public enum EAttributeCategory
     CLASSROOM_1 = 3,
     CLASSROOM_2 = 4,
     AUTOMAT_1 = 5,
+    TUTORIAL = 6,
 }

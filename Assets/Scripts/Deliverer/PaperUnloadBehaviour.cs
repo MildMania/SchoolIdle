@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 {
     [SerializeField] private PaperConsumerFovController _paperConsumerFovController;
     
+    private bool _isFirstUnload = false;
+    public Action OnFistUnloaded;
 
     protected override void OnAwakeCustomActions()
     {
@@ -23,6 +26,11 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
 
     public override void UnloadCustomActions(int index)
     {
+        if (!_isFirstUnload)
+        {
+            _isFirstUnload = true;
+            OnFistUnloaded?.Invoke();
+        }
         //Remove from self
         int lastResourceIndex = _deliverer.GetLastResourceIndex<Paper>();
 

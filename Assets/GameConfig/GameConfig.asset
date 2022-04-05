@@ -919,7 +919,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 7
       Data: AttributeRequirement, Assembly-CSharp
@@ -1658,6 +1658,74 @@ MonoBehaviour:
     - Name: Value
       Entry: 3
       Data: 200
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: AttributeRequirement, Assembly-CSharp
+    - Name: _attributeCategoryType
+      Entry: 3
+      Data: 6
+    - Name: Requirements
+      Entry: 7
+      Data: 40|System.Collections.Generic.Dictionary`2[[EUpgradable, Assembly-CSharp],[RequirementInfo[],
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 41|System.Collections.Generic.EnumEqualityComparer`1[[EUpgradable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 11
+    - Name: $v
+      Entry: 7
+      Data: 42|RequirementInfo[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: Value
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
