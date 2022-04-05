@@ -29,6 +29,11 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 			return;
 		}
 		
+		if (_isActiveOnStart)
+		{
+			_onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
+		}
+		
 		//Remove from self
 		Folder folder = (Folder)_deliverer.Resources[lastResourceIndex];
 		_deliverer.Resources.Remove(folder);

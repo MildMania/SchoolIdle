@@ -38,7 +38,12 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         {
             return;
         }
-
+        
+        if (_isActiveOnStart)
+        {
+            _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
+        }
+        
         Paper paper = (Paper) _deliverer.Resources[lastResourceIndex];
         _deliverer.Resources.Remove(paper);
         _updatedFormationController.RemoveCustomResourceTransform(lastResourceIndex);
