@@ -26,6 +26,8 @@ public class Money : MonoBehaviour, IResource
         var producibleTransform = transform;
         Vector3 position = producibleTransform.position;
 
+        Vector3 rotation = producibleTransform.rotation.eulerAngles;
+
 
         while (currentTime < _moveDuration)
         {
@@ -33,14 +35,24 @@ public class Money : MonoBehaviour, IResource
 
             producibleTransform.position = Vector3.Lerp(position,
                 target.position, step);
+    
+            
+            Vector3 targetRotation = Vector3.Lerp(rotation, target.rotation.eulerAngles, step);
 
-
+            producibleTransform.rotation = Quaternion.Euler(targetRotation);
+            
+            
             currentTime += Time.deltaTime;
             yield return null;
         }
+        
 
         producibleTransform.position = target.position;
+        producibleTransform.rotation = target.rotation;
+        
         producibleTransform.SetParent(container);
         OnMoveRoutineFinished?.Invoke(this);
+        
+        
     }
 }
