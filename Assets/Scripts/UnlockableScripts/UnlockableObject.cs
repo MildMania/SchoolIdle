@@ -114,6 +114,10 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		int oldValue = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
 		float coefficent = 0.002f;
 		float delay;
+		
+		
+		StartCoroutine(MoneyDropRoutine(character));
+		
 		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
 		{
 			delay = oldValue * coefficent;
@@ -143,7 +147,9 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 			}
 		}
 		
-		
+
+	
+
 		StartCoroutine(HapticRoutine(delay));
 		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData,delay);
 		
@@ -156,6 +162,29 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		{
 			Debug.Log("SAVED!!!");
 		}
+	}
+
+	private IEnumerator MoneyDropRoutine(Character character)
+	{
+		
+		int remainCoinCount = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
+		remainCoinCount /= 10;
+
+		var moneyUnloadBehaviour = character.GetComponentInChildren<MoneyUnloadBehaviour>();
+		
+
+		for (int i = 0; i < remainCoinCount; i++)
+		{
+		
+			int unloadLastMoney = moneyUnloadBehaviour.UnloadLastMoney(transform);
+			if (unloadLastMoney < 0)
+			{
+				yield return null;
+				break;
+			}
+
+		}
+
 	}
 
 	private IEnumerator HapticRoutine(float delay)

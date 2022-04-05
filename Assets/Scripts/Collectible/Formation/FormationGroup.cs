@@ -9,6 +9,7 @@ public enum EFormationGroupType
     Producer = 3,
     Carrier = 4,
     Consumer = 5,
+    Money = 6,
 }
 
 public class FormationGroup : MonoBehaviour
