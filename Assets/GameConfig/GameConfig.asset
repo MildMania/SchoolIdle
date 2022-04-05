@@ -74,7 +74,7 @@ MonoBehaviour:
       Data: 0
     - Name: Value
       Entry: 4
-      Data: 6
+      Data: 6.5
     - Name: 
       Entry: 8
       Data: 
@@ -86,7 +86,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 7.5
+      Data: 7
     - Name: 
       Entry: 8
       Data: 
@@ -98,7 +98,7 @@ MonoBehaviour:
       Data: 2
     - Name: Value
       Entry: 4
-      Data: 8.7
+      Data: 7.5
     - Name: 
       Entry: 8
       Data: 
@@ -110,7 +110,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 9.5
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
@@ -179,7 +179,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 50
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -628,7 +628,7 @@ MonoBehaviour:
       Data: 0
     - Name: Value
       Entry: 4
-      Data: 3
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -640,7 +640,7 @@ MonoBehaviour:
       Data: 1
     - Name: Value
       Entry: 4
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -664,7 +664,7 @@ MonoBehaviour:
       Data: 3
     - Name: Value
       Entry: 4
-      Data: 9
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
