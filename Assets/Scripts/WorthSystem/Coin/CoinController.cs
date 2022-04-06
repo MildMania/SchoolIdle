@@ -6,6 +6,8 @@ public class CoinController : MonoBehaviour
 	private int _currentCoinCount;
 
 	[SerializeField] private CurrencyObserver _currencyObserver;
+
+	public int CurrentCoinCount => _currentCoinCount;
 	
 	private void Awake()
 	{
@@ -36,5 +38,6 @@ public class CoinController : MonoBehaviour
 		UserManager.Instance.LocalUser.GetUserData<UserCoinInventoryData>().Tracker.TryGetSingle(ECoin.Gold,out trackable);
 
 		_currentCoinCount = trackable.TrackData.CurrentCount;
+
 	}
 }
