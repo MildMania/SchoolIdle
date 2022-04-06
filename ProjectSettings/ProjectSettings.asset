@@ -271,7 +271,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 287e2cf2344a131468bb61d0fdd3609a, type: 3}
+      m_Icon: {fileID: 2800000, guid: cd089507de3a4054cbfb42e0d00e6f4b, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -371,115 +371,115 @@ PlayerSettings:
   - m_BuildTarget: iPhone
     m_Icons:
     - m_Textures:
-      - {fileID: 2800000, guid: 287e2cf2344a131468bb61d0fdd3609a, type: 3}
-      m_Width: 1024
-      m_Height: 1024
-      m_Kind: 4
-      m_SubKind: App Store
-    - m_Textures:
-      - {fileID: 2800000, guid: 06ba8d7276075ee448892d1f961d131b, type: 3}
+      - {fileID: 2800000, guid: 41ed487925601a04b8d7a7f40967ef3f, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 3
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 6efe01068d0bac84e9c07572d2623298, type: 3}
+      - {fileID: 2800000, guid: 0d45fd521fc70424ba88b2459188a5af, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 6efe01068d0bac84e9c07572d2623298, type: 3}
+      - {fileID: 2800000, guid: 0d45fd521fc70424ba88b2459188a5af, type: 3}
       m_Width: 80
       m_Height: 80
       m_Kind: 3
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: bd758330591087c49933cfa87d6aa650, type: 3}
+      - {fileID: 2800000, guid: 7173c228b28cc314686da7540f1069ca, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 3
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 877ae6547682b1346a2f84dcb2e9d8c6, type: 3}
+      - {fileID: 2800000, guid: 46a9a41367369ef429f882caa8f60ee7, type: 3}
       m_Width: 87
       m_Height: 87
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 2e1e47eebbf051447965ce96e037a16f, type: 3}
+      - {fileID: 2800000, guid: fc521657abbe87e44b826f6d82f7e6a4, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 9dac07ea0e96da740808637941be948b, type: 3}
+      - {fileID: 2800000, guid: 41df111d390557f4b96ffe712898d14b, type: 3}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 2e1e47eebbf051447965ce96e037a16f, type: 3}
+      - {fileID: 2800000, guid: fc521657abbe87e44b826f6d82f7e6a4, type: 3}
       m_Width: 58
       m_Height: 58
       m_Kind: 1
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 9dac07ea0e96da740808637941be948b, type: 3}
+      - {fileID: 2800000, guid: 41df111d390557f4b96ffe712898d14b, type: 3}
       m_Width: 29
       m_Height: 29
       m_Kind: 1
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 23bffa087e2c36045a815b5f57eb98ec, type: 3}
+      - {fileID: 2800000, guid: ea7d0b658a1559f45b656b0ed36303bd, type: 3}
       m_Width: 60
       m_Height: 60
       m_Kind: 2
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: bd758330591087c49933cfa87d6aa650, type: 3}
+      - {fileID: 2800000, guid: 7173c228b28cc314686da7540f1069ca, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: bd758330591087c49933cfa87d6aa650, type: 3}
+      - {fileID: 2800000, guid: 7173c228b28cc314686da7540f1069ca, type: 3}
       m_Width: 40
       m_Height: 40
       m_Kind: 2
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 756f61aceac1aa24eba6a0b7be40bb3d, type: 3}
+      - {fileID: 2800000, guid: 6c7b8fb9fe3d21c4484cfba1ae28b12b, type: 3}
       m_Width: 20
       m_Height: 20
       m_Kind: 2
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: fe1d9a80624a5cb418175dbe8bc4a055, type: 3}
+      - {fileID: 2800000, guid: cd089507de3a4054cbfb42e0d00e6f4b, type: 3}
+      m_Width: 1024
+      m_Height: 1024
+      m_Kind: 4
+      m_SubKind: App Store
+    - m_Textures:
+      - {fileID: 2800000, guid: b5715632852a2084c9c758b9ce15d085, type: 3}
       m_Width: 180
       m_Height: 180
       m_Kind: 0
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: 06ba8d7276075ee448892d1f961d131b, type: 3}
+      - {fileID: 2800000, guid: 41ed487925601a04b8d7a7f40967ef3f, type: 3}
       m_Width: 120
       m_Height: 120
       m_Kind: 0
       m_SubKind: iPhone
     - m_Textures:
-      - {fileID: 2800000, guid: a8142883b0aa94e46b38d7086e2ad84d, type: 3}
+      - {fileID: 2800000, guid: 83fbda0cff23af54caf0310b74fd719d, type: 3}
       m_Width: 167
       m_Height: 167
       m_Kind: 0
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: 4dbab407ca589dc46b20d34c9bf8c1df, type: 3}
+      - {fileID: 2800000, guid: b612d2879fe445142b25295447711a36, type: 3}
       m_Width: 152
       m_Height: 152
       m_Kind: 0
       m_SubKind: iPad
     - m_Textures:
-      - {fileID: 2800000, guid: ed84f3df7dc458846acc6165acc5eec8, type: 3}
+      - {fileID: 2800000, guid: c37598de114aa2e4ab1ca9b09ee7de1b, type: 3}
       m_Width: 76
       m_Height: 76
       m_Kind: 0
