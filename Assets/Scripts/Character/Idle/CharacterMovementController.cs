@@ -1,4 +1,5 @@
 using System;
+using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using Pathfinding;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ public class CharacterMovementController : MonoBehaviour,
 
 	private bool _isPrevMoving = false;
 
+	private bool _gameStarted = false;
 	public Action<Vector3> OnMoveCommand { get; set; }
 	public Action OnMoveCancelledCommand { get; set; }
 	public Action<Vector3> OnLookAtCommand { get; set; }
@@ -38,9 +40,18 @@ public class CharacterMovementController : MonoBehaviour,
 
 	private void Update()
 	{
-		TryMove();
+		if (_gameStarted)
+		{
+			TryMove();
+		}
 	}
 
+	[PhaseListener(typeof(GamePhase), true)]
+	private void Init()
+	{
+		_gameStarted = true;
+	}
+	
 	private void TryMove()
 	{
 		if (_inputController.IsDown)
