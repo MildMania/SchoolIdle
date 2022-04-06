@@ -1808,13 +1808,25 @@ MonoBehaviour:
       Data: 45|RequirementInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: RequirementInfo, Assembly-CSharp
     - Name: Level
       Entry: 3
       Data: 1
+    - Name: Value
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: RequirementInfo, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 2
     - Name: Value
       Entry: 3
       Data: 0
