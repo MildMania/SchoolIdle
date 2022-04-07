@@ -164,11 +164,13 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		}
 	}
 
+	private int _coinValue = 50;
+
 	private IEnumerator MoneyDropRoutine(Character character)
 	{
 		
 		int remainCoinCount = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
-		remainCoinCount /= 10;
+		remainCoinCount /= _coinValue;
 
 		var moneyUnloadBehaviour = character.GetComponentInChildren<MoneyUnloadBehaviour>();
 		
