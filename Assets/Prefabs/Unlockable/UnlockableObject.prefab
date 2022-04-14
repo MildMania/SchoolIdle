@@ -325,6 +325,7 @@ MonoBehaviour:
   _unlockableGO: {fileID: 0}
   _lockObjects: {fileID: 0}
   _baseCharacterDetector: {fileID: 6968486723723393949}
+  _hapticType: 1
 --- !u!65 &6968486724384274531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371,19 +372,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071079
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.70710576
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -391,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3346013609222010006, guid: 1b375f5e66de3ed4f8ec46cba00f064f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
