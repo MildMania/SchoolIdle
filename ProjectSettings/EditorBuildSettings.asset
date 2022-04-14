@@ -11,13 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ManagerScene.unity
     guid: c48a1a9ba5419ed4f885c5ac8a7357d8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level_Proto_Model.unity
     guid: 2323fd50052185a4ca4d10b59a151451
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LevelCPI.unity
     guid: fbdee15f0c4a3be4db590f7b09dc792e
   - enabled: 1
     path: Assets/Scenes/LevelCPI2-BW.unity
     guid: bc90fb1759bc7a043a69bb2140766f5a
+  - enabled: 1
+    path: Assets/Scenes/LevelCPI3-BW.unity
+    guid: 9bb1176e353f961469769d7f241a637c
   m_configObjects: {}
