@@ -65,7 +65,7 @@ public class AIMovementBehaviour : MonoBehaviour
     {
         var path = _seeker.StartPath(_rootTransform.position, targetPos);
         yield return StartCoroutine(path.WaitForPath());
-        _aIPath.SetPath(path);
+        // _aIPath.SetPath(path);
     }
 
     public void MoveDestination(Vector3 targetPos, System.Action onPathCompletedCallback = null,
